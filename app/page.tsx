@@ -105,7 +105,7 @@ export default function Home() {
                 The right place to interact
               </div>
               <div className={`${cardo.className} pt-12 text-lg font-semibold`}>
-                In today's digital world, it can be challenging to meet new people and build meaningful relationships. This is where IRL steps in – a dedicated socialization space designed to foster a safe, supportive, and vibrant community for young adults who crave real-life interactions.
+                In today&apos;s digital world, it can be challenging to meet new people and build meaningful relationships. This is where IRL steps in – a dedicated socialization space designed to foster a safe, supportive, and vibrant community for young adults who crave real-life interactions.
               </div>
               <Link href="/contact">
                 <div className="font-semibold hover:bg-indigo-800 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10">
