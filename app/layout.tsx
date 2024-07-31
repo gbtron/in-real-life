@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { inter } from "@/app/ui/fonts"
-import "./globals.css";
-import {Navigation} from "./Navigation";
-import { Dropdown } from "./Dropdown";
+import "@/app/ui/globals.css";
+import {Navigation} from "./ui/Navigation";
+import { Dropdown } from "./ui/Dropdown";
 
 export const metadata: Metadata = {
   title: "In Real Life",

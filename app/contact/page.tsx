@@ -1,5 +1,5 @@
 "use client"
-import SubmitForm from '@/app/submit-form';
+import SubmitForm from '@/app/ui/submit-form';
 const initialState = {
     firstName: '',
     lastName: '',

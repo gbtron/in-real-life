@@ -2,7 +2,7 @@
 import Link from "next/link";
 import path from "path";
 import React from "react";
-import type {Page} from "./layout";
+import type {Page} from "../layout";
 import { hanken_grotesk } from "@/app/ui/fonts";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";

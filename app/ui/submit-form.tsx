@@ -1,5 +1,5 @@
 'use client'
-import { sendMessage } from '@/app/actions'; 
+import { sendMessage } from '@/app/lib/actions'; 
 import { useFormStatus, useFormState } from 'react-dom';
 
 const initialState= {

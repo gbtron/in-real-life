@@ -3,7 +3,7 @@ import Link from "next/link";
 import path from "path";    
 import React, {useState, useEffect} from "react";
 import {useRouter, usePathname} from "next/navigation";
-import type {Page} from "./layout";
+import type {Page} from "../layout";
 import clsx from "clsx";
 
 export function Dropdown({pages}: {pages: Page[]}) {
