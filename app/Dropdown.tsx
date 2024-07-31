@@ -2,8 +2,9 @@
 import Link from "next/link";
 import path from "path";    
 import React, {useState, useEffect} from "react";
-import {useRouter} from "next/navigation";
+import {useRouter, usePathname} from "next/navigation";
 import type {Page} from "./layout";
+import clsx from "clsx";
 
 export function Dropdown({pages}: {pages: Page[]}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +29,17 @@ export function Dropdown({pages}: {pages: Page[]}) {
             element.classList.remove('hidden');
         };
     }, [isOpen]);
-
+    
+    const pathName = usePathname();
     return (
         <>
-            <nav className="bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200 pt-8 sm:hidden flex justify-between px-8 sm:pl-[28rem] pb-4 top-0 w-full z-10">
+            <nav className={clsx(
+                "text-slate-800 pt-8 sm:hidden flex justify-between px-8 sm:pl-[28rem] pb-4 top-0 w-full z-10", 
+                {
+                    "bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200": pathName === "/",
+                    "bg-slate-100": pathName === "/contact"
+                }
+                )}>
                 <div className="flex justify-between" style={{width: '100%'}}>
                     <Link href={pages[0].path} className="font-bold">{pages[0].name}</Link>
                     {!isOpen && (
@@ -51,14 +59,32 @@ export function Dropdown({pages}: {pages: Page[]}) {
                     )}
                 </div>
             </nav>
-            <div className={`fixed inset-x-0 bottom-0 top-16 bg-slate-100 h-6/6 flex justify-center items-center flex-col transition-opacity duration-300 ease-out ${isOpen ? 'opacity-100 z-20' : 'opacity-0 z-0'}`}>
+            <div className={clsx(
+                "fixed inset-x-0 bottom-0 top-16 bg-slate-100 h-6/6 flex justify-center items-center flex-col transition-opacity duration-300 ease-out",
+                {
+                    "opacity-100 z-20": isOpen,
+                    "opacity-0 z-0": !isOpen
+                }
+            )}>
                 {pages.map((page, i) => {
+                    let title = page.name;
                     if (page.path == "/") {
-                        return null;
+                        title = "Home";
                     }
+                    
                     return (
-                        <Link href={page.path} key={i} className={`text-4xl p-4 ${!isOpen ? 'pointer-events-none' : ''}`} onClick={handleLinkClick(page.path)}>
-                            {page.name}
+                        <Link 
+                            href={page.path} 
+                            key={i} 
+                            className={clsx(
+                                "text-slate-800 text-4xl p-4",
+                                {
+                                    'pointer-events-none': !isOpen, 
+                                    'hidden': page.path === pathName
+                                })} 
+                            onClick={handleLinkClick(page.path)}
+                        >
+                            {title}
                         </Link>
                     )
                 })}

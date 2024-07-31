@@ -7,12 +7,6 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily: {
-      'heading': ['Handlee', 'cursive'],
-      'nav': ['Hanken Grotesk', 'sans-serif'],
-      'serif': ['Cardo', 'sans-serif']
-
-    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

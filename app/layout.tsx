@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { inter } from "@/app/ui/fonts"
 import "./globals.css";
 import {Navigation} from "./Navigation";
 import { Dropdown } from "./Dropdown";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "In Real Life",
@@ -25,16 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link href="https://fonts.googleapis.com/css2?family=Cardo&display=swap" rel="stylesheet"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Maiden+Orange&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap" rel="stylesheet"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"></link>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} antialiased`}>
         <Navigation pages={pages}/>
         <Dropdown pages={pages}/>
-        <div className="page-content">
+        <div className="page-content z-20 relative">
           {children}
         </div>
       </body>
