@@ -35,8 +35,8 @@ export default function SubmitForm() {
                     <textarea className="md:ml-16 w-full md:w-80 bg-slate-100 rounded-sm px-2 py-1" placeholder="Tell us if you are a parent, young adult, or counselor " id="message" name="message" required />
                 </div>
 
-                <div className="justify-end flex md:justify-start ml-[17rem] ">
-                    <button disabled={pending} type="submit" className="bg-indigo-600 text-white px-4 rounded-xl w-20 ml-24 hover:bg-black hover:text-slate-100">
+                <div className="justify-end flex md:justify-start">
+                    <button disabled={pending} type="submit" className="bg-indigo-600 text-white px-4 rounded-xl w-20 ml-[23rem] hover:bg-black hover:text-slate-100">
                         Send
                     </button>
                 </div>
