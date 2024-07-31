@@ -11,10 +11,10 @@ const initialState= {
 
 export default function SubmitForm() {
     const {pending} = useFormStatus();
-    const [state, formAction] = useFormState(sendMessage, initialState);
+    //const [state, formAction] = useFormState(sendMessage, initialState);
 
     return (
-        <form action={formAction} className="">
+        <form className="">
             <div className="bg-white p-8 flex flex-col rounded-md border-black">
                 <h1 className="text-2xl text-slate-900 font-semibold">How can we reach you?</h1>
                 <div className="mb-8 text-slate-500"> Let us know your preferred method of communication </div>
@@ -41,7 +41,7 @@ export default function SubmitForm() {
                     </button>
                 </div>
                 <p aria-live="polite" role="status" className="text-red-600">
-                    {state?.message}
+                    {pending ? 'Sending...' : ''}
                 </p>
             </div>
         </form>
