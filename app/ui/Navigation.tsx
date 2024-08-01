@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 
 export function Navigation({pages}: {pages: Page[]}) {
     const pathname = usePathname();
-    console.log("pathname-:", pathname, "pagespath-:", pages[0].path);
 
     return (
         <div className={clsx(
