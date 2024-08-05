@@ -74,12 +74,12 @@ export default function Form() {
                     ))}
                 </div>
                 <div className="mt-4">
-                    {state.message!.includes("could not be sent") && 
+                    {state.message == "The message could not be sent." && 
                         <p aria-live="polite" role="status" className="text-red-600">
                             {state.message}
                         </p>
                     }
-                    {state.message!.includes("success") && 
+                    {state.message == "The message was sent successfully." && 
                         <p aria-live="polite" role="status" className="text-green-600">
                             {state?.message}
                         </p>
