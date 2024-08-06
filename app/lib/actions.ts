@@ -11,61 +11,67 @@ export type State = {
         email?: string[];
         phone?: string[];
         message?: string[];
+        form?: string;
     };
-    message?: string | null;
 };
 
 const FormSchema = z.object({
     id: z.string(),
-    name: z.string({
-        invalid_type_error: 'Please enter your full name.'
-    }).min(5).regex(/^[\p{L}\s'-]*$/u).max(30),
-    phone: z.string({
-        invalid_type_error: 'Please enter a valid phone number.'
-    }).min(10).max(29).regex(/^[\(\+]?\d{0,14}\)?[\s\d-]{9,28}$/),
-    message: z.string({
-        invalid_type_error: 'Please enter the message you would like to send us.'
-    }).max(200),
+    name: z.string()
+        .min(5)
+        .regex(/^[\p{L}\s'-]*$/u, {message: 'Please enter your name using Unicode letters, apostrophes, and hyphens'})
+        .max(30),
+    phone: z.string()
+        .min(10)
+        .max(29)
+        .regex(/^[\(\+]?\d*\)?[\s\d-]*$/, {message: 'Please enter your phone number using numbers, spaces, hyphens, and parentheses'}),
+    message: z.string().max(200),
     date: z.string().date(),
-    email: z.string({
-        invalid_type_error: "Please enter a valid email address."
-    }).email().max(50),
+    email: z.string()
+        .email({message:'Please enter your email with valid recipient and domain names'})
+        .max(50),
 })
 
 const CreateLead = FormSchema.omit({id: true, date: true}); 
 
-export async function sendMessage(prevState: State, formData: FormData) {
+export async function sendMessage(previousState: State, formData: FormData) {
+    const rawName = formData.get('name') as string
+    const rawEmail = formData.get('email') as string
+    const rawPhone = formData.get('phone') as string
+    const rawMessage = formData.get('message') as string
+
     const validatedFields = CreateLead.safeParse({
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        message: formData.get('message')
+        name: rawName,
+        email: rawEmail,
+        phone: rawPhone,
+        message: rawMessage
     })
+
     if (!validatedFields.success) {
+        const errors = {
+            ...validatedFields.error.flatten().fieldErrors,
+            form: ''
+        }
         return {
-            errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Some of the fields are invalid. Please correct them and try again.', 
+            errors: errors
         }
     }
 
     const {name, email, phone, message} = validatedFields.data
-    
     const date = new Date().toISOString().split('T')[0];
+
     try {
         await sql`
         INSERT INTO leads(name, email, phone, message, date)
         VALUES (${name}, ${email}, ${phone}, ${message}, ${date})
         `;  
     } catch (error){
-        console.error("Database error", error);
         return {
-            errors: {},
-            message: "The message could not be sent."
+            errors: {
+                form: 'The message could not be sent.'
+            }
         }
     }
-    return {
-        errors:{},
-        message: "The message was sent successfully."
-    }
-    
+    revalidatePath('/contact');
+    return {}
 }
