@@ -10,22 +10,9 @@
   --columnPaddingNormal: 32px;
 }
 
-.dropdown-enter {
-  visibility:hidden;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: visibility 0ms linear, opacity 300ms, transform 300ms ease-out;
-}
-
-.dropdown-enter-active {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms ease-out;
-}
-
 body {
   color: rgb(var(--foreground-rgb));
+  background-color: #f1f5f9;
 }
 
 @media (prefers-color-scheme: dark) {

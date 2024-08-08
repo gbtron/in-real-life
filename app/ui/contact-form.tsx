@@ -3,7 +3,7 @@
 import { sendMessage, State } from '@/app/lib/actions'; 
 import React, { useActionState, useState } from 'react';
 
-export default function Form() {
+export default function ContactForm() {
     const initialState: State = { errors:{}};
     const [state, formAction] = useActionState(sendMessage, initialState);
     const [formData, setFormData] = useState({
@@ -57,21 +57,19 @@ export default function Form() {
         data.append('phone', formData.phone)
         data.append('message', formData.message)
 
-        await formAction(data);
-         
+        formAction(data);
     }
 
     return (
         <form action={formAction} onSubmit={handleSubmit}>
-            <div className="bg-white p-8 flex flex-col rounded-md border-black">
+            <div className="bg-white p-8 mb-16 flex flex-col rounded-md border-black">
                 <h1 className="text-2xl text-slate-900 font-semibold">How can we reach you?</h1>
                 <div className="text-slate-500"> Let us know your preferred method of communication </div>
                 <div className="mt-8 flex flex-col md:flex-row">
                     <label htmlFor="name" className="font-semibold text-sm inline-block w-16">Name</label>
                     <input 
                         aria-describedby="name-error" 
-                        className="md:ml-16 w-full md:w-80 bg-slate-100 rounded-sm px-2 py-1" 
-                        placeholder="Jane Diaz" 
+                        className="md:ml-16 w-full md:w-80 bg-slate-100 rounded-sm px-2 py-1"  
                         id="name" 
                         name="name"
                         value={formData.name}
@@ -88,7 +86,7 @@ export default function Form() {
                 </div>
                 <div className="md:flex mt-4">
                     <label className="font-semibold text-sm inline-block w-16" htmlFor="email">Email</label>
-                    <input aria-describedby="email-error" className="md:ml-16 w-full md:w-80 bg-slate-100 rounded-sm px-2 py-1" placeholder="jane@email.com" id="email" name="email" value={formData.email} onChange={handleInputChange}/>
+                    <input aria-describedby="email-error" className="md:ml-16 w-full md:w-80 bg-slate-100 rounded-sm px-2 py-1" id="email" name="email" value={formData.email} onChange={handleInputChange}/>
                 </div>
                 <div id="email-error" className="text-red-600" aria-live="polite" aria-atomic="true">
                     {state?.errors?.email?.[0] &&
@@ -100,7 +98,7 @@ export default function Form() {
                 </div>
                 <div className="flex flex-col md:flex-row mt-4">
                     <label className="font-semibold text-sm inline-block w-16" htmlFor="email">Phone</label>
-                    <input className="md:ml-16 w-full md:w-80 bg-slate-100 rounded-sm px-2 py-1" type="tel" placeholder="(333) 333-3333" value={formData.phone} onChange={handleInputChange} id="phone" name="phone"  />
+                    <input className="md:ml-16 w-full md:w-80 bg-slate-100 rounded-sm px-2 py-1" type="tel"  value={formData.phone} onChange={handleInputChange} id="phone" name="phone"  />
                 </div>
                 <div id="phone-error" className="text-red-600" aria-live="polite" aria-atomic="true">
                     {state?.errors?.phone?.[0] &&

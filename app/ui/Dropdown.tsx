@@ -1,10 +1,10 @@
 "use client"
 import Link from "next/link";
-import path from "path";    
 import React, {useState, useEffect} from "react";
 import {useRouter, usePathname} from "next/navigation";
 import type {Page} from "../layout";
 import clsx from "clsx";
+import { handlee } from "@/app/ui/fonts";
 
 export function Dropdown({pages}: {pages: Page[]}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -37,11 +37,12 @@ export function Dropdown({pages}: {pages: Page[]}) {
                 "text-slate-800 pt-8 sm:hidden flex justify-between px-8 sm:pl-[28rem] pb-4 top-0 w-full z-10", 
                 {
                     "bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200": pathName === "/",
-                    "bg-slate-100": pathName === "/contact"
+                    "bg-slate-100": pathName !== "/", 
+                    'hidden': pathName === '/dashboard/register'
                 }
                 )}>
                 <div className="flex justify-between" style={{width: '100%'}}>
-                    <Link href={pages[0].path} className="font-bold">{pages[0].name}</Link>
+                    <Link href={pages[0].path} className={`${handlee.className} text-xl`}>IRL</Link>
                     {!isOpen && (
                         <button onClick={toggleDropdown}>
                             <div className="flex flex-col items-center justify-around h-6 w-10 p-1 bg-slate-100 rounded-full">

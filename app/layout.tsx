@@ -3,6 +3,8 @@ import { inter } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import {Navigation} from "./ui/Navigation";
 import { Dropdown } from "./ui/Dropdown";
+import Link from "next/link";
+import { handlee } from "@/app/ui/fonts";
 
 export const metadata: Metadata = {
   title: "In Real Life",
@@ -19,7 +21,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pages = [{ name: "In Real Life", path: "/" }, {name:"Contact Us", path:"/contact"}];
+  const pages = [{ name: "In Real Life", path: "/" }, {name:"Join", path:"/dashboard/register"}, {name:"Contact", path:"/contact"}];
   return (
     <html lang="en">
       <head>

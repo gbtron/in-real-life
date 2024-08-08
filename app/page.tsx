@@ -3,28 +3,30 @@ import center from "./rivage-tM__6KpPlSw-unsplash.jpg"
 import flower from "./flower.jpg"
 import Link from "next/link";
 import {handlee, cardo} from "@/app/ui/fonts";
+import { Footer } from "@/app/ui/Footer";
 
 export default function Home() {
 
   return (
-    <main className="flex flex-col">
+    <>
+    <main className="flex flex-col sm:mb-40 mb-12">
       <div className="page-content z-10">
-        <section className="relative pb-64 overflow-hidden">
-          <div className="absolute -top-44 bottom-[80%] sm:bottom-3/4 lg:bottom-2/3 inset-0 transform skew-y-[-10deg] bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200"></div>
+        <section className="bg-white relative pb-64 overflow-hidden">
+          <div className="fixed absolute -top-44 bottom-[80%] sm:bottom-3/4 lg:bottom-2/3 inset-0 transform skew-y-[-10deg] bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200"></div>
           <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
               <div className= "w-3/4 sm:w-1/2 sm:pr-44 pt-16 text-slate-600">
                 <h1 className={`${handlee.className} text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold`}>Where real connections happen </h1>
                 <div className={`${cardo.className} font-medium pt-12 text-xl`}>
                   We provide a safe, inclusive environment for young adults to forge meaningful relationships, develop critical skills, and heighten their overall well being.
                 </div>
-                {/* <Link href="/contact">
+                <Link href="/dashboard/register">
                   <div className="duration-300 transition-colors ease-in-out bg-gradient-to-r from-stone-400 to-blue-100 hover:from-pink-500 hover:to-indigo-500 group text-white py-2 mt-8 px-4 rounded-lg w-40">
                     Begin today
                     <svg xmlns="http://www.w3.org/2000/svg" className="duration-300 ease-in-out transition-transform group-hover:translate-x-6 h-6 w-6 inline-block ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7M2 12h14" />
                     </svg>
                   </div>
-                </Link> */}
+                </Link>
               </div>
               <Image 
                 src="/assets/back-view-people-looking-distance.jpg" 
@@ -105,13 +107,22 @@ export default function Home() {
                 The right place to interact
               </div>
               <div className={`${cardo.className} pt-12 text-lg font-semibold`}>
-                In today&apos;s digital world, it can be challenging to meet new people and build meaningful relationships. This is where IRL steps in – a dedicated socialization space designed to foster a safe, supportive, and vibrant community for young adults who crave real-life interactions.
+                In today&apos;s digital world, it can be challenging to meet new people and build meaningful relationships. 
+                This is where IRL steps in – a dedicated socialization space designed to foster a safe, supportive, and vibrant community for young adults who crave real-life interactions.
+                Get started today by creating an account or starting the conversation. 
               </div>
-              <Link href="/contact">
-                <div className="font-semibold hover:bg-indigo-800 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10">
-                  Contact us
-                </div>
-              </Link>
+              <div className="flex flex-row gap-2">
+                <Link href="/dashboard/register">
+                  <div className="font-semibold hover:bg-indigo-800 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10">
+                    Begin today
+                  </div>
+                </Link>
+                <Link href="/contact">
+                  <div className="font-semibold hover:text-slate-100 group text-indigo-300 py-2 mt-8 px-4 w-32 mb-10">
+                    Contact us
+                  </div>
+                </Link>
+              </div>
             </div>
             <Image 
               src="/assets/flower.jpg" 
@@ -124,5 +135,8 @@ export default function Home() {
         </section>
       </div>
     </main>
+    
+    <Footer/>
+    </>
   );    
 }
