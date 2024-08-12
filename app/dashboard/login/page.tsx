@@ -37,7 +37,7 @@ export default function Login() {
                         <button className="bg-indigo-900 text-white px-4 py-2 rounded-md w-full">Log in</button>
                     </div>
                     <div className="p-6 rounded bg-camo mt-12 mx-1 text-center text-sm text-slate-600">
-                        Don't have an account?  {' '}
+                        Don&apos;t have an account?  {' '}
                         <Link href="/dashboard/register" className="text-indigo-500 hover:text-indigo-900">
                             Register
                         </Link>
