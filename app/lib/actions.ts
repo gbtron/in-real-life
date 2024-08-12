@@ -4,6 +4,7 @@ import {z} from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import nodemailer from 'nodemailer';
 
 export type State = {
     errors?: {
@@ -60,18 +61,42 @@ export async function sendMessage(previousState: State, formData: FormData) {
     const {name, email, phone, message} = validatedFields.data
     const date = new Date().toISOString().split('T')[0];
 
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+
+    let mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_RECIPIENT,
+        subject: `New Contact Form Submission from ${name}`,
+        text: `Name: ${name}\n\nEmail:${email}\n\nPhone: ${phone}\n\n${message}`
+    };
     try {
-        await sql`
-        INSERT INTO leads(name, email, phone, message, date)
-        VALUES (${name}, ${email}, ${phone}, ${message}, ${date})
-        `;  
-    } catch (error){
+        await transporter.sendMail(mailOptions);
+    } catch {
         return {
             errors: {
                 form: 'The message could not be sent.'
             }
         }
     }
+    // insert into database
+    // try {
+    //     await sql`
+    //     INSERT INTO leads(name, email, phone, message, date)
+    //     VALUES (${name}, ${email}, ${phone}, ${message}, ${date})
+    //     `;  
+    // } catch (error){
+    //     return {
+    //         errors: {
+    //             form: 'The message could not be sent.'
+    //         }
+    //     }
+    // }
     revalidatePath('/contact');
     return {}
 }

@@ -38,7 +38,7 @@ export function Dropdown({pages}: {pages: Page[]}) {
                 {
                     "bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200": pathName === "/",
                     "bg-slate-100": pathName !== "/", 
-                    'hidden': pathName === '/dashboard/register'
+                    'hidden': pathName.includes('/dashboard')
                 }
                 )}>
                 <div className="flex justify-between" style={{width: '100%'}}>

@@ -3,7 +3,7 @@ import center from "./rivage-tM__6KpPlSw-unsplash.jpg"
 import flower from "./flower.jpg"
 import Link from "next/link";
 import {handlee, cardo} from "@/app/ui/fonts";
-import { Footer } from "@/app/ui/Footer";
+import { Footer } from "../app/ui/Footer";
 
 export default function Home() {
 

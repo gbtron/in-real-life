@@ -20,22 +20,36 @@ export default function Register() {
 
                 <div className="bg-white sm:mt-12 mt-4 sm:w-3/6 sm:pt-16 pt-8 pb-1 rounded-md border-black">
                     <h1 className="px-4 sm:px-16 text-2xl text-slate-900 font-semibold"> Create your IRL account</h1>
-                    <div className="mt-8 px-4 sm:px-16 flex flex-col ">
-                        <label htmlFor="email" className="font-medium text-sm inline-block w-full">Email</label>
-                        <input aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="email" name="email" type="email" required/>
-                    </div>
-                    <div className="mt-6 px-4 sm:px-16 flex flex-col ">
-                        <label htmlFor="name" className="font-medium text-sm inline-block w-full">Full Name</label>
+                    <div className="mt-6 px-4 sm:px-16 flex flex-col">
+                        <label htmlFor="first-name" className="font-medium text-sm inline-block w-full">First Name</label>
                         <input 
                             aria-describedby="name-error" 
                             className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" 
-                            id="name" 
-                            name="name" 
+                            id="first-name" 
+                            name="first-name" 
                             type="text" 
                             required
                         />
                     </div>
-                    
+                    <div className="mt-6 px-4 sm:px-16 flex flex-col">
+                        <label htmlFor="last-name" className="font-medium text-sm inline-block w-full">Last Name</label>
+                        <input 
+                            aria-describedby="name-error" 
+                            className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" 
+                            id="last-name" 
+                            name="last-name" 
+                            type="text" 
+                            required
+                        />
+                    </div>
+                    <div className="mt-8 px-4 sm:px-16 flex flex-col ">
+                        <label htmlFor="email" className="font-medium text-sm inline-block w-full">Email</label>
+                        <input aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="email" name="email" type="email" required/>
+                    </div>
+                    <div className="mt-8 px-4 sm:px-16 flex flex-col ">
+                        <label htmlFor="email" className="font-medium text-sm inline-block w-full">Phone Number</label>
+                        <input aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="phone" name="phone" type="tel" required/>
+                    </div>
                     <div className="mt-6 px-4 sm:px-16 flex flex-col">
                         <label htmlFor="password" className="font-medium text-sm inline-block w-full">Password</label>
                         <input aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="password" name="password" type="password" required/>
@@ -51,7 +65,7 @@ export default function Register() {
                     </div>
                     <div className="p-6 rounded bg-camo mt-12 mx-1 text-center text-sm text-slate-600">
                         Already have an account?  {' '}
-                        <Link href="/login" className="text-indigo-500 hover:text-indigo-900">
+                        <Link href="/dashboard/login" className="text-indigo-500 hover:text-indigo-900">
                             Sign in
                         </Link>
                     </div>
