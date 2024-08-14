@@ -137,10 +137,9 @@
                     </div>
                     <div className="justify-end flex md:justify-start mt-8">
                         <button type="submit" disabled={state.submissionPending} className={clsx(
-                            "bg-indigo-600 text-white px-4 rounded-xl w-20 ml-[23rem]",
+                            " bg-gray-300 text-white px-4 rounded-xl w-20 ml-[23rem]",
                             {
-                                'hover:bg-black hover:text-slate-100': !state.submissionPending,
-                                'bg-gray-300': state.submissionPending
+                                'hover:bg-black hover:text-slate-100 bg-indigo-600': !state.submissionPending,
                             }
                         )}>
                             Send

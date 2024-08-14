@@ -3,7 +3,6 @@
 import {z} from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import nodemailer from 'nodemailer';
 
 export type ContactState = {
@@ -19,13 +18,14 @@ export type ContactState = {
 
 export type RegistrationState = {
     errors?: {
-        firstname?: string[];
-        lastname?: string[];
+        firstName?: string[];
+        lastName?: string[];
         email?: string[];
         phone?: string[];
         password?: string[];
         form?: string;
-    };
+    }, 
+    submissionPending: boolean;
 };
 
 const ContactFormSchema = z.object({
@@ -40,25 +40,25 @@ const ContactFormSchema = z.object({
     phone: z.string()
         .min(10)
         .max(29)
-        .regex(/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/, {message: 'Please enter your phone number using numbers, spaces, hyphens, and parentheses'}),
+        .regex(/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/, {message: 'Please enter your phone number using numbers, spaces, hyphens, dots, and parentheses'}),
     message: z.string().max(200).min(10),
     date: z.string().date(),
 })
 
 const RegistrationFormSchema = z.object({
     id: z.string(),
-    firstname: z.string()
-        .min(5)
+    firstName: z.string()
+        .min(2)
         .regex(/^[\p{L}\s'-]*$/u, {message: 'Please enter your name using Unicode letters, apostrophes, and hyphens'})
         .max(30),
-    lastname: z.string()
-        .min(5)
+    lastName: z.string()
+        .min(3)
         .regex(/^[\p{L}\s'-]*$/u, {message: 'Please enter your name using Unicode letters, apostrophes, and hyphens'})
         .max(30),
     phone: z.string()
         .min(10)
         .max(29)
-        .regex(/^[\(\+]?\d*\)?[\s\d-]*$/, {message: 'Please enter your phone number using numbers, spaces, hyphens, and parentheses'}),
+        .regex(/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/, {message: 'Please enter your phone number using only numbers, spaces, hyphens, plus symbols, and parentheses'}),
     email: z.string()
         .email({message:'Please enter your email with valid recipient and domain names'})
         .max(50),
@@ -134,15 +134,15 @@ export async function sendMessage(previousState: ContactState, formData: FormDat
 }
 
 export async function createAccount(previousState: RegistrationState, formData: FormData) {
-    const rawFirstName = formData.get('first-name') as string
-    const rawLastName = formData.get('last-name') as string
+    const rawFirstName = formData.get('firstName') as string
+    const rawLastName = formData.get('lastName') as string
     const rawEmail = formData.get('email') as string
     const rawPhone = formData.get('phone') as string
     const rawPassword = formData.get('password') as string
 
     const validatedFields = CreateUser.safeParse({
-        firstname: rawFirstName,
-        lastname: rawLastName,
+        firstName: rawFirstName,
+        lastName: rawLastName,
         email: rawEmail,
         phone: rawPhone,
         password: rawPassword
@@ -154,23 +154,27 @@ export async function createAccount(previousState: RegistrationState, formData: 
             form: ''
         }
         return {
-            errors: errors
+            errors: errors, 
+            submissionPending:false
         }
     }
 
-    const {firstname, lastname, email, phone, password} = validatedFields.data
+    const {firstName, lastName, email, phone, password} = validatedFields.data
     const date = new Date().toISOString().split('T')[0];
 
     try {
         await sql`
         INSERT INTO users(firstname, lastname, email, password, phone, date)
-        VALUES (${firstname}, ${lastname}, ${email}, ${password}, ${phone}, ${date})
+        VALUES (${firstName}, ${lastName}, ${email}, ${password}, ${phone}, ${date})
         `;  
     } catch (error){
         return {
             errors: {
                 form: 'The account could not be created.'
-            }
+            }, 
+            submissionPending: false
         }
     }
+    revalidatePath('/dashboard/registration');
+    return {submissionPending: false};
 }

@@ -1,14 +1,6 @@
-import { fetchLeads } from '@/app/lib/data';
-import { Lead } from '@/app/lib/definitions';
+
 import ContactForm from '@/app/ui/contact-form';
 import { Footer } from '../ui/Footer';
-
-const initialState = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    message: ''
-}
 
 export default async function Contact() {
     return (
