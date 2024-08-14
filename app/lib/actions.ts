@@ -13,7 +13,8 @@ export type ContactState = {
         phone?: string[];
         message?: string[];
         form?: string;
-    };
+    }, 
+    submissionPending: boolean;
 };
 
 export type RegistrationState = {
@@ -40,7 +41,7 @@ const ContactFormSchema = z.object({
         .min(10)
         .max(29)
         .regex(/^\s*(?:\+?(\d{1,3}))?([-. (]*(\d{3})[-. )]*)?((\d{3})[-. ]*(\d{2,4})(?:[-.x ]*(\d+))?)\s*$/, {message: 'Please enter your phone number using numbers, spaces, hyphens, and parentheses'}),
-    message: z.string().max(200),
+    message: z.string().max(200).min(10),
     date: z.string().date(),
 })
 
@@ -90,7 +91,8 @@ export async function sendMessage(previousState: ContactState, formData: FormDat
             form: ''
         }
         return {
-            errors: errors
+            errors: errors, 
+            submissionPending: false
         }
     }
     const {name, email, phone, message} = validatedFields.data
@@ -121,11 +123,14 @@ export async function sendMessage(previousState: ContactState, formData: FormDat
         VALUES (${name}, ${email}, ${phone}, ${message}, ${date})
         `;  
     } catch (error) {
-        return { errors: { form: 'The message was not sent. Please try again later' } };
+        return { 
+            errors: { form: 'The message was not sent. Please try again later' },
+            submissionPending: false 
+        };
     }
     
     revalidatePath('/contact');
-    return {}
+    return {submissionPending: false};
 }
 
 export async function createAccount(previousState: RegistrationState, formData: FormData) {

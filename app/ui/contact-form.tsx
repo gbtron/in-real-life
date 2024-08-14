@@ -2,9 +2,10 @@
 
     import { sendMessage, ContactState } from '@/app/lib/actions'; 
     import React, { useActionState, useState, startTransition } from 'react';
+    import clsx from 'clsx';
 
     export default function ContactForm() {
-        const initialState: ContactState = { errors:{}};
+        const initialState: ContactState = { errors:{}, submissionPending: false };
         const [state, formAction] = useActionState(sendMessage, initialState);
         const [formData, setFormData] = useState({
             phone: '',
@@ -57,12 +58,13 @@
             data.append('phone', formData.phone)
             data.append('message', formData.message)
             startTransition(() => {
+                state.submissionPending = true;
                 formAction(data);
             })  
         }
 
         return (
-            <form action={formAction} onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div className="bg-white p-8 flex flex-col rounded-md border-black">
                     <h1 className="text-2xl text-slate-900 font-semibold">How can we reach you?</h1>
                     <div className="text-slate-500"> Let us know your preferred method of communication </div>
@@ -127,14 +129,20 @@
                                 {state.errors.form}
                             </p>
                         }
-                        {Object.values(state).length == 0 && 
+                        {Object.values(state).length == 1 && 
                             <p aria-live="polite" role="status" className="text-green-600">
                                 The message was sent.
                             </p>
                         }
                     </div>
                     <div className="justify-end flex md:justify-start mt-8">
-                        <button type="submit" className="bg-indigo-600 text-white px-4 rounded-xl w-20 ml-[23rem] hover:bg-black hover:text-slate-100">
+                        <button type="submit" disabled={state.submissionPending} className={clsx(
+                            "bg-indigo-600 text-white px-4 rounded-xl w-20 ml-[23rem]",
+                            {
+                                'hover:bg-black hover:text-slate-100': !state.submissionPending,
+                                'bg-gray-300': state.submissionPending
+                            }
+                        )}>
                             Send
                         </button>
                     </div>
