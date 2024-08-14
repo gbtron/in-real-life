@@ -1,11 +1,33 @@
 "use client"
 import { handlee } from "@/app/ui/fonts"
-import { useState } from "react"
+import { useState, useActionState } from "react"
 import clsx from "clsx"
 import Link from "next/link";
+import { createAccount, RegistrationState } from "@/app/lib/actions";
 
 export default function Register() {
     const [isDisabled, setIsDisabled] = useState(true);
+    const initialState: RegistrationState = { errors: {} };
+    //const [state, formAction] = useActionState(createAccount, initialState);
+    const [formData, setFormData] = useState({
+        'first-name': '',
+        'last-name': '',
+        email: '',
+        phone: '',
+        password: '', 
+    });
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const data = new FormData()
+        data.append('first-name', formData['first-name'])
+        data.append('last-name', formData['last-name'])
+        data.append('email', formData.email)
+        data.append('phone', formData.phone)
+        data.append('password', formData.password)
+
+        //formAction(data);
+    }
 
     return (
             <div className="flex flex-col sm:flex-row px-4 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">

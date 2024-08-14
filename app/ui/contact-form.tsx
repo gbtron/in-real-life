@@ -1,10 +1,10 @@
     "use client"
 
-    import { sendMessage, State } from '@/app/lib/actions'; 
-    import React, { useActionState, useState } from 'react';
+    import { sendMessage, ContactState } from '@/app/lib/actions'; 
+    import React, { useActionState, useState, startTransition } from 'react';
 
     export default function ContactForm() {
-        const initialState: State = { errors:{}};
+        const initialState: ContactState = { errors:{}};
         const [state, formAction] = useActionState(sendMessage, initialState);
         const [formData, setFormData] = useState({
             phone: '',
@@ -56,12 +56,13 @@
             data.append('email', formData.email)
             data.append('phone', formData.phone)
             data.append('message', formData.message)
-
-            formAction(data);
+            startTransition(() => {
+                formAction(data);
+            })  
         }
 
         return (
-            <form onSubmit={handleSubmit}>
+            <form action={formAction} onSubmit={handleSubmit}>
                 <div className="bg-white p-8 flex flex-col rounded-md border-black">
                     <h1 className="text-2xl text-slate-900 font-semibold">How can we reach you?</h1>
                     <div className="text-slate-500"> Let us know your preferred method of communication </div>
