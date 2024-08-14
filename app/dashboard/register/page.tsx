@@ -85,7 +85,7 @@ export default function Register() {
                             }
                          )} disabled={isDisabled} >Create account</button>
                     </div>
-                    <div className="p-6 rounded bg-camo mt-12 mx-1 text-center text-sm text-slate-600">
+                    <div className="p-6 rounded bg-lightTan mt-12 mx-1 text-center text-sm text-slate-600">
                         Already have an account?  {' '}
                         <Link href="/dashboard/login" className="text-indigo-500 hover:text-indigo-900">
                             Sign in

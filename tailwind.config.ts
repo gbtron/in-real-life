@@ -14,7 +14,9 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors : {
-        'camo': '#efeedb'
+        'camo': '#efeedb', 
+        'lightTan': '#EAE2D4',
+        'burntOrange': '#DD5C3D',
       }
     },
   },
