@@ -1,12 +1,17 @@
 import Link from "next/link";
-import {handlee} from "@/app/ui/fonts";
+import Image from "next/image";
 
 export function Footer() {
     return (
     <footer className="pl-8 bg-slate-100 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))] text-slate-600 sm:pt-4">
-      <div className="flex flex-col sm:flex-row sm:gap-20 gap-4 ">
-        <Link href="/" className={`${handlee.className} text-xl hover:font-bold sticky`}> In Real Life </Link>
-        <Link href="/contact" className="hover:font-bold mb-8">Contact</Link>
+      <div className="flex flex-col sm:flex-row sm:gap-20 gap-4 items-center pb-16">
+        <Link href="/" className="hidden sm:block">
+          <Image src="/assets/IRL_Logo_Final_Main.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
+        </Link>
+        <Link href="/" className="block sm:hidden">
+          <Image src="/assets/IRL_Logo_Final_Responsive.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
+        </Link>
+        <Link href="/contact" className="hover:font-bold">Contact</Link>
       </div>
     </footer>
     )

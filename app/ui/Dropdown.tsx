@@ -5,6 +5,7 @@ import {useRouter, usePathname} from "next/navigation";
 import type {Page} from "../layout";
 import clsx from "clsx";
 import { handlee } from "@/app/ui/fonts";
+import Image from "next/image";
 
 export function Dropdown({pages}: {pages: Page[]}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -41,8 +42,10 @@ export function Dropdown({pages}: {pages: Page[]}) {
                     'hidden': pathName.includes('/dashboard')
                 }
                 )}>
-                <div className="flex justify-between" style={{width: '100%'}}>
-                    <Link href={pages[0].path} className={`${handlee.className} text-xl`}>IRL</Link>
+                <div className="flex justify-between w-full z-10" >
+                    <Link href="/">
+                        <Image src="/assets/IRL_Logo_Final_Responsive.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
+                    </Link>
                     {!isOpen && (
                         <button onClick={toggleDropdown}>
                             <div className="flex flex-col items-center justify-around h-6 w-10 p-1 bg-slate-100 rounded-full">
@@ -68,9 +71,12 @@ export function Dropdown({pages}: {pages: Page[]}) {
                 }
             )}>
                 {pages.map((page, i) => {
-                    let title = page.name;
+                    let title = <>{page.name}</>;
                     if (page.path == "/") {
-                        title = "Home";
+                        title = 
+                            <Link href="/">
+                                <Image src="/assets/IRL_Logo_Final_Responsive.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
+                            </Link>
                     }
                     
                     return (
@@ -80,8 +86,7 @@ export function Dropdown({pages}: {pages: Page[]}) {
                             className={clsx(
                                 "text-slate-800 text-4xl p-4",
                                 {
-                                    'pointer-events-none': !isOpen, 
-                                    'hidden': page.path === pathName
+                                    'pointer-events-none': !isOpen
                                 })} 
                             onClick={handleLinkClick(page.path)}
                         >

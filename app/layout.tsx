@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <Navigation pages={pages}/>
         <Dropdown pages={pages}/>
-        <div className="page-content z-20 relative">
+        <div className="page-content z-10 relative">
           {children}
         </div>
       </body>

@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link";
+import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import path from "path";
 import React from "react";
@@ -22,7 +23,7 @@ export function Navigation({pages}: {pages: Page[]}) {
             )}>
             <nav className="pt-8 sm:flex justify-between hidden bg-inherit top-0 w-100% z-10 px-12 sm:px-[--columnPaddingNormal] sm:mx-auto sm:overflow-hidden sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
                 <ul className="flex text-lg " >
-                    <div className="flex space-x-12">
+                    <div className="flex space-x-12 items-center z-10">
                     {pages.map((page, i) => (
                         <li key={i} className={clsx(
                             `${hanken_grotesk.className} hover:text-blue-400 `,
@@ -31,13 +32,20 @@ export function Navigation({pages}: {pages: Page[]}) {
                                 'font-medium': page.path !== pathName
                             }
                         )}>
-                            <Link href={page.path}>
-                                {page.name}
-                            </Link>
+                            {page.path === "/" 
+                                ?
+                                <Link href="/">
+                                    <Image src="/assets/IRL_Logo_Final_Main.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
+                                </Link>
+                                :
+                                <Link href={page.path}>
+                                    {page.name}
+                                </Link>
+                            }
                         </li>
                     ))}
                     </div>
-                    <Link href="/dashboard/login" className="absolute right-80">
+                    <Link href="/dashboard/login" className="absolute right-80 top-16 z-10">
                         <li className={`${hanken_grotesk.className} hover:text-blue-400 font-medium`}>
                             <FaUser className="inline-block mr-2"/>
                             Login
