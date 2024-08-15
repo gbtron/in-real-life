@@ -52,7 +52,7 @@ const RegistrationFormSchema = z.object({
         .regex(/^[\p{L}\s'-]*$/u, {message: 'Please enter your name using Unicode letters, apostrophes, and hyphens'})
         .max(30),
     lastName: z.string()
-        .min(3)
+        .min(2)
         .regex(/^[\p{L}\s'-]*$/u, {message: 'Please enter your name using Unicode letters, apostrophes, and hyphens'})
         .max(30),
     phone: z.string()

@@ -17,7 +17,7 @@
         const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             const {name, value} = event.target;
             if (name === 'phone') {
-                if (value.length === 4 && !value.includes('(') && !value.includes('+')) {
+                if (value.length === 4 && !['(', '+', '-'].some(char => value.includes(char))) {
                     setFormData({
                         ...formData,
                         phone:`${value.slice(0,3)}-${value.slice(-1)}`
