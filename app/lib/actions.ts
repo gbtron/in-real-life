@@ -28,6 +28,15 @@ export type RegistrationState = {
     submissionPending: boolean;
 };
 
+export type LoginState = {
+    errors?: {
+        email?: string[];
+        password?: string[];
+        form?: string;
+    }, 
+    submissionPending: boolean;
+};
+
 const ContactFormSchema = z.object({
     id: z.string(),
     name: z.string()
@@ -69,8 +78,19 @@ const RegistrationFormSchema = z.object({
     date: z.string().date(),
 })
 
+const LoginFormSchema = z.object({
+    email: z.string()
+        .email({message:'Please enter your email with valid recipient and domain names'})
+        .max(50),
+    password: z.string()
+        .min(8)
+        .max(50)
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/, {message: 'Please enter a password with at least one lowercase letter, one uppercase letter, one number, and one special character'}),
+})
+
 const CreateUser = RegistrationFormSchema.omit({id: true, date: true}); 
 const CreateLead = ContactFormSchema.omit({id: true, date: true});
+const CreateLogin = LoginFormSchema;
 
 export async function sendMessage(previousState: ContactState, formData: FormData) {
     const rawName = formData.get('name') as string
@@ -176,5 +196,45 @@ export async function createAccount(previousState: RegistrationState, formData: 
         }
     }
     revalidatePath('/dashboard/registration');
+    return {submissionPending: false};
+}
+
+export async function login(previousState: LoginState, formData: FormData) {
+    const rawEmail = formData.get('email') as string
+    const rawPassword = formData.get('password') as string
+
+    const validatedFields = CreateLogin.safeParse({
+        email: rawEmail,
+        password: rawPassword
+    })
+
+    if (!validatedFields.success) {
+        const errors = {
+            ...validatedFields.error.flatten().fieldErrors,
+            form: ''
+        }
+        return {
+            errors: errors, 
+            submissionPending:false
+        }
+    }
+
+    const {email, password} = validatedFields.data
+
+    try {
+        await sql`
+        SELECT * FROM users
+        WHERE email = ${email}
+        `;
+    }
+    catch (error) {
+        return {
+            errors: {
+                form: 'No account is associated with this email. Please try again.'
+            }, 
+            submissionPending: false
+        }
+    }
+    revalidatePath('/dashboard/login');
     return {submissionPending: false};
 }
