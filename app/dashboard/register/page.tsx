@@ -192,204 +192,203 @@ export default function Register() {
         checkFieldsFilled();
     }, [formData])
 
-    console.log(state.submissionPending, !fieldsValid, !fieldsFilled)
     return (
-            <div className="flex flex-col sm:flex-row px-4 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-                <div className="sm:block w-3/4 sm:w-1/2 pl-4 sm:pr-44 sm:pt-36 pt-8 text-slate-600">
-                    <div className={`${handlee.className} text-4xl lg:text-6xl text-slate-600 font-semibold `}>
-                        IRL
-                    </div>
-                    <div className="text-2xl pt-12 hidden sm:block">
-                        Get started
-                    </div>
+        <div className="flex flex-col sm:flex-row px-4 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+            <div className="sm:block w-3/4 sm:w-1/2 pl-4 sm:pr-44 sm:pt-36 pt-8 text-slate-600">
+                <div className={`${handlee.className} text-4xl lg:text-6xl text-slate-600 font-semibold `}>
+                    IRL
                 </div>
-                <div className="bg-white sm:mt-12 mt-4 sm:w-3/6 sm:pt-16 pt-8 pb-1 rounded-md border-black">
-                    <form onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
-                        event.preventDefault();
-                        const data = new FormData()
-                        data.append('firstName', formData.firstName)
-                        data.append('lastName', formData.lastName)
-                        data.append('email', formData.email)
-                        data.append('phone', formData.phone)
-                        data.append('password', formData.password)
-                        startTransition(() => {
-                            state.submissionPending = true
-                            formAction(data);
-                        })
-                    }}>
-                        <div onBlur={(e:React.FocusEvent<HTMLInputElement>) => {
-                            setBlurred({
-                                ...blurred,
-                                [e.target.name]: true
-                            })
-                            clientSideValidation(e.target.value, e.target.name)
-                        }}>
-                            <h1 className="px-4 sm:px-16 text-2xl text-slate-900 font-semibold"> Create your IRL account</h1>
-                            <div className="mt-6 px-4 sm:px-16 flex flex-col">
-                                <label htmlFor="firstName" className={clsx(
-                                    "font-medium text-sm inline-block w-full", 
-                                    {"text-red-600": clientErrors.firstName?.[0]}
-                                )}
-                                    >First Name</label>
-                                <input 
-                                    aria-describedby="first-name-error" 
-                                    className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" 
-                                    id="firstName" 
-                                    name="firstName" 
-                                    type="text" 
-                                    onChange = {handleInputChange}
-                                />
-                            </div>
-                            <div id="first-name-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                                {state?.errors?.firstName?.[0] &&
-                                state.errors.firstName.map((error:string) => (
-                                    <p className="text-red-600 my-2 text-sm" key={error}>
-                                        {error.replace('String', 'Your first name').replace('must', 'should')}
-                                    </p>
-                                ))}
-                                {clientErrors.firstName &&
-                                    <p className="text-red-600 text-sm">
-                                        {clientErrors.firstName}
-                                    </p>
-                                }
-                            </div>
-                            <div className="mt-6 px-4 sm:px-16 flex flex-col">
-                                <label htmlFor="lastName" className={clsx(
-                                    "font-medium text-sm inline-block w-full",
-                                    {"text-red-600": clientErrors.lastName?.[0]}
-                                )}
-                                >Last Name</label>
-                                <input 
-                                    aria-describedby="name-error" 
-                                    className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" 
-                                    id="lastName" 
-                                    name="lastName" 
-                                    type="text" 
-                                    onChange= {handleInputChange}
-                                />
-                            </div>
-                            <div id="last-name-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                                {state?.errors?.lastName?.[0] &&
-                                state.errors.lastName.map((error:string) => (
-                                    <p className="text-red-600 my-2 text-sm" key={error}>
-                                        {error.replace('String', 'Your last name').replace('must', 'should')}
-                                    </p>
-                                ))}
-                                {clientErrors.lastName &&
-                                    <p className="text-red-600 text-sm">
-                                        {clientErrors.lastName}
-                                    </p>
-                                }
-                            </div>
-                            <div className="mt-8 px-4 sm:px-16 flex flex-col ">
-                                <label htmlFor="email" className={clsx(
-                                    "font-medium text-sm inline-block w-full",
-                                    {"text-red-600": clientErrors.email?.[0]}
-                                )}>Email</label>
-                                <input onChange= {handleInputChange} aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="email" name="email" type="email" />
-                            </div>
-                            <div id="email-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                                {state?.errors?.email?.[0] &&
-                                state.errors.email.map((error:string) => (
-                                    <p className="text-red-600 my-2 text-sm" key={error}>
-                                        {error.replace('String', 'Your email').replace('must', 'should')}
-                                    </p>
-                                ))}
-                                {clientErrors.email &&
-                                    <p className="text-red-600 text-sm">
-                                        {clientErrors.email}
-                                    </p>
-                                }
-                            </div>
-                            <div className="mt-8 px-4 sm:px-16 flex flex-col ">
-                                <label htmlFor="email" className={clsx(
-                                    "font-medium text-sm inline-block w-full",
-                                    {"text-red-600": clientErrors.phone?.[0]}
-                                )}>Phone Number</label>
-                                <input 
-                                    value={formData.phone} onChange= {handleInputChange} aria-describedby="name-error" 
-                                    className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="phone" name="phone" type="tel" />
-                            </div>
-                            <div id="phone-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                                {state?.errors?.phone?.[0] &&
-                                state.errors.phone.map((error:string) => (
-                                    <p className="text-red-600 my-2 text-sm" key={error}>
-                                        {error.replace('String', 'Your phone number').replace('must', 'should')}
-                                    </p>
-                                ))}
-                                {clientErrors.phone &&
-                                    <p className="text-red-600 text-sm">
-                                        {clientErrors.phone}
-                                    </p>
-                                }
-                            </div>
-                            <div className="mt-6 px-4 sm:px-16 flex flex-col">
-                                <label htmlFor="password" className={clsx(
-                                    "font-medium text-sm inline-block w-full",
-                                    {"text-red-600": clientErrors.password?.[0]}
-                                    )}>Password</label>
-                                    <div className="flex items-center border-slate-400 border rounded-md mt-2 mb-4 px-1">
-                                        <input 
-                                            onChange= {handleInputChange} 
-                                            aria-describedby="name-error" 
-                                            className="w-full px-2 py-1" 
-                                            id="password" 
-                                            name="password" 
-                                            type={passwordVisible ? 'text' : 'password'} 
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={togglePasswordVisibility}
-                                            className="ml-2"
-                                        >
-                                            {passwordVisible ? <EyeSlashIcon className="h-5 w-5 text-slate-400"/> : <EyeIcon className="h-5 w-5 text-slate-400"/>}
-                                        </button>
-                                    </div>
-
-                            </div>
-                            <div id="password-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                                {state?.errors?.password?.[0] &&
-                                state.errors.password.map((error:string) => (
-                                    <p className="text-red-600 my-2 text-sm" key={error}>
-                                        {error.replace('String', 'Your password').replace('must', 'should')}
-                                    </p>
-                                ))}
-                                {clientErrors.password &&
-                                    <p className="text-red-600 text-sm">
-                                        {clientErrors.password}
-                                    </p>
-                                }
-                            </div>
-                        </div>
-                        <div className="mt-4">
-                            {state?.errors?.form && 
-                                <p aria-live="polite" role="status" className="text-red-600">
-                                    {state.errors.form}
-                                </p>
-                            }
-                            {Object.values(state).length == 1 && 
-                                <p aria-live="polite" role="status" className="text-green-600">
-                                    The account was created.
-                                </p>
-                            }
-                        </div>
-
-                        <div className="mt-10 px-4 sm:px-16 justify-end flex md:justify-start">
-                            <button className={clsx(
-                                "bg-gray-300 text-white px-4 py-2 rounded-md w-full",
-                                {
-                                    'hover:bg-indigo-300 bg-indigo-900': !state.submissionPending && fieldsValid && fieldsFilled,
-                                }
-                            )} disabled={state.submissionPending || !fieldsValid || !fieldsFilled}>Create account</button>
-                        </div>
-                        <div className="p-6 rounded bg-lightTan mt-12 mx-1 text-center text-sm text-slate-600">
-                            Already have an account?  {' '}
-                            <Link href="/dashboard/login" className="text-indigo-500 hover:text-indigo-900">
-                                Sign in
-                            </Link>
-                        </div>
-                    </form>
-                </div>         
+                <div className="text-2xl pt-12 hidden sm:block">
+                    Get started
+                </div>
             </div>
+            <div className="bg-white sm:mt-12 mt-4 sm:w-3/6 sm:pt-16 pt-8 pb-1 rounded-md border-black">
+                <form onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
+                    event.preventDefault();
+                    const data = new FormData()
+                    data.append('firstName', formData.firstName)
+                    data.append('lastName', formData.lastName)
+                    data.append('email', formData.email)
+                    data.append('phone', formData.phone)
+                    data.append('password', formData.password)
+                    startTransition(() => {
+                        state.submissionPending = true
+                        formAction(data);
+                    })
+                }}>
+                    <div onBlur={(e:React.FocusEvent<HTMLInputElement>) => {
+                        setBlurred({
+                            ...blurred,
+                            [e.target.name]: true
+                        })
+                        clientSideValidation(e.target.value, e.target.name)
+                    }}>
+                        <h1 className="px-4 sm:px-16 text-2xl text-slate-900 font-semibold"> Create your IRL account</h1>
+                        <div className="mt-6 px-4 sm:px-16 flex flex-col">
+                            <label htmlFor="firstName" className={clsx(
+                                "font-medium text-sm inline-block w-full", 
+                                {"text-red-600": clientErrors.firstName?.[0]}
+                            )}
+                                >First Name</label>
+                            <input 
+                                aria-describedby="first-name-error" 
+                                className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" 
+                                id="firstName" 
+                                name="firstName" 
+                                type="text" 
+                                onChange = {handleInputChange}
+                            />
+                        </div>
+                        <div id="first-name-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
+                            {state?.errors?.firstName?.[0] &&
+                            state.errors.firstName.map((error:string) => (
+                                <p className="text-red-600 my-2 text-sm" key={error}>
+                                    {error.replace('String', 'Your first name').replace('must', 'should')}
+                                </p>
+                            ))}
+                            {clientErrors.firstName &&
+                                <p className="text-red-600 text-sm">
+                                    {clientErrors.firstName}
+                                </p>
+                            }
+                        </div>
+                        <div className="mt-6 px-4 sm:px-16 flex flex-col">
+                            <label htmlFor="lastName" className={clsx(
+                                "font-medium text-sm inline-block w-full",
+                                {"text-red-600": clientErrors.lastName?.[0]}
+                            )}
+                            >Last Name</label>
+                            <input 
+                                aria-describedby="name-error" 
+                                className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" 
+                                id="lastName" 
+                                name="lastName" 
+                                type="text" 
+                                onChange= {handleInputChange}
+                            />
+                        </div>
+                        <div id="last-name-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
+                            {state?.errors?.lastName?.[0] &&
+                            state.errors.lastName.map((error:string) => (
+                                <p className="text-red-600 my-2 text-sm" key={error}>
+                                    {error.replace('String', 'Your last name').replace('must', 'should')}
+                                </p>
+                            ))}
+                            {clientErrors.lastName &&
+                                <p className="text-red-600 text-sm">
+                                    {clientErrors.lastName}
+                                </p>
+                            }
+                        </div>
+                        <div className="mt-8 px-4 sm:px-16 flex flex-col ">
+                            <label htmlFor="email" className={clsx(
+                                "font-medium text-sm inline-block w-full",
+                                {"text-red-600": clientErrors.email?.[0]}
+                            )}>Email</label>
+                            <input onChange= {handleInputChange} aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="email" name="email" type="email" />
+                        </div>
+                        <div id="email-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
+                            {state?.errors?.email?.[0] &&
+                            state.errors.email.map((error:string) => (
+                                <p className="text-red-600 my-2 text-sm" key={error}>
+                                    {error.replace('String', 'Your email').replace('must', 'should')}
+                                </p>
+                            ))}
+                            {clientErrors.email &&
+                                <p className="text-red-600 text-sm">
+                                    {clientErrors.email}
+                                </p>
+                            }
+                        </div>
+                        <div className="mt-8 px-4 sm:px-16 flex flex-col ">
+                            <label htmlFor="email" className={clsx(
+                                "font-medium text-sm inline-block w-full",
+                                {"text-red-600": clientErrors.phone?.[0]}
+                            )}>Phone Number</label>
+                            <input 
+                                value={formData.phone} onChange= {handleInputChange} aria-describedby="name-error" 
+                                className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="phone" name="phone" type="tel" />
+                        </div>
+                        <div id="phone-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
+                            {state?.errors?.phone?.[0] &&
+                            state.errors.phone.map((error:string) => (
+                                <p className="text-red-600 my-2 text-sm" key={error}>
+                                    {error.replace('String', 'Your phone number').replace('must', 'should')}
+                                </p>
+                            ))}
+                            {clientErrors.phone &&
+                                <p className="text-red-600 text-sm">
+                                    {clientErrors.phone}
+                                </p>
+                            }
+                        </div>
+                        <div className="mt-6 px-4 sm:px-16 flex flex-col">
+                            <label htmlFor="password" className={clsx(
+                                "font-medium text-sm inline-block w-full",
+                                {"text-red-600": clientErrors.password?.[0]}
+                                )}>Password</label>
+                                <div className="flex items-center border-slate-400 border rounded-md mt-2 mb-4 px-1">
+                                    <input 
+                                        onChange= {handleInputChange} 
+                                        aria-describedby="name-error" 
+                                        className="w-full px-2 py-1" 
+                                        id="password" 
+                                        name="password" 
+                                        type={passwordVisible ? 'text' : 'password'} 
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={togglePasswordVisibility}
+                                        className="ml-2"
+                                    >
+                                        {passwordVisible ? <EyeSlashIcon className="h-5 w-5 text-slate-400"/> : <EyeIcon className="h-5 w-5 text-slate-400"/>}
+                                    </button>
+                                </div>
+
+                        </div>
+                        <div id="password-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
+                            {state?.errors?.password?.[0] &&
+                            state.errors.password.map((error:string) => (
+                                <p className="text-red-600 my-2 text-sm" key={error}>
+                                    {error.replace('String', 'Your password').replace('must', 'should')}
+                                </p>
+                            ))}
+                            {clientErrors.password &&
+                                <p className="text-red-600 text-sm">
+                                    {clientErrors.password}
+                                </p>
+                            }
+                        </div>
+                    </div>
+                    <div className="mt-4">
+                        {state?.errors?.form && 
+                            <p aria-live="polite" role="status" className="text-red-600">
+                                {state.errors.form}
+                            </p>
+                        }
+                        {Object.values(state).length == 1 && 
+                            <p aria-live="polite" role="status" className="text-green-600">
+                                The account was created.
+                            </p>
+                        }
+                    </div>
+
+                    <div className="mt-10 px-4 sm:px-16 justify-end flex md:justify-start">
+                        <button className={clsx(
+                            "bg-gray-300 text-white px-4 py-2 rounded-md w-full",
+                            {
+                                'hover:bg-indigo-300 bg-indigo-900': !state.submissionPending && fieldsValid && fieldsFilled,
+                            }
+                        )} disabled={state.submissionPending || !fieldsValid || !fieldsFilled}>Create account</button>
+                    </div>
+                    <div className="p-6 rounded bg-lightTan mt-12 mx-1 text-center text-sm text-slate-600">
+                        Already have an account?  {' '}
+                        <Link href="/dashboard/login" className="text-indigo-500 hover:text-indigo-900">
+                            Sign in
+                        </Link>
+                    </div>
+                </form>
+            </div>         
+        </div>
     )
 }

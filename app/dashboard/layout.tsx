@@ -5,8 +5,8 @@ export default function RootLayout({ children }: { children:React.ReactNode }) {
     return (
         <section className="bg-lightTan xl:h-[100vh] pb-14 sm:pb-28">
             {children}
-            <div className="sm:pl-96 flex justify-center sm:block">
-                <Link href="/" className="hidden sm:block">
+            <div className=" flex justify-center sm:inline">
+                <Link href="/" className="hidden sm:inline-flex sm:pl-96">
                     <Image src="/assets/IRL_Logo_Final_Main.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
                 </Link>
                 <Link href="/" className="block sm:hidden">
