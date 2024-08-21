@@ -3,8 +3,6 @@ import { inter } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import {Navigation} from "./ui/Navigation";
 import { Dropdown } from "./ui/Dropdown";
-import Link from "next/link";
-import { handlee } from "@/app/ui/fonts";
 
 export const metadata: Metadata = {
   title: "In Real Life",
