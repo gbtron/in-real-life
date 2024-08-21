@@ -1,44 +1,51 @@
 "use client"
 import { handlee } from "@/app/ui/fonts"
-import { useState, useActionState, startTransition, useEffect } from "react"
+import React, { useState, useActionState, startTransition, useEffect } from "react"
 import clsx from "clsx"
 import Link from "next/link";
 import { createAccount, RegistrationState } from "@/app/lib/actions";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
 
-type registrationField = 'firstName' | 'lastName' | 'email' | 'phone' | 'password'
-interface uiFieldNames {
-    registrationField: string
-}
-
 export default function Register() {
-    const initState: RegistrationState = { submissionPending:false };
-    const [formState, formAction] = useActionState(createAccount, initState);
+    // ui state
+    const [blurred, setBlurred] = useState({});
+    const [passwordVisible, setPasswordVisible] = useState(false);
     const [fieldsValid, setFieldsValid] = useState(false);
     const [fieldsFilled, setFieldsFilled] = useState(false);
-
-    const initFormData = {
+    type FieldData = {
+        clientErrors:string, 
+        value:string
+    }
+    type FormData = {
+        firstName: FieldData, 
+        lastName: FieldData, 
+        email: FieldData, 
+        phone: FieldData, 
+        password: FieldData
+    }
+    const initFieldData = {
         clientErrors:'', 
         value: ''
     }
-    const [formData, setFormData] = useState({
-        firstName: initFormData,
-        lastName: initFormData,
-        email: initFormData,
-        phone: initFormData,
-        password: initFormData, 
+    const [formData, setFormData]: [FormData, React.Dispatch<React.SetStateAction<FormData>>] = useState({
+        firstName: initFieldData,
+        lastName: initFieldData,
+        email: initFieldData,
+        phone: initFieldData,
+        password: initFieldData, 
     });
-    
-    const [blurred, setBlurred] = useState({});
-    const [passwordVisible, setPasswordVisible] = useState(false);
-    
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible)
-    }
+    type registrationField = keyof FormData
+
+    // api state
+    const initState: RegistrationState = { submissionPending:false };
+    const [apiState, formAction] = useActionState(createAccount, initState);
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const name = event.target.name as registrationField
         const value = event.target.value
+
         let changedValue = value
+        let clientErrors = formData[name].clientErrors
         if (name === 'phone') {
             if (value.length === 4 && !['(', '+', '-'].some(char => value.includes(char))) {
                 changedValue = `${value.slice(0,3)}-${value.slice(-1)}`
@@ -46,194 +53,98 @@ export default function Register() {
                 changedValue = `(${value.slice(0,3)}) ${value.slice(4,7)}-${value.slice(7)}`
             }
         }
+
+        if (Object.hasOwn(blurred, name)) {
+            clientErrors = getClientSideValidation(changedValue, name)
+        }
         setFormData({
             ...formData,
             [name]: {
-                clientErrors: formData[name].clientErrors,
+                clientErrors: clientErrors,
                 value: changedValue
             }
         })
-        if (Object.hasOwn(blurred, name)) {
-            clientSideValidation(value, name)
-        }
     }
-    const clientSideValidation = (value:string, name:registrationField) => {
-        const nameRegex = /^[\p{L}\s'-]*$/u;
-        const phoneRegex = /^\s*(\+?\d{1,3})?[-. (]*\(?(\d{3})\)?[-. ]*(\d{3})[-. ]*(\d{4})(?:\s*x\s*\d+)?\s*$/
-        const emailRegex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z]{2,})+$/
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/
-        const fieldRegexMessage = {
-            name: {
-                regex:/^[\p{L}\s'-]*$/u, 
-                message:'Unicode letters, apostrophes, and hyphens'
-            }, 
-            phone: {
-                regex:/^\s*(\+?\d{1,3})?[-. (]*\(?(\d{3})\)?[-. ]*(\d{3})[-. ]*(\d{4})(?:\s*x\s*\d+)?\s*$/, 
-                message:'digits and optional separators "-", ".",or " "'
-            }, 
-            password: {
-                regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/ ,
-                message:'at least one lowercase letter, one uppercase letter, one number, and one special character'
-                }, 
-            email: {
-                regex:/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z]{2,})+$/, 
-                message:''
-            }
+
+    const getClientSideValidation = (value:string, name:registrationField) => {
+        const nameFieldValidation = [
+            { condition: value.length > 1, message: `at least 2 characters`}, 
+            { condition: /^[\p{L}\s'-]*$/u.test(value), message: `Unicode letters, apostrophes, and hyphens`}
+        ]
+        type ValidationFlags<Type> = {
+            [Property in keyof Type]: {
+                condition: boolean, 
+                message:string
+            }[]
         }
-        const fieldValidation = {
-            name: [
-                [value.length < 2, `Your ${name} should contain at least 2 characters.`], 
-                [!fieldRegexMessage.name.regex.test(value), `Please enter your name using Unicode letters, apostrophes, and hyphens.`]
-            ], 
+        type FieldValidation = ValidationFlags<FormData>
+
+        const fieldValidation:FieldValidation = {
+            firstName: nameFieldValidation, 
+            lastName: nameFieldValidation,
             phone: [
-                !fieldRegexMessage.phone.regex.test(value), `Please enter your phone number with digits and optional separators "-", ".",or " ".`
+                {
+                    condition: /^\s*(\+?\d{1,3})?[-. (]*\(?(\d{3})\)?[-. ]*(\d{3})[-. ]*(\d{4})(?:\s*x\s*\d+)?\s*$/
+                        .test(value), 
+                    message: `digits and optional separators "-", ".",or " "`
+                }
             ], 
             email: [
-                !fieldRegexMessage.email.regex.test(value), `Please correct your email.`
+                {
+                    condition: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z]{2,})+$/
+                        .test(value), 
+                    message:''
+                }
+            ], 
+            password: [
+                {
+                    condition: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/
+                        .test(value), 
+                    message:`at least one lowercase letter, one uppercase letter, one number, and one special character`
+                }
             ]
         }
 
-        const userfyName = (name:registrationField) => {
-            let uiName = name as string
+        const userfyName = (name:string) => {
             if (name == 'firstName') {
-                uiName = 'first name'
+                name = 'first name'
             } else if (name === 'lastName') {
-                uiName = 'last name'
+                name = 'last name'
             } else if (name === 'phone') {
-                uiName = 'phone number'
+                name += ' number'
             }
-            return uiName
+            return name
         }
-        let validationMessage = ''
-        if (value === '') {
-            validationMessage = `Please enter your ${userfyName(name)}.`
-        }
-        if (['firstName', 'lastName'].includes(name)) {
+        const messagePrefix = `Please enter your ${userfyName(name)}`
 
-        }
-        switch (name) {
-            case 'firstName':
-            case 'lastName':
-                if (value === '') {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: `Please enter your name`
-                    })
-                } else if (value.length < 2) {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: `Your name should contain at least 2 characters`
-                    })
-                } else if (!nameRegex.test(value)) {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: `Please enter your name using Unicode letters, apostrophes, and hyphens`
-                    })
-                }   
-                else {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: ''
-                    })
-                }
-                break;
-            case 'phone':
-                if (value === '') {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: 'Please enter your phone number'
-                    })
-                }
-                else if (!phoneRegex.test(value)) {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: 'Please enter your phone number with digits and optional separators "-", ".",or " " '
-                    })
-                }   
-                else {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: ''
-                    })
-                }
-                break;
-            case 'email':
-                if (value === '') {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: 'Please enter your email'
-                    })
-                }
-                else if (!emailRegex.test(value)) {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: 'Please correct your email'
-                    })
-                }   
-                else {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: ''
-                    })
-                }
-                break;
-            case 'password':
-                if (value === '') {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: 'Please enter your password'
-                    })
-                }
-                else if (!passwordRegex.test(value)) {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: 'Please enter your password with at least one lowercase letter, one uppercase letter, one number, and one special character'
-                    })
-                }
-                else {
-                    setClientErrors({
-                        ...clientErrors,
-                        [name]: ''
-                    })
-                }
-                break;
-        }
-        setFormData({
-            ...formData, 
-            [name]: {
-                clientErrors: validationMessage, 
-                value: formData[name].value
-            }
-        })
-    }
-    const checkClientErrors = () => {
-        if (Object.values(clientErrors).every((error) => error === '') ) {
-            setFieldsValid(true)
+        let validationMessage = ''
+        let fieldsValid = true
+        if (value === '') {
+            validationMessage = `${messagePrefix}.`
+            fieldsValid = false
         } else {
-            setFieldsValid(false)   
-        }
-    }
-    const checkStateErrors = () => {
-        if (typeof formState.errors !== "undefined") {
-            if (Object.values(formState.errors).every((error) => error === '')) {
-                setFieldsValid(true)
-            } else {
-                setFieldsValid(false)
+            for (let validation of fieldValidation[name]) {
+                if (validation.condition === false) {
+                    validationMessage = `${validation.message !== '' 
+                        ? `${messagePrefix} with ${validation.message}` 
+                        : `${messagePrefix.replace('enter', 'correct')}`}.`
+                    fieldsValid = false
+                }
             }
         }
         
+        setFieldsValid(fieldsValid)
+        return validationMessage
     }
+
     const checkFieldsFilled = () => {
-        if (Object.values(formData).every((value) => value !== '')) {
+        if (Object.values(formData).every((field) => field.value !== '')) {
             setFieldsFilled(true)
         } else {
             setFieldsFilled(false)
         }
     }
 
-    useEffect(() => {
-        checkClientErrors();
-    }, [clientErrors])
 
     useEffect(() => {
         checkFieldsFilled();
@@ -253,29 +164,37 @@ export default function Register() {
                 <form onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
                     event.preventDefault();
                     const data = new FormData()
-                    data.append('firstName', formData.firstName)
-                    data.append('lastName', formData.lastName)
-                    data.append('email', formData.email)
-                    data.append('phone', formData.phone)
-                    data.append('password', formData.password)
+                    data.append('firstName', formData.firstName.value)
+                    data.append('lastName', formData.lastName.value)
+                    data.append('email', formData.email.value)
+                    data.append('phone', formData.phone.value)
+                    data.append('password', formData.password.value)
                     startTransition(() => {
-                        formState.submissionPending = true
+                        apiState.submissionPending = true
                         formAction(data);
                     })
                 }}>
                     <div onBlur={(e:React.FocusEvent<HTMLInputElement>) => {
                         const name = e.target.name as registrationField
+                        const value = e.target.value
                         setBlurred({
                             ...blurred,
-                            [e.target.name]: true
+                            [name]: true
                         })
-                        clientSideValidation(e.target.value, name)
+                        let clientErrors = getClientSideValidation(value, name)
+                        setFormData({
+                            ...formData, 
+                            [name]: {
+                                clientErrors: clientErrors, 
+                                value: value
+                            }
+                        })
                     }}>
                         <h1 className="px-4 sm:px-16 text-2xl text-slate-900 font-semibold"> Create your IRL account</h1>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="firstName" className={clsx(
                                 "font-medium text-sm inline-block w-full", 
-                                {"text-red-600": clientErrors.firstName?.[0]}
+                                {"text-red-600": formData.firstName.clientErrors}
                             )}
                                 >First Name</label>
                             <input 
@@ -288,24 +207,24 @@ export default function Register() {
                             />
                         </div>
                         <div id="first-name-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                            {formState?.errors?.firstName &&
-                                formState.errors.firstName.map((error) => (
+                            {apiState?.errors?.firstName &&
+                                apiState.errors.firstName.map((error) => (
                                     <p className="text-red-600 my-2 text-sm" key={error}>
                                         {error.replace('String', 'Your first name').replace('must', 'should')}
                                     </p>
                                 ))
                                 
                             }
-                            {clientErrors.firstName &&
+                            {formData.firstName.clientErrors &&
                                 <p className="text-red-600 text-sm">
-                                    {clientErrors.firstName}
+                                    {formData.firstName.clientErrors}
                                 </p>
                             }
                         </div>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="lastName" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": clientErrors.lastName?.[0]}
+                                {"text-red-600": formData.lastName.clientErrors}
                             )}
                             >Last Name</label>
                             <input 
@@ -318,64 +237,64 @@ export default function Register() {
                             />
                         </div>
                         <div id="last-name-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                            {formState?.errors?.lastName?.[0] &&
-                            formState.errors.lastName.map((error:string) => (
+                            {apiState?.errors?.lastName?.[0] &&
+                            apiState.errors.lastName.map((error:string) => (
                                 <p className="text-red-600 my-2 text-sm" key={error}>
                                     {error.replace('String', 'Your last name').replace('must', 'should')}
                                 </p>
                             ))}
-                            {clientErrors.lastName &&
+                            {formData.lastName.clientErrors &&
                                 <p className="text-red-600 text-sm">
-                                    {clientErrors.lastName}
+                                    {formData.lastName.clientErrors}
                                 </p>
                             }
                         </div>
                         <div className="mt-8 px-4 sm:px-16 flex flex-col ">
                             <label htmlFor="email" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": clientErrors.email?.[0]}
+                                {"text-red-600": formData.email.clientErrors}
                             )}>Email</label>
                             <input onChange= {handleInputChange} aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="email" name="email" type="email" />
                         </div>
                         <div id="email-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                            {formState?.errors?.email?.[0] &&
-                            formState.errors.email.map((error:string) => (
+                            {apiState?.errors?.email?.[0] &&
+                            apiState.errors.email.map((error:string) => (
                                 <p className="text-red-600 my-2 text-sm" key={error}>
                                     {error.replace('String', 'Your email').replace('must', 'should')}
                                 </p>
                             ))}
-                            {clientErrors.email &&
+                            {formData.email.clientErrors &&
                                 <p className="text-red-600 text-sm">
-                                    {clientErrors.email}
+                                    {formData.email.clientErrors}
                                 </p>
                             }
                         </div>
                         <div className="mt-8 px-4 sm:px-16 flex flex-col ">
                             <label htmlFor="email" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": clientErrors.phone?.[0]}
+                                {"text-red-600": formData.phone.clientErrors}
                             )}>Phone Number</label>
                             <input 
-                                value={formData.phone} onChange= {handleInputChange} aria-describedby="name-error" 
+                                value={formData.phone.value} onChange= {handleInputChange} aria-describedby="name-error" 
                                 className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="phone" name="phone" type="tel" />
                         </div>
                         <div id="phone-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                            {formState?.errors?.phone?.[0] &&
-                            formState.errors.phone.map((error:string) => (
+                            {apiState?.errors?.phone?.[0] &&
+                            apiState.errors.phone.map((error:string) => (
                                 <p className="text-red-600 my-2 text-sm" key={error}>
                                     {error.replace('String', 'Your phone number').replace('must', 'should')}
                                 </p>
                             ))}
-                            {clientErrors.phone &&
+                            {formData.phone.clientErrors &&
                                 <p className="text-red-600 text-sm">
-                                    {clientErrors.phone}
+                                    {formData.phone.clientErrors}
                                 </p>
                             }
                         </div>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="password" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": clientErrors.password?.[0]}
+                                {"text-red-600": formData.password.clientErrors}
                                 )}>Password</label>
                                 <div className="flex items-center border-slate-400 border rounded-md mt-2 mb-4 px-1">
                                     <input 
@@ -388,7 +307,7 @@ export default function Register() {
                                     />
                                     <button
                                         type="button"
-                                        onClick={togglePasswordVisibility}
+                                        onClick={()=>setPasswordVisible(!passwordVisible)}
                                         className="ml-2"
                                     >
                                         {passwordVisible ? <EyeSlashIcon className="h-5 w-5 text-slate-400"/> : <EyeIcon className="h-5 w-5 text-slate-400"/>}
@@ -397,26 +316,26 @@ export default function Register() {
 
                         </div>
                         <div id="password-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
-                            {formState?.errors?.password?.[0] &&
-                            formState.errors.password.map((error:string) => (
+                            {apiState?.errors?.password?.[0] &&
+                            apiState.errors.password.map((error:string) => (
                                 <p className="text-red-600 my-2 text-sm" key={error}>
                                     {error.replace('String', 'Your password').replace('must', 'should')}
                                 </p>
                             ))}
-                            {clientErrors.password &&
+                            {formData.password.clientErrors &&
                                 <p className="text-red-600 text-sm">
-                                    {clientErrors.password}
+                                    {formData.password.clientErrors}
                                 </p>
                             }
                         </div>
                     </div>
                     <div className="mt-4 px-4 sm:px-16 text-red-600">
-                        {formState?.errors?.form && 
+                        {apiState?.errors?.form && 
                             <p aria-live="polite" role="status" className="text-red-600">
-                                {formState.errors.form}
+                                {apiState.errors.form}
                             </p>
                         }
-                        {formState.success === true && 
+                        {apiState.success === true && 
                             <p aria-live="polite" role="status" className="text-green-600">
                                 The account was created.
                             </p>
@@ -427,9 +346,9 @@ export default function Register() {
                         <button className={clsx(
                             "bg-gray-300 text-white px-4 py-2 rounded-md w-full",
                             {
-                                'hover:bg-indigo-300 bg-indigo-900': !formState.submissionPending && fieldsValid && fieldsFilled,
+                                'hover:bg-indigo-300 bg-indigo-900': !apiState.submissionPending && fieldsValid && fieldsFilled,
                             }
-                        )} disabled={formState.submissionPending || !fieldsValid || !fieldsFilled}>Create account</button>
+                        )} disabled={apiState.submissionPending || !fieldsValid || !fieldsFilled}>Create account</button>
                     </div>
                     <div className="p-6 rounded bg-lightTan mt-12 mx-1 text-center text-sm text-slate-600">
                         Already have an account?  {' '}
