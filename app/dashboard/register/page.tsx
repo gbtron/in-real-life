@@ -1,10 +1,12 @@
 "use client"
 import { handlee } from "@/app/ui/fonts"
-import React, { useState, useActionState, startTransition, useEffect } from "react"
+import { useState, useActionState, startTransition, useEffect, ChangeEvent, Dispatch, SetStateAction, FormEvent, FocusEvent } from "react"
 import clsx from "clsx"
 import Link from "next/link";
 import { createAccount, RegistrationState } from "@/app/lib/actions";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
+import { type FormData, FormEventTarget, SettableEvent } from "@/app/lib/definitions";
+import { getClientSideValidation } from "@/app/lib/validation";
 
 export default function Register() {
     // ui state
@@ -12,37 +14,25 @@ export default function Register() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [fieldsValid, setFieldsValid] = useState(false);
     const [fieldsFilled, setFieldsFilled] = useState(false);
-    type FieldData = {
-        clientErrors:string, 
-        value:string
-    }
-    type FormData = {
-        firstName: FieldData, 
-        lastName: FieldData, 
-        email: FieldData, 
-        phone: FieldData, 
-        password: FieldData
-    }
+    
     const initFieldData = {
         clientErrors:'', 
         value: ''
     }
-    const [formData, setFormData]: [FormData, React.Dispatch<React.SetStateAction<FormData>>] = useState({
+    const [formData, setFormData]: [FormData, Dispatch<SetStateAction<FormData>>] = useState({
         firstName: initFieldData,
         lastName: initFieldData,
         email: initFieldData,
         phone: initFieldData,
         password: initFieldData, 
     });
-    type registrationField = keyof FormData
 
     // api state
     const initState: RegistrationState = { submissionPending:false };
     const [apiState, formAction] = useActionState(createAccount, initState);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const name = event.target.name as registrationField
-        const value = event.target.value
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event.target as FormEventTarget
 
         let changedValue = value
         let clientErrors = formData[name].clientErrors
@@ -55,7 +45,7 @@ export default function Register() {
         }
 
         if (Object.hasOwn(blurred, name)) {
-            clientErrors = getClientSideValidation(changedValue, name)
+            clientErrors = getClientSideValidation(changedValue, name, setFieldsValid)
         }
         setFormData({
             ...formData,
@@ -64,91 +54,13 @@ export default function Register() {
                 value: changedValue
             }
         })
-    }
 
-    const getClientSideValidation = (value:string, name:registrationField) => {
-        const nameFieldValidation = [
-            { condition: value.length > 1, message: `at least 2 characters`}, 
-            { condition: /^[\p{L}\s'-]*$/u.test(value), message: `Unicode letters, apostrophes, and hyphens`}
-        ]
-        type ValidationFlags<Type> = {
-            [Property in keyof Type]: {
-                condition: boolean, 
-                message:string
-            }[]
-        }
-        type FieldValidation = ValidationFlags<FormData>
-
-        const fieldValidation:FieldValidation = {
-            firstName: nameFieldValidation, 
-            lastName: nameFieldValidation,
-            phone: [
-                {
-                    condition: /^\s*(\+?\d{1,3})?[-. (]*\(?(\d{3})\)?[-. ]*(\d{3})[-. ]*(\d{4})(?:\s*x\s*\d+)?\s*$/
-                        .test(value), 
-                    message: `digits and optional separators "-", ".",or " "`
-                }
-            ], 
-            email: [
-                {
-                    condition: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z]{2,})+$/
-                        .test(value), 
-                    message:''
-                }
-            ], 
-            password: [
-                {
-                    condition: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/
-                        .test(value), 
-                    message:`at least one lowercase letter, one uppercase letter, one number, and one special character`
-                }
-            ]
-        }
-
-        const userfyName = (name:string) => {
-            if (name == 'firstName') {
-                name = 'first name'
-            } else if (name === 'lastName') {
-                name = 'last name'
-            } else if (name === 'phone') {
-                name += ' number'
-            }
-            return name
-        }
-        const messagePrefix = `Please enter your ${userfyName(name)}`
-
-        let validationMessage = ''
-        let fieldsValid = true
-        if (value === '') {
-            validationMessage = `${messagePrefix}.`
-            fieldsValid = false
-        } else {
-            for (let validation of fieldValidation[name]) {
-                if (validation.condition === false) {
-                    validationMessage = `${validation.message !== '' 
-                        ? `${messagePrefix} with ${validation.message}` 
-                        : `${messagePrefix.replace('enter', 'correct')}`}.`
-                    fieldsValid = false
-                }
-            }
-        }
-        
-        setFieldsValid(fieldsValid)
-        return validationMessage
-    }
-
-    const checkFieldsFilled = () => {
         if (Object.values(formData).every((field) => field.value !== '')) {
             setFieldsFilled(true)
         } else {
             setFieldsFilled(false)
         }
     }
-
-
-    useEffect(() => {
-        checkFieldsFilled();
-    }, [formData])
 
     return (
         <div className="flex flex-col sm:flex-row px-4 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
@@ -161,7 +73,7 @@ export default function Register() {
                 </div>
             </div>
             <div className="bg-white sm:mt-12 mt-4 sm:w-3/6 sm:pt-16 pt-8 pb-1 rounded-md border-black">
-                <form onSubmit={async (event: React.FormEvent<HTMLFormElement>) => {
+                <form onSubmit={async (event: FormEvent<HTMLFormElement>) => {
                     event.preventDefault();
                     const data = new FormData()
                     data.append('firstName', formData.firstName.value)
@@ -174,14 +86,14 @@ export default function Register() {
                         formAction(data);
                     })
                 }}>
-                    <div onBlur={(e:React.FocusEvent<HTMLInputElement>) => {
-                        const name = e.target.name as registrationField
-                        const value = e.target.value
+                    <div onBlur={(e:FocusEvent<HTMLInputElement>) => {
+                        const {name, value} = e.target as FormEventTarget
+                        let clientErrors = getClientSideValidation(value, name, setFieldsValid)
                         setBlurred({
                             ...blurred,
                             [name]: true
                         })
-                        let clientErrors = getClientSideValidation(value, name)
+                        
                         setFormData({
                             ...formData, 
                             [name]: {
