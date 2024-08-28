@@ -196,8 +196,9 @@ export async function createAccount(previousState: RegistrationState, formData: 
             }
             return state
         }
+        // Check that env file contains all api keys
         state.errors = {
-            form: 'The account could no be created.'
+            form: 'The account could not be created.'
         }
         return state
     }

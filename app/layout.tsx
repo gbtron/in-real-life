@@ -26,10 +26,8 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <body className={`${inter.className} antialiased`}>
-        <Navigation pages={pages}/>
-        <Dropdown pages={pages}/>
         <div className="page-content z-10 relative">
-          {children}
+          <main className='flex flex-col sm:mb-40 mb-12'>{children}</main>
         </div>
       </body>
     </html>
