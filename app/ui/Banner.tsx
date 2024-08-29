@@ -14,7 +14,7 @@ export function Banner() {
     }
 
     return (
-        <div className='flex justify-between px-12 pt-12'>
+        <div className='flex justify-between px-12 pt-12 pb-12'>
             <button onClick={()=>setTheme( otherTheme)}>{icon}</button>
             <Link href='/dashboard/register'>Register</Link>
         </div>

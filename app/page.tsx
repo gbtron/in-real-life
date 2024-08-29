@@ -1,17 +1,22 @@
-import Image from "next/image";
-import center from "./rivage-tM__6KpPlSw-unsplash.jpg"
-import flower from "./flower.jpg"
-import Link from "next/link";
-import {handlee, cardo} from "@/app/ui/fonts";
 import { Footer } from "../app/ui/Footer";
-import { Navigation } from "./ui/Navigation";
 import { Banner } from "./ui/Banner";
-import {ThemeProvider} from "next-themes"
+import {Cards} from '@/app/ui/Cards'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className='dark:bg-gray-800'>
+    <div className='dark:bg-gray-800 text-center'>
       <Banner/>
+      <div className='text-xl'>
+        Welcome,
+      </div>
+      <div className='pb-2'>
+        we look forward to serving you well 
+      </div>
+      <Link href='/dashboard/register' className='border border-4 px-1 bg-slate-200 rounded-md hover:bg-blue-100'>
+        Begin
+      </Link>
+      <Cards/>
       <Footer/>
     </div>
   );    
