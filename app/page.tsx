@@ -6,13 +6,13 @@ import {handlee, cardo} from "@/app/ui/fonts";
 import { Footer } from "../app/ui/Footer";
 import { Navigation } from "./ui/Navigation";
 import { Banner } from "./ui/Banner";
+import {ThemeProvider} from "next-themes"
 
 export default function Home() {
-
   return (
-    <>
+    <div className='dark:bg-gray-800'>
       <Banner/>
       <Footer/>
-    </>
+    </div>
   );    
 }
