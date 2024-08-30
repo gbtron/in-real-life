@@ -3,8 +3,7 @@ import { inter } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import {Navigation} from "./ui/Navigation";
 import { Dropdown } from "./ui/Dropdown";
-import Link from "next/link";
-import { handlee } from "@/app/ui/fonts";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "In Real Life",
@@ -23,17 +22,18 @@ export default function RootLayout({
 }>) {
   const pages = [{ name: "In Real Life", path: "/" }, {name:"Join", path:"/dashboard/register"}, {name:"Contact", path:"/contact"}];
   return (
-    <html lang="en">
+  
+    <html suppressHydrationWarning lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <body className={`${inter.className} antialiased`}>
-        <Navigation pages={pages}/>
-        <Dropdown pages={pages}/>
         <div className="page-content z-10 relative">
-          {children}
+          <main className='flex flex-col sm:mb-40 mb-12'>
+            <ThemeProvider attribute='class'>{children}</ThemeProvider></main>
         </div>
       </body>
     </html>
+
   );
 }

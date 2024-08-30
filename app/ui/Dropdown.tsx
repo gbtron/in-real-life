@@ -4,7 +4,6 @@ import React, {useState, useEffect} from "react";
 import {useRouter, usePathname} from "next/navigation";
 import type {Page} from "../layout";
 import clsx from "clsx";
-import { handlee } from "@/app/ui/fonts";
 import Image from "next/image";
 
 export function Dropdown({pages}: {pages: Page[]}) {
@@ -74,9 +73,9 @@ export function Dropdown({pages}: {pages: Page[]}) {
                     let title = <>{page.name}</>;
                     if (page.path == "/") {
                         title = 
-                            <Link href="/">
+                            
                                 <Image src="/assets/IRL_Logo_Final_Responsive.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
-                            </Link>
+                            
                     }
                     
                     return (

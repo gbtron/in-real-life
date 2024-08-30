@@ -1,18 +1,34 @@
 import Link from "next/link";
 import Image from "next/image";
+import {Links} from '@/app/lib/definitions'
+
+const links:Links = {privacy: 'Privacy', about: 'About', contact: 'Contact', press:'Press'}
 
 export function Footer() {
     return (
-    <footer className="pl-8 bg-slate-100 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))] text-slate-600 sm:pt-4">
-      <div className="flex flex-col sm:flex-row sm:gap-20 gap-4 items-center pb-16">
-        <Link href="/" className="hidden sm:block">
-          <Image src="/assets/IRL_Logo_Final_Main.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
-        </Link>
-        <Link href="/" className="block sm:hidden">
-          <Image src="/assets/IRL_Logo_Final_Responsive.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
-        </Link>
-        <Link href="/contact" className="hover:font-bold">Contact</Link>
+    <footer className='flex flex-col'>
+      <div className="flex flex-row sm:gap-20 gap-4 items-center justify-center">
+        {Object.keys(links).map((key, value)=> {
+          let path = key as keyof Links
+          return(
+            <Link key={key} href={`/${key}`} className="hover:font-bold">{links[path]}</Link>
+          )
+        })}
       </div>
+      <Link href="/" className="self-center">
+        <Image 
+          src="/assets/IRL_Logo_Final_Main.png" 
+          alt="IRL desktop Logo" 
+          width={100} 
+          height={100} 
+          className="relative hidden sm:block"/>    
+        <Image 
+          src="/assets/IRL_Logo_Final_Responsive.png" 
+          alt="IRL desktop Logo" 
+          width={100} 
+          height={100} 
+          className="relative sm:hidden"/>  
+      </Link>
     </footer>
     )
 }
