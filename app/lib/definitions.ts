@@ -30,3 +30,11 @@ export type FieldValidation = {
 }
 export type FormEventTarget = {name: RegistrationField, value:string}
 export type SettableEvent = ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInputElement>
+
+// type defs on UI variables
+export type Links = {
+    privacy:String, 
+    about:String, 
+    contact:String, 
+    press:String
+}

@@ -1,6 +1,6 @@
 import { Footer } from "../app/ui/Footer";
 import { Banner } from "./ui/Banner";
-import {Cards} from '@/app/ui/Cards'
+import {ScrollableCards} from '@/app/ui/Cards'
 import Link from 'next/link'
 
 export default function Home() {
@@ -13,10 +13,10 @@ export default function Home() {
       <div className='pb-2'>
         we look forward to serving you well 
       </div>
-      <Link href='/dashboard/register' className='border border-4 px-1 bg-slate-200 rounded-md hover:bg-blue-100'>
+      <Link href='/dashboard/register' className='py-1 px-2 bg-slate-200 dark:bg-slate-700 rounded-md hover:bg-blue-100'>
         Begin
       </Link>
-      <Cards/>
+      <ScrollableCards/>
       <Footer/>
     </div>
   );    
