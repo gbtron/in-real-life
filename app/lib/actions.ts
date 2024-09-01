@@ -16,15 +16,6 @@ export type ContactState = {
     submissionPending: boolean;
 };
 
-export type LoginState = {
-    errors?: {
-        email?: string[];
-        password?: string[];
-        form?: string;
-    }, 
-    submissionPending: boolean;
-};
-
 const ContactFormSchema = z.object({
     id: z.string(),
     name: z.string()
@@ -207,6 +198,16 @@ export async function createAccount(previousState: RegistrationState, formData: 
     return state
 }
 
+export type LoginState = {
+    errors?: {
+        email?: string[]
+        password?: string[]
+        form?: string
+    }, 
+    submissionPending: boolean, 
+    success? : boolean
+};
+
 export async function login(previousState: LoginState, formData: FormData) {
     const rawEmail = formData.get('email') as string
     const rawPassword = formData.get('password') as string
@@ -216,15 +217,14 @@ export async function login(previousState: LoginState, formData: FormData) {
         password: rawPassword
     })
 
+    let state: LoginState = {
+        submissionPending: false, 
+        success:false
+    }
+
     if (!validatedFields.success) {
-        const errors = {
-            ...validatedFields.error.flatten().fieldErrors,
-            form: ''
-        }
-        return {
-            errors: errors, 
-            submissionPending:false
-        }
+        state.errors = validatedFields.error.flatten().fieldErrors
+        return state
     }
 
     const {email, password} = validatedFields.data
@@ -245,20 +245,16 @@ export async function login(previousState: LoginState, formData: FormData) {
             errorMessage = 'An error occurred';
         }
         if (errorMessage.includes('violates unique constraint') || errorMessage.includes('No account is associated with this email')) {
-            return {
-                errors: {
-                    form: 'No account is associated with this email. Please try again.'
-                }, 
-                submissionPending: false
-            }
+            state.errors = { form: 'No account is associated with this email. Please try again.'}
+            return state
         }
-        return {
-            errors: {
-                form: 'No account is associated with this email. Please try again.'
-            }, 
-            submissionPending: false
+        console.log('error', error)
+        state.errors= {
+            form: 'The account could not be accesssed. Please try again.'
         }
+        return state
     }
-    revalidatePath('/dashboard/login');
-    return {submissionPending: false};
+    revalidatePath('/dashboard/login')
+    state.success = true
+    return state
 }
