@@ -1,11 +1,21 @@
 'use client'
 import { handlee } from "@/app/ui/fonts"
 import Link from "next/link"
-import { useActionState, useState, startTransition, useEffect } from "react"
-import { LoginState, login, checkUser } from "@/app/lib/actions"
+import { useActionState, useState, startTransition } from "react"
+import { login, checkUser } from "@/app/lib/actions"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
 import { useDebouncedCallback } from "use-debounce"
 import clsx from "clsx"
+
+export type LoginState = {
+    errors?: {
+        email?: string[]
+        password?: string[]
+        form?: string
+    }, 
+    submissionPending: boolean, 
+    success? : boolean
+};
 
 export default function Login() {
     const initialState: LoginState = {errors: {}, submissionPending: false}
@@ -24,10 +34,6 @@ export default function Login() {
         password: false
     })
     const [passwordVisible, setPasswordVisible] = useState(false)
-
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible)
-    }
 
     const debounced = useDebouncedCallback(
         async (email) => {
@@ -54,6 +60,9 @@ export default function Login() {
             break
         }
     }
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible)
+    }
 
     const clientSideValidation = (name: string, value: string) => {
         switch (name) {
@@ -64,7 +73,10 @@ export default function Login() {
                         email: 'Email is required'
                     })
                 } else {
-                    checkEmail()
+                    setClientErrors({
+                        ...clientErrors,
+                        email: ''
+                    })
                 }
                 break
             case 'password':
