@@ -1,7 +1,8 @@
 'use server'
 
 import {z} from 'zod';
-import { sql } from '@vercel/postgres';
+import bcrypt from 'bcrypt'
+import { QueryResultRow, sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import nodemailer from 'nodemailer';
 
@@ -223,11 +224,18 @@ export async function login(previousState: LoginState, formData: FormData) {
     }
 
     if (!validatedFields.success) {
-        state.errors = validatedFields.error.flatten().fieldErrors
-        return state
+        const errors = {
+            ...validatedFields.error.flatten().fieldErrors,
+            form: ''
+        }
+        return {
+            errors: errors, 
+            submissionPending:false
+        }
     }
 
     const {email, password} = validatedFields.data
+    const hashedPassword = await bcrypt.hash(password, 10)
 
     try {
         await sql`
@@ -248,13 +256,31 @@ export async function login(previousState: LoginState, formData: FormData) {
             state.errors = { form: 'No account is associated with this email. Please try again.'}
             return state
         }
-        console.log('error', error)
         state.errors= {
             form: 'The account could not be accesssed. Please try again.'
         }
         return state
     }
-    revalidatePath('/dashboard/login')
+    revalidatePath('/dashboard/login');
     state.success = true
     return state
+}
+
+export async function checkUser(email:string) {
+    let user:QueryResultRow
+    let errorMessage = ''
+    try {
+        user = await sql `
+        SELECT * FROM users
+        WHERE email = ${email}
+        `
+    } catch {
+        return errorMessage
+    }
+    if (user && user.rows.length !== 0) {
+        errorMessage = 'This account is already registered for an account. Please sign in.'
+    } else {
+        errorMessage = ''
+    }
+    return errorMessage
 }

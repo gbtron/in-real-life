@@ -1,18 +1,19 @@
 'use client'
 import { handlee } from "@/app/ui/fonts"
 import Link from "next/link"
-import { useActionState, useState, startTransition } from "react"
-import { LoginState, login } from "@/app/lib/actions"
+import { useActionState, useState, startTransition, useEffect } from "react"
+import { LoginState, login, checkUser } from "@/app/lib/actions"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
+import { useDebouncedCallback } from "use-debounce"
+import clsx from "clsx"
 
 export default function Login() {
     const initialState: LoginState = {errors: {}, submissionPending: false}
-    const [fieldsValid, setFieldsValid] = useState(false)
-    const [fieldsFilled, setFieldsFilled] = useState(false)
     const [clientErrors, setClientErrors] = useState({
         email: '',
         password: ''
     })
+    
     const [state, formAction] = useActionState(login, initialState)
     const [formData, setFormData] = useState({
         email: '',
@@ -28,6 +29,14 @@ export default function Login() {
         setPasswordVisible(!passwordVisible)
     }
 
+    const debounced = useDebouncedCallback(
+        async (email) => {
+            const error = await checkUser(email)
+            setClientErrors({...clientErrors, email: error})
+        }, 
+        1000
+    )
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target
         setFormData({
@@ -36,11 +45,13 @@ export default function Login() {
         })
         switch (name) {
             case 'email':
+                debounced(value)
+                break
             case 'password':
                 if (blurred[name]) {
                     clientSideValidation(name, value)
                 }
-                break
+            break
         }
     }
 
@@ -53,10 +64,7 @@ export default function Login() {
                         email: 'Email is required'
                     })
                 } else {
-                    setClientErrors({
-                        ...clientErrors,
-                        email: ''
-                    })
+                    checkEmail()
                 }
                 break
             case 'password':
@@ -102,7 +110,10 @@ export default function Login() {
                     }}>
                         <h1 className="px-4 sm:px-16 text-2xl text-slate-900 font-semibold"> Log in to your IRL account</h1>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
-                            <label htmlFor="email" className="font-medium text-sm inline-block w-full">Email</label>
+                            <label htmlFor="email" className={clsx(
+                                "font-medium text-sm inline-block w-full", 
+                                {"text-red-600": clientErrors.email}
+                                )}>Email</label>
                             <input 
                                 aria-describedby="email-error"
                                 className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md"
@@ -111,6 +122,13 @@ export default function Login() {
                                 type="email"
                                 onChange={handleInputChange}
                             />
+                        </div>
+                        <div id="email-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
+                            {clientErrors.email &&
+                                <p className="text-red-600 text-sm">
+                                    {clientErrors.email}
+                                </p>
+                            }
                         </div>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="password" className="font-medium text-sm inline-block w-full">Password</label>
@@ -131,7 +149,13 @@ export default function Login() {
                                         {passwordVisible ? <EyeSlashIcon className="h-5 w-5 text-slate-400" /> : <EyeIcon className="h-5 w-5 text-slate-400" />}
                                     </button>
                             </div>
-
+                        </div>
+                        <div id="password-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
+                            {clientErrors.password &&
+                                <p className="text-red-600 text-sm">
+                                    {clientErrors.password}
+                                </p>
+                            }
                         </div>
                         <div className="mt-10 px-4 sm:px-16 justify-end flex md:justify-start">
                             <button className="bg-indigo-900 text-white px-4 py-2 rounded-md w-full">Log in</button>
