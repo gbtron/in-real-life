@@ -1,6 +1,12 @@
-import { RegistrationField, FieldValidation } from "@/app/lib/definitions" 
+import {RegistrationField} from "@/app/dashboard/register/page"
 import { Dispatch, SetStateAction } from "react"
 
+type FieldValidation = {
+    [F in RegistrationField]: {
+        condition: boolean, 
+        message:string
+    }[]
+}
 export const getClientSideValidation = (value:string, name:RegistrationField, setFieldsValid:Dispatch<SetStateAction<boolean>>) => {
     const nameFieldValidation = [
         { condition: value.length > 1, message: `at least 2 characters`}, 
@@ -14,7 +20,7 @@ export const getClientSideValidation = (value:string, name:RegistrationField, se
             {
                 condition: /^\s*(\+?\d{1,3})?[-. (]*\(?(\d{3})\)?[-. ]*(\d{3})[-. ]*(\d{4})(?:\s*x\s*\d+)?\s*$/
                     .test(value), 
-                message: `digits and optional separators "-", ".",or " "`
+                message: `the right number of digits and optional separators (dash, period, space)`
             }
         ], 
         email: [
@@ -54,7 +60,7 @@ export const getClientSideValidation = (value:string, name:RegistrationField, se
         for (let validation of fieldValidation[name]) {
             if (validation.condition === false) {
                 validationMessage = `${validation.message !== '' 
-                    ? `${messagePrefix} with ${validation.message}` 
+                    ? `Use ${validation.message}` 
                     : `${messagePrefix.replace('enter', 'correct')}`}.`
                 fieldsValid = false
             }

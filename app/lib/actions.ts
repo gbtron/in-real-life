@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt'
 import { QueryResultRow, sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import nodemailer from 'nodemailer';
+import {RegistrationField} from '@/app/dashboard/register/page'
 
 export type ContactState = {
     errors?: {
@@ -132,19 +133,18 @@ const RegistrationFormSchema = z.object({
 })
 const CreateUser = RegistrationFormSchema.omit({id: true, date: true}); 
 
-export type RegistrationState = {
-    errors?: {
-        firstName?: string[] | undefined;
-        lastName?: string[] | undefined;
-        email?: string[] | undefined;
-        phone?: string[] | undefined;
-        password?: string[] | undefined;
-        form?: string;
-    }, 
+export type RegistrationErrors = {
+    [F in RegistrationField]?: string[] | undefined
+} & {
+    form?: string
+}
+export type RegistrationForm = {
+    errors?: RegistrationErrors
     submissionPending: boolean, 
     success?:boolean
 };
-export async function createAccount(previousState: RegistrationState, formData: FormData) {
+
+export async function createAccount(previousState: RegistrationForm, formData: FormData) {
     const rawFirstName = formData.get('firstName') 
     const rawLastName = formData.get('lastName')
     const rawEmail = formData.get('email') 
@@ -157,7 +157,7 @@ export async function createAccount(previousState: RegistrationState, formData: 
         phone: rawPhone,
         password: rawPassword
     })
-    const state: RegistrationState = {
+    const state: RegistrationForm = {
         submissionPending: false, 
         success:false
     }

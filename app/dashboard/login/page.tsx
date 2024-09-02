@@ -4,7 +4,6 @@ import Link from "next/link"
 import { useActionState, useState, startTransition } from "react"
 import { login, checkUser } from "@/app/lib/actions"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
-import { useDebouncedCallback } from "use-debounce"
 import clsx from "clsx"
 
 export type LoginState = {
@@ -34,35 +33,6 @@ export default function Login() {
         password: false
     })
     const [passwordVisible, setPasswordVisible] = useState(false)
-
-    const debounced = useDebouncedCallback(
-        async (email) => {
-            const error = await checkUser(email)
-            setClientErrors({...clientErrors, email: error})
-        }, 
-        1000
-    )
-
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target
-        setFormData({
-            ...formData,
-            [name]: value
-        })
-        switch (name) {
-            case 'email':
-                debounced(value)
-                break
-            case 'password':
-                if (blurred[name]) {
-                    clientSideValidation(name, value)
-                }
-            break
-        }
-    }
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(!passwordVisible)
-    }
 
     const clientSideValidation = (name: string, value: string) => {
         switch (name) {
@@ -95,6 +65,33 @@ export default function Login() {
         }
     }
 
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event.target
+        setFormData({
+            ...formData,
+            [name]: value
+        })
+        switch (name) {
+            case 'password':
+                if (blurred[name]) {
+                    clientSideValidation(name, value)
+                }
+            break
+        }
+    }
+
+    const handleBlur = (e:React.FocusEvent<HTMLInputElement>) => {
+        setBlurred({
+            ...blurred,
+            [e.target.name]: true
+        })
+        clientSideValidation(e.target.value, e.target.name)
+    }
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible)
+    }
+
     return (
         <div className="flex flex-col sm:flex-row px-4 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
             <div className="sm:block w-3/4 sm:w-1/2 pl-4 sm:pr-44 sm:pt-36 pt-8 text-slate-600">
@@ -113,13 +110,7 @@ export default function Login() {
                         formAction(data);
                     })
                 }}>
-                    <div onBlur= {(e:React.FocusEvent<HTMLInputElement>) => {
-                        setBlurred({
-                            ...blurred,
-                            [e.target.name]: true
-                        })
-                        clientSideValidation(e.target.value, e.target.name)
-                    }}>
+                    <div onBlur= {handleBlur}>
                         <h1 className="px-4 sm:px-16 text-2xl text-slate-900 font-semibold"> Log in to your IRL account</h1>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="email" className={clsx(

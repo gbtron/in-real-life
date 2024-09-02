@@ -1,65 +1,106 @@
 "use client"
 import { handlee } from "@/app/ui/fonts"
-import { useState, useActionState, startTransition, useEffect, ChangeEvent, Dispatch, SetStateAction, FormEvent, FocusEvent } from "react"
+import { useState, useActionState, startTransition, ChangeEvent, FormEvent, Dispatch, SetStateAction } from "react"
 import clsx from "clsx"
 import Link from "next/link";
-import { createAccount, RegistrationState } from "@/app/lib/actions";
+import { createAccount, RegistrationForm, checkUser } from "@/app/lib/actions";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
-import { type FormData, FormEventTarget, SettableEvent } from "@/app/lib/definitions";
 import { getClientSideValidation } from "@/app/lib/validation";
+import { useDebouncedCallback } from "use-debounce"
+
+export type RegistrationField = 'firstName' | 'lastName' | 'email' | 'phone' | 'password'
+type RegistrationObject = {
+    [F in RegistrationField]:string
+}
+type RegistrationDispatch = Dispatch<SetStateAction<RegistrationObject>>
+type FormEventTarget = {name: RegistrationField, value:string}
 
 export default function Register() {
+    const fields: RegistrationField[] = ['firstName', 'lastName', 'email', 'phone', 'password']
+    const initFieldObject = fields.reduce<Record<RegistrationField, string>>((obj, name) => {
+        obj[name] = ''
+        return obj
+    }, {} as Record<RegistrationField, string>)
+    const [fieldValues, setFieldValues] = useState(initFieldObject) as [RegistrationObject, RegistrationDispatch]
+    const [fieldErrors, setFieldErrors] = useState(initFieldObject) as [RegistrationObject, RegistrationDispatch]
+
     // ui state
-    const [blurred, setBlurred] = useState({});
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [fieldsValid, setFieldsValid] = useState(false);
     const [fieldsFilled, setFieldsFilled] = useState(false);
-    
-    const initFieldData = {
-        clientErrors:'', 
-        value: ''
-    }
-    const [formData, setFormData]: [FormData, Dispatch<SetStateAction<FormData>>] = useState({
-        firstName: initFieldData,
-        lastName: initFieldData,
-        email: initFieldData,
-        phone: initFieldData,
-        password: initFieldData, 
-    });
-
     // api state
-    const initState: RegistrationState = { submissionPending:false };
-    const [apiState, formAction] = useActionState(createAccount, initState);
+    const initState: RegistrationForm = { submissionPending:false }
+    const [apiState, formAction] = useActionState(createAccount, initState)
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target as FormEventTarget
-
-        let changedValue = value
-        let clientErrors = formData[name].clientErrors
-        if (name === 'phone') {
-            if (value.length === 4 && !['(', '+', '-'].some(char => value.includes(char))) {
-                changedValue = `${value.slice(0,3)}-${value.slice(-1)}`
-            } else if (value.length === 10 && !value.includes('(') && !value.includes('+')) {
-                changedValue = `(${value.slice(0,3)}) ${value.slice(4,7)}-${value.slice(7)}`
+    const slowlyValidate = useDebouncedCallback(
+        async (name:RegistrationField, value: string) => {
+            let error = fieldErrors[name]
+            if (name === 'email') {
+                const existingUserError = await checkUser(value)
+                if (existingUserError) error = existingUserError
             }
-        }
-
-        if (Object.hasOwn(blurred, name)) {
-            clientErrors = getClientSideValidation(changedValue, name, setFieldsValid)
-        }
-        setFormData({
-            ...formData,
-            [name]: {
-                clientErrors: clientErrors,
-                value: changedValue
+            switch (name) {
+                case 'email':
+                    error = await checkUser(value)
+                    break
+                default:
+                    error = getClientSideValidation(value, name, setFieldsValid)
+                    setFieldErrors({
+                        ...fieldErrors, 
+                        [name]: error
+                    })
             }
-        })
-
-        if (Object.values(formData).every((field) => field.value !== '')) {
+        }, 
+        1000
+    )
+    const checkNoFieldsAreEmpty = () => {
+        if (Object.values(fieldValues).every((field) => field !== '')) {
             setFieldsFilled(true)
         } else {
             setFieldsFilled(false)
         }
+    }
+
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = event.target as FormEventTarget
+        slowlyValidate(name, value)
+        
+        setFieldValues({
+            ...fieldValues,
+            [name]: value
+        })
+        checkNoFieldsAreEmpty()
+    }
+
+    // const handleBlur = (e:FocusEvent<HTMLInputElement>) => {
+    //     const {name, value} = e.target as FormEventTarget
+    //     let clientErrors = getClientSideValidation(value, name, setFieldsValid)
+    //     setBlurred({
+    //         ...blurred,
+    //         [name]: true
+    //     })
+        
+    //     setFormData({
+    //         ...formData, 
+    //         [name]: {
+    //             clientErrors: clientErrors, 
+    //             value: value
+    //         }
+    //     })
+    // }
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const data = new FormData()
+        data.append('firstName', fieldValues.firstName)
+        data.append('lastName', fieldValues.lastName)
+        data.append('email', fieldValues.email)
+        data.append('phone', fieldValues.phone)
+        data.append('password', fieldValues.password)
+        startTransition(() => {
+            apiState.submissionPending = true
+            formAction(data);
+        })
     }
 
     return (
@@ -73,40 +114,13 @@ export default function Register() {
                 </div>
             </div>
             <div className="bg-white sm:mt-12 mt-4 sm:w-3/6 sm:pt-16 pt-8 pb-1 rounded-md border-black">
-                <form onSubmit={async (event: FormEvent<HTMLFormElement>) => {
-                    event.preventDefault();
-                    const data = new FormData()
-                    data.append('firstName', formData.firstName.value)
-                    data.append('lastName', formData.lastName.value)
-                    data.append('email', formData.email.value)
-                    data.append('phone', formData.phone.value)
-                    data.append('password', formData.password.value)
-                    startTransition(() => {
-                        apiState.submissionPending = true
-                        formAction(data);
-                    })
-                }}>
-                    <div onBlur={(e:FocusEvent<HTMLInputElement>) => {
-                        const {name, value} = e.target as FormEventTarget
-                        let clientErrors = getClientSideValidation(value, name, setFieldsValid)
-                        setBlurred({
-                            ...blurred,
-                            [name]: true
-                        })
-                        
-                        setFormData({
-                            ...formData, 
-                            [name]: {
-                                clientErrors: clientErrors, 
-                                value: value
-                            }
-                        })
-                    }}>
+                <form onSubmit={handleSubmit}>
+                    <div>
                         <h1 className="px-4 sm:px-16 text-2xl text-slate-900 font-semibold"> Create your IRL account</h1>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="firstName" className={clsx(
                                 "font-medium text-sm inline-block w-full", 
-                                {"text-red-600": formData.firstName.clientErrors}
+                                {"text-red-600": fieldErrors.firstName}
                             )}
                                 >First Name</label>
                             <input 
@@ -127,16 +141,16 @@ export default function Register() {
                                 ))
                                 
                             }
-                            {formData.firstName.clientErrors &&
+                            {fieldErrors.firstName &&
                                 <p className="text-red-600 text-sm">
-                                    {formData.firstName.clientErrors}
+                                    {fieldErrors.firstName}
                                 </p>
                             }
                         </div>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="lastName" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": formData.lastName.clientErrors}
+                                {"text-red-600": fieldErrors.lastName}
                             )}
                             >Last Name</label>
                             <input 
@@ -155,16 +169,16 @@ export default function Register() {
                                     {error.replace('String', 'Your last name').replace('must', 'should')}
                                 </p>
                             ))}
-                            {formData.lastName.clientErrors &&
+                            {fieldErrors.lastName &&
                                 <p className="text-red-600 text-sm">
-                                    {formData.lastName.clientErrors}
+                                    {fieldErrors.lastName}
                                 </p>
                             }
                         </div>
                         <div className="mt-8 px-4 sm:px-16 flex flex-col ">
                             <label htmlFor="email" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": formData.email.clientErrors}
+                                {"text-red-600": fieldErrors.email}
                             )}>Email</label>
                             <input onChange= {handleInputChange} aria-describedby="name-error" className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="email" name="email" type="email" />
                         </div>
@@ -175,19 +189,19 @@ export default function Register() {
                                     {error.replace('String', 'Your email').replace('must', 'should')}
                                 </p>
                             ))}
-                            {formData.email.clientErrors &&
+                            {fieldErrors.email &&
                                 <p className="text-red-600 text-sm">
-                                    {formData.email.clientErrors}
+                                    {fieldErrors.email}
                                 </p>
                             }
                         </div>
                         <div className="mt-8 px-4 sm:px-16 flex flex-col ">
                             <label htmlFor="email" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": formData.phone.clientErrors}
+                                {"text-red-600": fieldErrors.phone}
                             )}>Phone Number</label>
                             <input 
-                                value={formData.phone.value} onChange= {handleInputChange} aria-describedby="name-error" 
+                                value={fieldValues.phone} onChange= {handleInputChange} aria-describedby="name-error" 
                                 className="w-full px-2 py-1 mt-2 mb-4 border-slate-400 border rounded-md" id="phone" name="phone" type="tel" />
                         </div>
                         <div id="phone-error" className="px-4 sm:px-16 text-red-600" aria-live="polite" aria-atomic="true">
@@ -197,16 +211,16 @@ export default function Register() {
                                     {error.replace('String', 'Your phone number').replace('must', 'should')}
                                 </p>
                             ))}
-                            {formData.phone.clientErrors &&
+                            {fieldErrors.phone &&
                                 <p className="text-red-600 text-sm">
-                                    {formData.phone.clientErrors}
+                                    {fieldErrors.phone}
                                 </p>
                             }
                         </div>
                         <div className="mt-6 px-4 sm:px-16 flex flex-col">
                             <label htmlFor="password" className={clsx(
                                 "font-medium text-sm inline-block w-full",
-                                {"text-red-600": formData.password.clientErrors}
+                                {"text-red-600": fieldErrors.password}
                                 )}>Password</label>
                                 <div className="flex items-center border-slate-400 border rounded-md mt-2 mb-4 px-1">
                                     <input 
@@ -234,9 +248,9 @@ export default function Register() {
                                     {error.replace('String', 'Your password').replace('must', 'should')}
                                 </p>
                             ))}
-                            {formData.password.clientErrors &&
+                            {fieldErrors.password &&
                                 <p className="text-red-600 text-sm">
-                                    {formData.password.clientErrors}
+                                    {fieldErrors.password}
                                 </p>
                             }
                         </div>
