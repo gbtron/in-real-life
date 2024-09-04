@@ -182,7 +182,7 @@ export async function createAccount(previousState: RegistrationForm, formData: F
         } else {
             errorMessage = 'An error occurred';
         }
-        if (errorMessage.includes('violates unique constraint "accounts_email_key"')) {
+        if (errorMessage.includes('violates unique constraint "users_email_key"')) {
             state.errors = {
                 email: ['This email is already associated with an account. Please sign in with your credentials.']
             }
