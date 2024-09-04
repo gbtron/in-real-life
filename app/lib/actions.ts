@@ -129,9 +129,9 @@ const RegistrationFormSchema = z.object({
         .min(8)
         .max(50)
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/, {message: 'Please enter a password with at least one lowercase letter, one uppercase letter, one number, and one special character'}),
-    date: z.string().date(),
+    account_created: z.string().date(),
 })
-const CreateUser = RegistrationFormSchema.omit({id: true, date: true}); 
+const CreateUser = RegistrationFormSchema.omit({id: true, account_created: true}); 
 
 export type RegistrationErrors = {
     [F in RegistrationField]?: string[] | undefined
@@ -170,8 +170,8 @@ export async function createAccount(previousState: RegistrationForm, formData: F
     const date = new Date().toISOString().split('T')[0];
     try {
         await sql`
-        INSERT INTO users(firstname, lastname, email, password, phone, date)
-        VALUES (${firstName}, ${lastName}, ${email}, ${password}, ${phone}, ${date})
+        INSERT INTO accounts(first_name, last_name, email, password, phone, account_created, type, member_status)
+        VALUES (${firstName}, ${lastName}, ${email}, ${password}, ${phone}, ${date}, 'user', 'inactive')
         `;  
     } catch (error){
         let errorMessage:string;
@@ -182,7 +182,7 @@ export async function createAccount(previousState: RegistrationForm, formData: F
         } else {
             errorMessage = 'An error occurred';
         }
-        if (errorMessage.includes('violates unique constraint "users_email_key"')) {
+        if (errorMessage.includes('violates unique constraint "accounts_email_key"')) {
             state.errors = {
                 email: ['This email is already associated with an account. Please sign in with your credentials.']
             }
@@ -239,7 +239,7 @@ export async function login(previousState: LoginState, formData: FormData) {
 
     try {
         await sql`
-        SELECT * FROM users
+        SELECT * FROM accounts
         WHERE email = ${email}
         `;
     }
@@ -271,7 +271,7 @@ export async function checkUser(email:string) {
     let errorMessage = ''
     try {
         user = await sql `
-        SELECT * FROM users
+        SELECT * FROM accounts
         WHERE email = ${email}
         `
     } catch {
