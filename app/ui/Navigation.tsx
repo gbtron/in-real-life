@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaUser } from "react-icons/fa";
-import path from "path";
 import React from "react";
 import type {Page} from "../layout";
 import { hanken_grotesk } from "@/app/ui/fonts";
