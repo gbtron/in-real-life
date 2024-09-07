@@ -70,7 +70,7 @@
                 <div className="flex flex-row gap-40">
                     <div className="dark:bg-brown-100 dark:text-white p-8 flex flex-col rounded-md border-black">
                         <h1 className="text-2xl dark:text-burntOrange-100 font-semibold">How can we reach you?</h1>
-                        <div className="text-burntOrange-500 dark:text-burntOrange-100"> Let us know your preferred method of communication </div>
+                        <div className=" dark:text-burntOrange-100"> Let us know your preferred method of communication </div>
                         <div className="mt-8 flex flex-col md:flex-row">
                             <label htmlFor="name" className="font-semibold text-sm inline-block w-16 dark:text-burntOrange-100">Name</label>
                             <input 
@@ -142,7 +142,7 @@
                             <button type="submit" disabled={state.submissionPending} className={clsx(
                                 "bg-gray-300 text-white px-4 rounded-xl w-20 ml-[23rem]",
                                 {
-                                    'hover:bg-brown-100 hover:text-slate-100 bg-burntOrange-900': !state.submissionPending,
+                                    'bg-brown-100 hover:text-slate-100 hover:bg-burntOrange-900': !state.submissionPending,
                                 }
                             )}>
                                 Send
