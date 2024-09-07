@@ -1,20 +1,34 @@
+"use client";
 import { Banner } from "../ui/Banner";
 import { Footer } from "../ui/Footer";
+import { mockUser } from "../lib/data";
+import { useState } from "react";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
 
-export default async function Account() {
+export default function Account() {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
     <>
+      {/* Make banner conditionally display log out button if a user is logged in */}
       <Banner />
       <div className="px-4 md:flex">
         <div className="my-3 p-5 bg-gray-100 rounded-md md:flex-grow mx-3">
           {/* Add custom font */}
           <h1 className={`mb-4 text-xl md:text-2x1`}>Account Info</h1>
           <div className="divide-y divide-gray-300">
+            {/* Loop through user info and display on grid */}
+            <div className="py-2 grid grid-cols-2">
+              <div>Account Type</div>
+              <div className="text-right">{mockUser[0].type}</div>
+            </div>
             <div className="py-2 grid grid-cols-2">
               <div>Name</div>
-              <div className="text-right">
-                Jane Applert<></>
-              </div>
+              <div className="text-right">Jane Applert</div>
             </div>
             <div className="py-2 grid grid-cols-2">
               <div>Email</div>
@@ -30,8 +44,22 @@ export default async function Account() {
             </div>
             <div className="py-2 grid grid-cols-2">
               <div>Password</div>
-              {/* display hidden password */}
-              <div className="text-right">*********</div>
+              {/* display hidden password Use eye icon button to show password */}
+              <div className="text-right">
+                {passwordVisible ? mockUser[0].password : "**********"}
+
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="ml-2"
+                >
+                  {passwordVisible ? (
+                    <EyeSlashIcon className="h-5 w-5 text-slate-400" />
+                  ) : (
+                    <EyeIcon className="h-5 w-5 text-slate-400" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
           {/* Link to form to change account info */}

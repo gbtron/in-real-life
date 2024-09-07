@@ -24,3 +24,13 @@ export const mockEvents = [
         sign: "mind"
     }
 ]
+
+export const mockUser =[
+    {
+        type: "Member",
+        first_name: "Jane",
+        last_name: "Applert",
+        email: "jappler@email.com",
+        password: "wordpass"
+    }
+]
