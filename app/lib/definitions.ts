@@ -14,8 +14,6 @@ export type SettableEvent = ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInput
 
 // type defs on UI variables
 export type Links = {
-    privacy:String, 
     about:String, 
-    contact:String, 
-    press:String
+    contact:String,
 }

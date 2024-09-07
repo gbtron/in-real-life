@@ -13,14 +13,14 @@ export default function about () {
                     <div className={`${cardo.className} font-medium pt-12 text-xl`}>
                     We provide a safe, inclusive environment for young adults to forge meaningful relationships, develop critical skills, and heighten their overall well being.
                     </div>
-                    <Link href="/dashboard/register">
-                    <div className="duration-300 transition-colors ease-in-out bg-gradient-to-r from-stone-400 to-blue-100 hover:from-pink-500 hover:to-indigo-500 group text-white py-2 mt-8 px-4 rounded-lg w-40">
-                        Begin today
-                        <svg xmlns="http://www.w3.org/2000/svg" className="duration-300 ease-in-out transition-transform group-hover:translate-x-6 h-6 w-6 inline-block ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7M2 12h14" />
-                        </svg>
-                    </div>
-                    </Link>
+                    <a href="/api/auth/login">
+                        <div className="duration-300 transition-colors ease-in-out bg-gradient-to-r from-stone-400 to-blue-100 hover:from-pink-500 hover:to-indigo-500 group text-white py-2 mt-8 px-4 rounded-lg w-40">
+                            Begin today
+                            <svg xmlns="http://www.w3.org/2000/svg" className="duration-300 ease-in-out transition-transform group-hover:translate-x-6 h-6 w-6 inline-block ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7M2 12h14" />
+                            </svg>
+                        </div>
+                    </a>
                 </div>
                 <Image 
                     src="/assets/back-view-people-looking-distance.jpg" 
@@ -106,11 +106,11 @@ export default function about () {
                     Get started today by creating an account or starting the conversation. 
                 </div>
                 <div className="flex flex-row gap-2">
-                    <Link href="/dashboard/register">
-                    <div className="font-semibold hover:bg-indigo-800 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10">
-                        Begin today
-                    </div>
-                    </Link>
+                    <a href="/api/auth/login">
+                        <div className="font-semibold hover:bg-indigo-800 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10">
+                            Begin today
+                        </div>
+                    </a>
                     <Link href="/contact">
                     <div className="font-semibold hover:text-slate-100 group text-indigo-300 py-2 mt-8 px-4 w-32 mb-10">
                         Contact us

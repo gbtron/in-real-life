@@ -1,8 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import {Links} from '@/app/lib/definitions'
 
-const links:Links = {privacy: 'Privacy', about: 'About', contact: 'Contact', press:'Press'}
+const links:Links = {about: 'About', contact: 'Contact'}
 
 export function Footer() {
     return (
@@ -15,20 +14,6 @@ export function Footer() {
           )
         })}
       </div>
-      <Link href="/" className="self-center">
-        <Image 
-          src="/assets/IRL_Logo_Final_Main.png" 
-          alt="IRL desktop Logo" 
-          width={100} 
-          height={100} 
-          className="relative hidden sm:block"/>    
-        <Image 
-          src="/assets/IRL_Logo_Final_Responsive.png" 
-          alt="IRL desktop Logo" 
-          width={100} 
-          height={100} 
-          className="relative sm:hidden"/>  
-      </Link>
     </footer>
     )
 }
