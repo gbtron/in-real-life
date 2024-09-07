@@ -14,27 +14,27 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors : {
-        'camo': {
-          100: '#efeedb',
-          200: '#e7e7ce',
-          300: '#dedfc2',
-          400: '#d5d7b5',
-          500: '#cdcfaa',
-          600: '#c4c79e',
-          700: '#bcbf93',
-          800: '#b3b788',
-          900: '#a9ae7e'
+        'beige': {
+          100: '#EAE2D4',
+          200: '#DDD1BE',
+          300: '#D0C1A9',
+          400: '#C8B29A',  
+          500: '#BFA78F',
+          600: '#B69C84',
+          700: '#AC927A',
+          800: '#A3876F',
+          900: '#9A7D65'
         }, 
         'burntOrange': {
-          100: '#DD5C3D',
-          200: '#D4563A',
-          300: '#CC5138',
-          400: '#C44C35',
-          500: '#BC4732',
-          600: '#B4422F',
-          700: '#AC3D2C',
-          800: '#A4382A',
-          900: '#9C3327'
+          100: '#F4D4C4',   // Light orange
+          200: '#F0BBAA',
+          300: '#ECA290',
+          400: '#E88976',
+          500: '#E4705C',
+          600: '#E05749',
+          700: '#DB4137',
+          800: '#D62A25',
+          900: '#DD5C3D'    // Burnt orange (darkest)
         },
         'brown': {
           100: '#534742',

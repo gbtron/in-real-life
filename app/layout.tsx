@@ -25,7 +25,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <UserProvider>
-        <body className={`${inter.className} antialiased dark:bg-brown-100`}>
+        <body className={`${inter.className} antialiased bg-beige-100 dark:bg-brown-100`}>
           <div className="page-content z-10 relative">
             <main className='flex flex-col sm:mb-40 mb-12'>
               <ThemeProvider attribute='class'>{children}</ThemeProvider></main>
