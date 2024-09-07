@@ -72,3 +72,8 @@ export const bookmania = localFont({
         }
     ]
 })
+
+export const acumen = localFont({
+    src: '../../public/fonts/AcuminVariableConcept_2.otf'
+    
+})

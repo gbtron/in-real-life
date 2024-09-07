@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {Links} from '@/app/lib/definitions'
 
-const links:Links = {privacy: 'Privacy', about: 'About', contact: 'Contact', press:'Press'}
+const links:Links = {about: 'About', contact: 'Contact'}
 
 export function Footer() {
     return (
