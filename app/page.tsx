@@ -15,15 +15,17 @@ export default function Landing() {
     }
   } 
   return (
-      <div className={`text-center ${acumen.className}`}>
+      <div className='text-center'>
         <Banner/>
-        {isLoading && <Spinner/>}
-        {error && <div className="text-red-700">{error.message} </div>}
-        {user === undefined 
-          ? <GuestGreeting/> 
-          : <div className='text-2xl'> Hello, {user.name}</div>
-        }
-        <ScrollableCards/>
+        <main>
+          {isLoading && <Spinner/>}
+          {error && <div className="text-red-700">{error.message} </div>}
+          {user === undefined 
+            ? <GuestGreeting/> 
+            : <h1 className='text-2xl'> Hello, {user.name}</h1>
+          }
+          <ScrollableCards/>
+        </main>
         <Footer/>
       </div>
   );    

@@ -2,6 +2,7 @@
   "name": "in-real-life",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
@@ -30,10 +31,14 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.0",
     "@types/bcrypt": "^5.0.2",
+    "@types/chai-dom": "^1.11.3",
     "@types/nodemailer": "^6.4.15",
     "@vitejs/plugin-react": "^4.3.1",
+    "chai": "^5.1.1",
+    "chai-dom": "^1.12.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "jsdom": "^24.1.1",

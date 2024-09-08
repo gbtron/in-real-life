@@ -25,7 +25,7 @@ const config: Config = {
           800: '#A3876F',
           900: '#9A7D65'
         }, 
-        'burntOrange': {
+        'tangerine': {
           100: '#F4D4C4',   // Light orange
           200: '#F0BBAA',
           300: '#ECA290',
