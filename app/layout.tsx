@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { inter } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
-import {Navigation} from "./ui/Navigation";
-import { Dropdown } from "./ui/Dropdown";
 import { ThemeProvider } from "next-themes";
+import { UserProvider } from "@auth0/nextjs-auth0/client"
 
 export const metadata: Metadata = {
   title: "In Real Life",
@@ -20,19 +19,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pages = [{ name: "In Real Life", path: "/" }, {name:"Join", path:"/dashboard/register"}, {name:"Contact", path:"/contact"}];
   return (
-  
     <html suppressHydrationWarning lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
-      <body className={`${inter.className} antialiased`}>
-        <div className="page-content z-10 relative">
-          <main className='flex flex-col sm:mb-40 mb-12'>
-            <ThemeProvider attribute='class'>{children}</ThemeProvider></main>
-        </div>
-      </body>
+      <UserProvider>
+        <body className={`${inter.className} antialiased bg-beige-100 dark:bg-brown-100`}>
+          <div className="page-content z-10 relative">
+            <main className='flex flex-col sm:mb-40 mb-12'>
+              <ThemeProvider attribute='class'>{children}</ThemeProvider></main>
+          </div>
+        </body>
+      </UserProvider>
     </html>
 
   );
