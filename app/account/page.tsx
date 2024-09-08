@@ -11,7 +11,22 @@ export default function Account() {
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
-
+  const acctInfo = [
+    "Account Type",
+    "First Name",
+    "Last Name",
+    "Email",
+    "Phone Number",
+    "Username",
+  ];
+  const currentUser = [
+    "Member",
+    "Jane",
+    "Doe",
+    "jdoe@email.com",
+    "305-305-3055",
+    "ottoPilot",
+  ];
   return (
     <>
       {/* Make banner conditionally display log out button if a user is logged in */}
@@ -21,27 +36,12 @@ export default function Account() {
           {/* Add custom font */}
           <h1 className={`mb-4 text-xl md:text-2x1`}>Account Info</h1>
           <div className="divide-y divide-gray-300">
-            {/* Loop through user info and display on grid */}
-            <div className="py-2 grid grid-cols-2">
-              <div>Account Type</div>
-              <div className="text-right">{mockUser[0].type}</div>
-            </div>
-            <div className="py-2 grid grid-cols-2">
-              <div>Name</div>
-              <div className="text-right">Jane Applert</div>
-            </div>
-            <div className="py-2 grid grid-cols-2">
-              <div>Email</div>
-              <div className="text-right">jappler@email.com</div>
-            </div>
-            <div className="py-2 grid grid-cols-2">
-              <div>Phone Number</div>
-              <div className="text-right">305-114-2349</div>
-            </div>
-            <div className="py-2 grid grid-cols-2">
-              <div>User Name</div>
-              <div className="text-right">ottoPilot</div>
-            </div>
+            {acctInfo.map((user, i) => (
+              <div className="py-2 grid grid-cols-2" key={i}>
+                <div>{acctInfo[i]}</div>
+                <div className="text-right">{currentUser[i]}</div>
+              </div>
+            ))}
             <div className="py-2 grid grid-cols-2">
               <div>Password</div>
               {/* display hidden password Use eye icon button to show password */}
