@@ -7,7 +7,7 @@ import { acumen } from '@/app/ui/fonts'
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Spinner } from "@/app/ui/Spinner"
 
-export default function Home() {
+export default function Landing() {
   const { user, error, isLoading } = useUser()
   if (!isLoading && !error ) {
     if (user !== undefined) {
