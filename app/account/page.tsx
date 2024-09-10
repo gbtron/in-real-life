@@ -64,7 +64,10 @@ export default function Account() {
             </div>
             {/* Link to form to change account info */}
             <div className="text-right">
-              <button className="bg-transparent hover:bg-burntOrange-700 text-burntOrange-700 font-semibold hover:text-white py-2 px-4 border border-burntOrange-700 hover:border-transparent rounded dark:text-white dark:border-white">
+              <button
+                className="bg-transparent hover:bg-burntOrange-700 text-burntOrange-700 font-semibold hover:text-white py-2 px-4 border border-burntOrange-700 hover:border-transparent rounded dark:text-white dark:border-white"
+                onClick={() => (window.location.href = "/update-user")}
+              >
                 Edit account info
               </button>
             </div>
