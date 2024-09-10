@@ -3,7 +3,6 @@ import { Footer } from "../app/ui/Footer";
 import { Banner } from "./ui/Banner";
 import { GuestGreeting } from "@/app/ui/GuestGreeting"
 import { ScrollableCards } from '@/app/ui/Cards'
-import { acumen } from '@/app/ui/fonts'
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Spinner } from "@/app/ui/Spinner"
 
