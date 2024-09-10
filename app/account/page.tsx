@@ -37,8 +37,8 @@ export default function Account() {
     );
   }
 
-  const app_metadata = user?.app_metadata || {};
-  const user_metadata = user?.user_metadata || {};
+  const app_metadata = user.app_metadata || {};
+  const user_metadata = user.user_metadata || {};
 
   return (
     <>
