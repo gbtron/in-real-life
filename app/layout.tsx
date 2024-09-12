@@ -3,6 +3,7 @@ import { acumen } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@auth0/nextjs-auth0/client"
+import { Banner } from "./ui/Banner";
 
 export const metadata: Metadata = {
   title: "In Real Life",
@@ -26,7 +27,12 @@ export default function RootLayout({
       </head>
       <UserProvider>
         <body className={`${acumen.className} antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative `}>
-          <ThemeProvider attribute='class'>{children}</ThemeProvider>
+          <div className="bg-palm bg-scroll bg-no-repeat bg-right-top bg-70% sm:bg-25% w-full max-h-96">
+            <ThemeProvider attribute='class'>
+              <Banner/>
+              {children}
+            </ThemeProvider>
+          </div>
         </body>
       </UserProvider>
     </html>

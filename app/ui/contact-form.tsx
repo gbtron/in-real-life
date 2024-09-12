@@ -68,9 +68,9 @@
         return (
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-row gap-40">
-                    <div className="dark:bg-brown-100 dark:text-white p-8 flex flex-col rounded-md border-black">
+                    <div className="dark:bg-brown-100 dark:text-white p-1 sm:p-8 flex flex-col rounded-md border-black">
                         <h1 className="text-2xl dark:text-tangerine-100 font-semibold">How can we reach you?</h1>
-                        <div className=" dark:text-tangerine-100"> Let us know your preferred method of communication </div>
+                        <div className="w-3/4 sm:w-auto dark:text-tangerine-100"> Let us know your preferred method of communication. </div>
                         <div className="mt-8 flex flex-col md:flex-row">
                             <label htmlFor="name" className="font-semibold text-sm inline-block w-16 dark:text-tangerine-100">Name</label>
                             <input 

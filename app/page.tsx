@@ -1,6 +1,5 @@
 'use client'
 import { Footer } from "../app/ui/Footer";
-import { Banner } from "./ui/Banner";
 import { GuestGreeting } from "@/app/ui/GuestGreeting"
 import { ScrollableCards } from '@/app/ui/Cards'
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -14,8 +13,7 @@ export default function Landing() {
     }
   } 
   return (
-      <div className='text-center bg-palm bg-scroll bg-no-repeat bg-right-top bg-blend-lighten bg-70% sm:bg-25% w-full max-h-96'>
-        <Banner/>
+      <div className='text-center'>
         <main>
           {isLoading && <Spinner/>}
           {error && <div className="text-red-700">{error.message} </div>}
