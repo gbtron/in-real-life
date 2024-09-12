@@ -5,6 +5,7 @@ import { GuestGreeting } from "@/app/ui/GuestGreeting"
 import { ScrollableCards } from '@/app/ui/Cards'
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Spinner } from "@/app/ui/Spinner"
+import Image from "next/image";
 
 export default function Landing() {
   const { user, error, isLoading } = useUser()
@@ -26,6 +27,14 @@ export default function Landing() {
           <ScrollableCards/>
         </main>
         <Footer/>
+          <Image
+              src="/assets/PalmLeaf.png"
+              alt="Palm leaf decoration"
+              width={670}
+              height={450}
+              className="rotate-90 z-[-1] fixed bottom-0 -right-14"
+              />
+        
       </div>
   );    
 }

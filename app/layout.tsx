@@ -25,7 +25,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <UserProvider>
-        <body className={`${acumen.className} antialiased bg-beige-100 dark:bg-brown-100 flex flex-col sm:mb-40 mb-12 page-content z-10 relative`}>
+        <body className={`${acumen.className} antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative`}>
           <ThemeProvider attribute='class'>{children}</ThemeProvider>
         </body>
       </UserProvider>
