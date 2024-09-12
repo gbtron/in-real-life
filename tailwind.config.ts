@@ -9,9 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        "palm":"url('/assets/PalmLeaf.png')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      backgroundSize: {
+        '25%':'25%',
+        '70%':'70%'
       },
       colors : {
         'beige': {

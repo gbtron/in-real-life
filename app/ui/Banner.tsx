@@ -18,11 +18,11 @@ export function Banner() {
     const accountLabel = isLoggedIn ? "log out" : "log in"
     
     return (
-        <header aria-label={`${themeLabel} and ${accountLabel} buttons.`} className='flex justify-between px-12 py-12'>
+        <header aria-label={`${themeLabel} and ${accountLabel} buttons.`} className='flex gap-4 sm:gap-12 items-center px-12 py-12'>
             <button className="dark:hover:bg-brown-900 hover:bg-tangerine-200 rounded-xl p-1.5" onClick={toggleDarkMode}>{themeIcon}</button>
-            <div className="hover:font-bold">
+            <div className="font-bold hover:bg-tangerine-200 rounded-md p-1">
                 {isLoggedIn
-                    ? (!isLoading && !error) && <a href='/api/auth/logout' >Log Out</a> 
+                    ? (!isLoading && !error) && <a href='/api/auth/logout'>Log Out</a> 
                     : <a href='/api/auth/login'>Log In</a>
                 }
             </div>
