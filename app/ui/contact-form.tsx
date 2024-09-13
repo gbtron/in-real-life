@@ -119,7 +119,7 @@
                         <div className="w-3/4 sm:w-auto dark:text-tangerine-100"> Let us know your preferred method of communication. </div>
                         
                         {contactFields.map((field, index) => (
-                            <FieldRow fieldName={field} key={index}/>
+                            <FieldRow fieldName={field} handleInputChange={handleInputChange} key={index}/>
                         ))}
                         
                         <div className="mt-4">
