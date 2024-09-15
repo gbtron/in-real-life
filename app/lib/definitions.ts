@@ -25,9 +25,22 @@ export type ContactFormData = {
     message: string
 }
 export type ContactField = keyof ContactFormData
+export type ContactFormState = [ContactFormData, Dispatch<SetStateAction<ContactFormData>>]
+export type ContactResponse = {
+    errors?: {
+        name?: string[];
+        email?: string[];
+        phone?: string[];
+        message?: string[];
+        form?: string;
+    }, 
+    submissionPending: boolean;
+};
+
 interface FieldRowProps {
     fieldName:ContactField, 
-    handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void
+    formData: ContactFormData, 
+    setFormData:Dispatch<SetStateAction<ContactFormData>>
+    state:ContactResponse,
 }
 export type FieldRowComponent = FC<FieldRowProps>
-export type ContactFormState = [ContactFormData, Dispatch<SetStateAction<ContactFormData>>]
