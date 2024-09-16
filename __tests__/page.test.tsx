@@ -15,6 +15,13 @@ describe('The landing page', () => {
                 children: [vi.fn()]
             }))
         }))
+        vi.mock('@auth0/nextjs-auth0', () => ({
+            handleAuth: vi.fn(() => ({
+                user:true, 
+                error: undefined, 
+                isLoading: undefined
+            }))
+        }))
     })
 
     test.skip('dark mode toggle', async ()=> {
@@ -52,21 +59,12 @@ describe('The landing page', () => {
         expect(link[0].innerHTML).toBe('Begin')
     })
 
-    test.skip('Logged in header text', async () => {
-        const useUser = vi.fn(() => ({
-            user:true, 
-            error: undefined, 
-            isLoading: undefined
-        }))
-        vi.mock('/api/auth/login', () => {
-            console.log('logged in')
-            return ({
-                useUser: useUser
-        })})
-        const { user } = setup(<Landing/>)
+    test('Logged in header text', async () => {
+        const { user } = setup(<Landing/>)  
         const link = screen.getAllByRole('link')
+        console.log('link-', link)
         await user.click(link[0])
-        expect(useUser).toHaveBeenCalled()
+
         //console.log('heading logged in- ', screen.getByRole('heading'))
         //expect(screen.getByRole('heading').innerHTML).toContain('Hello')
     })
