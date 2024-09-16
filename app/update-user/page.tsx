@@ -42,6 +42,29 @@ export default function UpdateUserInfo() {
     }
   };
 
+  const resetPassword = async (email: string) => {
+    try {
+      const res = await fetch('/api/password-reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+  
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || 'Error sending password reset email');
+      }
+  
+      const data = await res.json();
+      console.log('Password reset email sent:', data.message);
+    } catch (error: any) {
+      console.error('Failed to send password reset:', error.message);
+    }
+  };
+  
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <form
@@ -63,7 +86,7 @@ export default function UpdateUserInfo() {
           <input
             type="text"
             name="name"
-            placeholder={user?.name}
+            placeholder={user?.name || ''}
             value={formData.name}
             onChange={handleChange}
             className="border p-2 rounded w-full"
@@ -74,7 +97,7 @@ export default function UpdateUserInfo() {
           <input
             type="text"
             name="email"
-            placeholder={user?.email}
+            placeholder={user?.email || ''}
             value={formData.email}
             onChange={handleChange}
             className="border p-2 rounded w-full"
@@ -96,13 +119,19 @@ export default function UpdateUserInfo() {
           <input
             type="text"
             name="username"
-            placeholder={user?.nickname}
+            placeholder={user?.nickname || ''}
             value={formData.username}
             onChange={handleChange}
             className="border p-2 rounded w-full"
           />
         </div>
-
+        <div className="mb-4">
+          <button
+            type="button"
+            className="text-gray-400"
+            onClick={() => resetPassword(user?.email||'')}
+          >Change Password</button>
+        </div>
         <button
           type="submit"
           className="bg-transparent hover:bg-burntOrange-700 text-burntOrange-700 font-semibold hover:text-white py-2 px-4 border border-burntOrange-700 hover:border-transparent rounded dark:text-white dark:border-white"
