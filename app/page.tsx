@@ -7,13 +7,8 @@ import { Spinner } from "@/app/ui/Spinner"
 
 export default function Landing() {
   const { user, error, isLoading } = useUser()
-  if (!isLoading && !error ) {
-    if (user !== undefined) {
-
-    }
-  } 
   return (
-      <div className='text-center'>
+      <div className='text-center pt-20'>
         <main>
           {isLoading && <Spinner/>}
           {error && <div className="text-red-700">{error.message} </div>}
