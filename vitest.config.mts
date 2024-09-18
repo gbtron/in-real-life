@@ -5,6 +5,9 @@ import { resolve } from 'path'
 export default defineConfig({
     plugins:[react()],
     test: {
+        coverage: {
+            reporter: ['text', 'json', 'html'], 
+        },
         globals:true, 
         environment: 'jsdom',
         setupFiles:'./__tests__/setup.ts'
