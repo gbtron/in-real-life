@@ -25,9 +25,11 @@ export function ScrollableCards() {
       };
     return (
        <Carousel 
+            arrows
+            centerMode={true}
             responsive={responsive} 
             swipeable={true}
-            draggable={true}
+            draggable={false}
             showDots={true}
             ssr={true} // means to render carousel on server-side.
             infinite={true}
@@ -42,7 +44,7 @@ export function ScrollableCards() {
             itemClass="carousel-item-padding-40-px"
         >
         {mockEvents.map((event, i)=> (
-            <div className='w-1/2 h-4/6 py-2 px-1 border-solid border-2 border-tangerine-400 dark:border-tangerine-100 rounded-md' key={i}>
+            <div className='w-full h-4/6 py-2 px-1 border-solid border-2 border-tangerine-400 dark:border-tangerine-100 rounded-md' key={i}>
                 <div className='flex flex-row justify-between'>
                     <div>{event.membersEvent && 'Members Only'}</div>
                     <div>{event.sign}</div>
