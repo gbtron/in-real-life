@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {handlee, cardo} from "@/app/ui/fonts";
+import {bookmania, handlee, cardo} from "@/app/ui/fonts";
 
 export default function about () {
     return (
@@ -9,7 +9,7 @@ export default function about () {
             <div className="fixed absolute -top-44 bottom-[80%] sm:bottom-3/4 lg:bottom-2/3 inset-0 transform skew-y-[-10deg] bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200"></div>
             <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
                 <div className= "w-3/4 sm:w-1/2 sm:pr-44 pt-16 text-slate-600">
-                    <h1 className={`${handlee.className} text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold`}>Where real connections happen </h1>
+                    <h1 className={`${bookmania.className} text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold`}>Where REAL connections happen </h1>
                     <div className={`${cardo.className} font-medium pt-12 text-xl`}>
                     We provide a safe, inclusive environment for young adults to forge meaningful relationships, develop critical skills, and heighten their overall well being.
                     </div>
@@ -39,8 +39,8 @@ export default function about () {
 
                 <div className="flex pt-20 sm:pt-40">
                 <div className="lg:pt-20 w-3/4 sm:w-2/3">
-                    <h1 className={`${handlee.className} pt-6 text-indigo-600 font-semibold text-xl sm:text-3xl`}>Holistic offerings</h1>
-                    <div className={`${handlee.className} text-4xl sm:text-7xl pt-8 font-semibold`}>
+                    <h1 className={`${bookmania.className} pt-6 text-tangerine-400 font-semibold text-xl sm:text-3xl`}>Holistic offerings</h1>
+                    <div className={`${bookmania.className} text-4xl sm:text-6xl pt-8 font-semibold`}>
                     Oppportunities for growth through various avenues
                     </div>
                     <div className={`${cardo.className} pt-12 text-xl`}>
@@ -57,8 +57,8 @@ export default function about () {
                 </div>
                 
                 <div className="pt-40">
-                <h1 className="text-lg">Events</h1>
-                <div className={`${handlee.className} text-3xl pt-6 font-semibold`}>
+                <h1 className={`${bookmania.className} text-lg`}>Events</h1>
+                <div className={`${bookmania.className} text-3xl text-tangerine-400 pt-6 font-semibold`}>
                     Active Community
                 </div>
                 <div className={`${cardo.className} pt-8 text-xl w-3/4 sm:w-1/3`}>
@@ -67,16 +67,16 @@ export default function about () {
                 </div>
                 
                 <div className="pt-40">
-                <h1 className="text-lg">Workshops</h1>
-                <div className={`${handlee.className} text-3xl pt-6 font-semibold`}>
+                <h1 className={`${bookmania.className} text-lg`}>Workshops</h1>
+                <div className={`${bookmania.className} text-3xl text-tangerine-400 pt-6 font-semibold`}>
                     Engaging Learning
                 </div>
                 <div className={`${cardo.className} pt-8 text-xl w-3/4 sm:w-1/3`}>Develop independent living skills and social skills, such as effective communication, networking, and conflict resolution.</div>
                 </div>
 
                 <div className="pt-40">
-                <h1 className="text-lg">Counseling</h1>
-                <div className={`${handlee.className} text-3xl pt-6 font-semibold`}>
+                <h1 className={`${bookmania.className} text-lg`}>Counseling</h1>
+                <div className={`${bookmania.className} text-3xl text-tangerine-400 pt-6 font-semibold`}>
                     Supportive Therapy
                 </div>
                 <div className={`${cardo.className} pt-8 text-xl w-3/4 sm:w-1/3`}>
@@ -93,26 +93,26 @@ export default function about () {
             </div>
             </section>
             
-            <section className="overflow-hidden bg-indigo-900 text-slate-100" >
+            <section className="overflow-hidden bg-brown-100 text-slate-100" >
             <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
                 <div className="pt-20 w-3/4 sm:w-2/3">
-                <h1 className="text-indigo-300 font-semibold text-xl sm:text-2xl">Real life</h1>
-                <div className="text-4xl sm:text-4xl pt-8 font-semibold">
+                <h1 className={`${bookmania.className} text-white font-semibold text-8xl`}>Real Life</h1>
+                <div className={`${bookmania.className} text-4xl text-tangerine-100 sm:text-4xl pt-8 font-semibold}`}>
                     The right place to interact
                 </div>
-                <div className={`${cardo.className} pt-12 text-lg font-semibold`}>
+                <div className={`${cardo.className} pt-12 text-lg text-tangerine-100 font-semibold`}>
                     In today&apos;s digital world, it can be challenging to meet new people and build meaningful relationships. 
                     This is where IRL steps in – a dedicated socialization space designed to foster a safe, supportive, and vibrant community for young adults who crave real-life interactions.
                     Get started today by creating an account or starting the conversation. 
                 </div>
                 <div className="flex flex-row gap-2">
                     <a href="/api/auth/login">
-                        <div className="font-semibold hover:bg-indigo-800 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10">
+                        <div className="font-semibold hover:bg-tangerine-600 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10 text-center">
                             Begin today
                         </div>
                     </a>
                     <Link href="/contact">
-                    <div className="font-semibold hover:text-slate-100 group text-indigo-300 py-2 mt-8 px-4 w-32 mb-10">
+                    <div className="font-semibold hover:text-slate-100 group text-tangerine-100 py-2 mt-8 px-4 w-32 mb-10">
                         Contact us
                     </div>
                     </Link>
