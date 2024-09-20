@@ -7,15 +7,15 @@ export default function UpdateUserInfo() {
   const [formData, setFormData] = useState({
     name: user?.name || "",
     email: user?.email || "",
-    phone: user?.user_metadata?.phone || "",
+    // phone: user?.user_metadata?.phone || "",
     username: user?.nickname || "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -42,29 +42,6 @@ export default function UpdateUserInfo() {
     }
   };
 
-  const resetPassword = async (email: string) => {
-    try {
-      const res = await fetch('/api/password-reset', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-  
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || 'Error sending password reset email');
-      }
-  
-      const data = await res.json();
-      console.log('Password reset email sent:', data.message);
-    } catch (error: any) {
-      console.error('Failed to send password reset:', error.message);
-    }
-  };
-  
-
   return (
     <div className="flex items-center justify-center min-h-screen">
       <form
@@ -86,7 +63,7 @@ export default function UpdateUserInfo() {
           <input
             type="text"
             name="name"
-            placeholder={user?.name || ''}
+            placeholder={user?.name || ""}
             value={formData.name}
             onChange={handleChange}
             className="border p-2 rounded w-full"
@@ -97,7 +74,7 @@ export default function UpdateUserInfo() {
           <input
             type="text"
             name="email"
-            placeholder={user?.email || ''}
+            placeholder={user?.email || ""}
             value={formData.email}
             onChange={handleChange}
             className="border p-2 rounded w-full"
@@ -108,8 +85,8 @@ export default function UpdateUserInfo() {
           <input
             type="text"
             name="phone"
-            placeholder={user?.user_metadata?.phone}
-            value={formData.phone}
+            // placeholder={user?.user_metadata?.phone}
+            // value={formData.phone}
             onChange={handleChange}
             className="border p-2 rounded w-full"
           />
@@ -119,18 +96,11 @@ export default function UpdateUserInfo() {
           <input
             type="text"
             name="username"
-            placeholder={user?.nickname || ''}
+            placeholder={user?.nickname || ""}
             value={formData.username}
             onChange={handleChange}
             className="border p-2 rounded w-full"
           />
-        </div>
-        <div className="mb-4">
-          <button
-            type="button"
-            className="text-gray-400"
-            onClick={() => resetPassword(user?.email||'')}
-          >Change Password</button>
         </div>
         <button
           type="submit"
