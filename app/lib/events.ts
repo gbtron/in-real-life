@@ -6,3 +6,11 @@ export const sortEvents = (mockEvents:Event[]) => {
 }
 
 export const getParticipantCount = () => (Math.round(Math.random()*20))
+
+export const nullEvent:Event = {
+    title:"initialized", 
+    date: new Date(), 
+    location: '', 
+    description: '', 
+    sign: 'mind'
+}

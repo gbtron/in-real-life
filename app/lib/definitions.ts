@@ -25,7 +25,9 @@ export type ContactFormData = {
     message: string
 }
 export type ContactField = keyof ContactFormData
+
 export type ContactFormState = [ContactFormData, Dispatch<SetStateAction<ContactFormData>>]
+
 export type ContactResponse = {
     errors?: {
         name?: string[];
@@ -55,3 +57,5 @@ export type Event = {
     description: string, 
     sign: Sign
 }
+export type ActiveEventDispatch = Dispatch<SetStateAction<Event>>
+export type ActiveEventState = [Event, ActiveEventDispatch]

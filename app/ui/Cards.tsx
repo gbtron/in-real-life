@@ -2,10 +2,10 @@ import { mockEvents } from "@/app/lib/data"
 import Carousel from "react-multi-carousel"
 import 'react-multi-carousel/lib/styles.css';
 import { sortEvents } from "@/app/lib/events";
-import { FaPerson } from 'react-icons/fa6'
-import { getParticipantCount } from "@/app/lib/events";
+import { ActiveEventDispatch } from "@/app/lib/definitions";
+import { EventCard } from "@/app/ui/EventCard";
 
-export function ScrollableCards() {
+export function ScrollableCards({ setActiveEvent } : {setActiveEvent:ActiveEventDispatch} ) {
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -51,20 +51,9 @@ export function ScrollableCards() {
             <div 
               className='h-full mx-2 sm:mx-32 py-2 px-1 border-solid border-2 sm:border-4 border-tangerine-400 dark:border-tangerine-100 dark:text-tangerine-100 rounded-md' 
               key={i}
-              onClick={()=>console.log('clicked')}
+              onClick={()=>setActiveEvent(event)}
               >
-                <div className='flex text-left justify-between h-12'>
-                    <div>{event.membersOnly && 'Members Only'}</div>
-                    <div>{event.sign}</div>
-                </div>
-                <div className='flex flex-col pt-4 sm:pt-12 text-center h-1/2'>
-                    <div>{event.title}</div>
-                    <div>on {event.date.toLocaleDateString(undefined, {month:'long', day:'numeric'})}</div>
-                </div>
-                <div className='pt-8 flex justify-center items-center'>
-                  {getParticipantCount()}
-                  <FaPerson/>
-                </div>
+                <EventCard event={event} active={false}/>
             </div>
         ))}
         </Carousel>
