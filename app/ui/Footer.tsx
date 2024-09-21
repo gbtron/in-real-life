@@ -13,8 +13,13 @@ export function Footer() {
   const isContactForm = currentPath === '/contact'
 
   return (
-    <footer className='flex flex-col items-center'>
-      <div className="flex flex-row sm:gap-20 gap-4 items-center justify-center">
+    <footer className={clsx(
+      'flex flex-col' 
+    , {'items-center sm:items-start sm:pl-12': isContactForm, 
+      'items-center': !isContactForm  
+    }
+    )}>
+      <div className="dark:text-tangerine-100 flex flex-row sm:gap-20 gap-4 items-center justify-center">
         {Object.keys(links).map( (pathname, key) => {
           let path = pathname as keyof Links
           return(
@@ -52,7 +57,7 @@ export function Footer() {
 }
 
 export const Address = () => (
-      <div className={`text-tangerine-900 ${bookmania.className} italic`}>
+      <div className={`dark:text-tangerine-100 ${bookmania.className} italic`}>
         <div>1430 South Dixie Hwy</div>
         <div>Coral Gables, FL 33146</div>
       </div>
