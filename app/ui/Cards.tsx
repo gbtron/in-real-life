@@ -13,7 +13,7 @@ export function ScrollableCards() {
         },
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
-          items: 2, 
+          items: 1, 
           partialVisibilityGutter: 30
         },
         tablet: {
@@ -29,16 +29,16 @@ export function ScrollableCards() {
       };
     return (
        <Carousel 
+            infinite={true}
             centerMode={true}
             responsive={responsive} 
             swipeable={true}
             draggable={false}
-            showDots={true}
             ssr={true} // means to render carousel on server-side.
-            containerClass="carousel-container"
+            containerClass="carousel-container pt-4 sm:pt-12"
             removeArrowOnDeviceType={["tablet", "mobile"]}
             deviceType="mobile"
-            dotListClass="custom-dot-list-style mt-20"
+            dotListClass="custom-dot-list-style"
             itemClass="carousel-item-padding-40-px"
             focusOnSelect={true}
             rewindWithAnimation={true}
@@ -53,7 +53,6 @@ export function ScrollableCards() {
                     <div>{event.title}</div>
                     <div>on {event.date.toDateString()}</div>
                 </div>
-                
             </div>
         ))}
         </Carousel>
