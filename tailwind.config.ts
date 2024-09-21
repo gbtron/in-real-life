@@ -31,8 +31,8 @@ const config: Config = {
           900: '#9A7D65'
         }, 
         'tangerine': {
-          100: '#F4D4C4',   // Light orange
-          200: '#F0BBAA',
+          100: '#F7E6DE',   // Light orange
+          200: '#F4D4C4',
           300: '#ECA290',
           400: '#E88976',
           500: '#E4705C',
@@ -49,8 +49,8 @@ const config: Config = {
           500: '#847162',
           600: '#776459',
           700: '#6A5950',
-          800: '#5E4D48',
-          900: '#534742'  // darkest
+          800: '#534742',
+          900: '#332b28'  // darkest
         }
       }
     },
