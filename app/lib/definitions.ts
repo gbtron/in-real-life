@@ -44,3 +44,14 @@ interface FieldRowProps {
     state:ContactResponse,
 }
 export type FieldRowComponent = FC<FieldRowProps>
+
+export type Sign = "mind" | "body" | "spirit" | "heart"
+export type Event = {
+    title: string, 
+    date: Date,
+    membersOnly? : boolean,
+    location : string, 
+    instructors? : string[], 
+    description: string, 
+    sign: Sign
+}
