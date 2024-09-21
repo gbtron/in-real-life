@@ -40,7 +40,7 @@ export function ScrollableCards() {
           ssr={true} // means to render carousel on server-side.
           containerClass="carousel-container h-80 py-12 sm:pt-12 mb-16"
           removeArrowOnDeviceType={["tablet", "mobile"]}
-          dotListClass="custom-dot-list-style pb-4"
+          dotListClass="custom-dot-list-style dark:border-white"
           itemClass="carousel-item-padding-40-px"
           focusOnSelect={true}
           rewindWithAnimation={true}
@@ -48,7 +48,7 @@ export function ScrollableCards() {
           showDots={true}
         >
         {sortEvents(mockEvents).map((event, i)=> (
-            <div className='h-full mx-2 sm:mx-32 py-2 px-1 border-solid border-2 border-tangerine-400 dark:border-tangerine-100 rounded-md' key={i}>
+            <div className='h-full mx-2 sm:mx-32 py-2 px-1 border-solid border-2 border-tangerine-400 dark:border-tangerine-200 dark:text-tangerine-100 rounded-md' key={i}>
                 <div className='flex text-left justify-between h-12'>
                     <div>{event.membersOnly && 'Members Only'}</div>
                     <div>{event.sign}</div>

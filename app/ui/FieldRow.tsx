@@ -36,12 +36,11 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFormData, formData,
     }
     const textBoxAttributes = {
         ariaDescribedBy : `${fieldName}-error`, 
-        className: "md:ml-16 md:w-80 bg-slate-100 dark:bg-black rounded-sm px-2 py-1" , 
+        className: "md:ml-16 md:w-80 rounded-sm px-2 py-1" , 
         id: fieldName, 
         name: fieldName, 
         value: formData[fieldName], 
         onChange: handleInputChange
-
     }
 
     return (

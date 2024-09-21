@@ -70,7 +70,7 @@
                                 <button type="submit" disabled={state.submissionPending} className={clsx(
                                     "bg-gray-300 text-white px-4 rounded-xl w-20 sm:ml-[23rem]",
                                     {
-                                        'hover:text-slate-100 bg-tangerine-900 hover:bg-tangerine-900': !state.submissionPending,
+                                        'bg-tangerine-400 hover:font-semibold': !state.submissionPending,
                                     }
                                 )}>
                                     Send
