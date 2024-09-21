@@ -7,6 +7,7 @@
     import Image from 'next/image'
     import { ContactField, ContactFormState, ContactFormData, ContactResponse } from '@/app/lib/definitions';
     import { FieldRow } from '@/app/ui/FieldRow';
+    import { Address } from './Footer';
 
     const contactFields: ContactField[] = ['name', 'email', 'phone', 'message']
    
@@ -87,6 +88,7 @@
                                 />    
                             
                         </Link>
+                        <Address/>
                     </div>
                 </div>
             </form>
