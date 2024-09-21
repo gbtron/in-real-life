@@ -9,7 +9,7 @@ export default function Landing() {
   const { user, error, isLoading } = useUser()
   return (
     <>
-      <main className='text-center pt-20'>
+      <main className='text-center pt-20 dark:text-tangerine-100'>
         {isLoading && <Spinner/>}
         {error && <div className="text-red-700" role="status">{error.message} </div>}
         {user === undefined 
