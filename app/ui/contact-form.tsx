@@ -78,7 +78,7 @@
                             </div>
                         }
                     </div>
-                    <div className="justify-self-center self-center relative hidden sm:block">
+                    <div className="justify-center self-center relative hidden sm:flex flex-col">
                         <Link href="/" className="self-center">
                             <Image 
                                 src="/assets/IRL_Logo_Final_Main.png" 
