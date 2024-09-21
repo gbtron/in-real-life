@@ -39,7 +39,7 @@
         return (
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-row gap-40 ">
-                    <div className="dark:bg-brown-100 dark:text-white mt-12 sm:p-8 flex flex-col text-left rounded-md border-black">
+                    <div className="dark:bg-brown-900 dark:text-white mt-12 sm:p-8 flex flex-col text-left rounded-md border-black">
                         <h1 className="text-2xl dark:text-tangerine-100 font-semibold">How can we reach you?</h1>
                         <div className="w-3/4 sm:w-auto dark:text-tangerine-100"> Let us know your preferred method of communication. </div>
                         
