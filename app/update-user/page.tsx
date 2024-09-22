@@ -2,13 +2,20 @@
 import { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
+interface CustomUser {
+  sub: string;
+  name: string;
+  email: string;
+  nickname: string;
+}
+
 export default function UpdateUserInfo() {
   const { user } = useUser();
   const [formData, setFormData] = useState({
-    name: user?.name || "",
-    email: user?.email || "",
-    // phone: user?.user_metadata?.phone || "",
-    username: user?.nickname || "",
+    sub: (user as CustomUser).sub, 
+    name: (user as CustomUser)?.name || "",
+    email: (user as CustomUser)?.email || "",
+    nickname: (user as CustomUser)?.nickname || "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,21 +24,31 @@ export default function UpdateUserInfo() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+    console.log(formData);
+
     try {
       const update = await fetch("/api/update-user", {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
       if (!update.ok) {
+        const errorDetails = await update.text();
+        console.error("Error details:", errorDetails);
         throw new Error(
           "Sorry, we were unable to update your account information"
         );
       }
 
+      const updatedUser = await update.json();
+      console.log("Updated user:", updatedUser);
       alert("Account information updated successfully!");
-    } catch (error) {
-      console.error(error);
+      //Redirect back to account page once successful
+    } catch (error: any) {
+      console.error(error.message);
       alert(
         "Sorry, an error occurred while updating your account information."
       );
@@ -60,7 +77,7 @@ export default function UpdateUserInfo() {
             type="text"
             name="name"
             placeholder={user?.name || ""}
-            value={formData.name}
+            defaultValue={formData.name}
             onChange={handleChange}
             className="border p-2 rounded w-full"
           />
@@ -71,18 +88,7 @@ export default function UpdateUserInfo() {
             type="text"
             name="email"
             placeholder={user?.email || ""}
-            value={formData.email}
-            onChange={handleChange}
-            className="border p-2 rounded w-full"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block">Phone Number:</label>
-          <input
-            type="text"
-            name="phone"
-            // placeholder={user?.user_metadata?.phone}
-            // value={formData.phone}
+            defaultValue={formData.email}
             onChange={handleChange}
             className="border p-2 rounded w-full"
           />
@@ -91,9 +97,9 @@ export default function UpdateUserInfo() {
           <label className="block">Username:</label>
           <input
             type="text"
-            name="username"
+            name="nickname"
             placeholder={user?.nickname || ""}
-            value={formData.username}
+            defaultValue={formData.nickname}
             onChange={handleChange}
             className="border p-2 rounded w-full"
           />

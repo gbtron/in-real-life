@@ -1,7 +1,5 @@
 "use client";
-import { Banner } from "../ui/Banner";
 import { Footer } from "../ui/Footer";
-import { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Spinner } from "@/app/ui/Spinner";
 
@@ -57,7 +55,7 @@ export default function Account() {
                 label="Phone Number"
                 value={user_metadata.phone || "N/A"}
               />
-              <UserInfoRow label="Username" value={user.nickname} />
+              <UserInfoRow label="Nickname" value={user.nickname} />
               <UserInfoRow label="Password" value="*********" />
             </div>
             {/* Link to form to change account info */}
