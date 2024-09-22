@@ -49,7 +49,12 @@ export function Banner() {
             </div>
           )
         ) : (
-          <a href="/api/auth/login">Log In</a>
+          <a
+            className="font-bold hover:bg-tangerine-200 dark:hover:bg-brown-900 rounded-md p-2"
+            href="/api/auth/login"
+          >
+            Log In
+          </a>
         )}
       </div>
     </header>
