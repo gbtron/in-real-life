@@ -17,7 +17,7 @@ export default function Landing() {
       <main className='text-center pt-20 dark:text-tangerine-100'>
         {isLoading && <Spinner/>}
         {error && <div className="text-red-700" role="status">{error.message} </div>}
-        <div className='dark:text-tangerine-100 '>
+        <div className='dark:text-tangerine-100'>
             <h1 className={`${bookmania.className} font-bold italic text-2xl`}>
                 Welcome,
             </h1>
@@ -36,7 +36,11 @@ export default function Landing() {
             }
          </div>
         {activeEvent.title !== "initialized" 
-          ? <EventCard event={activeEvent} active={true}/> 
+          ? 
+          <div className="py-20">
+            <button className='bg-white/30 border-tangerine-500 border-2 rounded-md mb-4 p-1' onClick={()=> setActiveEvent(nullEvent)}>Back</button>
+              <EventCard setActiveEvent={setActiveEvent} event={activeEvent} /> 
+            </div>
           : <ScrollableCards setActiveEvent={setActiveEvent} /> 
         }
       </main>

@@ -31,7 +31,7 @@ export function ScrollableCards({ setActiveEvent } : {setActiveEvent:ActiveEvent
       };
     return (
        <Carousel 
-          autoPlay={window.innerWidth < 641 ? true : false}
+          autoPlay={window.innerWidth < 641 ? false : false}
           centerMode={true}
           containerClass="carousel-container mt-8 h-80 py-12 sm:pt-12 mb-16"
           dotListClass="custom-dot-list-style"
@@ -47,15 +47,7 @@ export function ScrollableCards({ setActiveEvent } : {setActiveEvent:ActiveEvent
           removeArrowOnDeviceType={["mobile"]}
           rewindWithAnimation={true}
         >
-        {sortEvents(mockEvents).map((event, i)=> (
-            <div 
-              className='bg-white/50 dark:bg-black/50 h-full mx-2 sm:mx-32 py-2 px-1 border-solid border-2 sm:border-4 border-tangerine-400 dark:border-tangerine-100 dark:text-tangerine-100 rounded-md' 
-              key={i}
-              onClick={()=>setActiveEvent(event)}
-              >
-                <EventCard event={event} active={false}/>
-            </div>
-        ))}
+        {sortEvents(mockEvents).map( (event, i) => ( <EventCard key={i} event={event} setActiveEvent={setActiveEvent}/> ) )}
         </Carousel>
     )
 }
