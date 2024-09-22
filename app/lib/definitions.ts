@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent } from "react";
+import { ChangeEvent, FocusEvent, Dispatch, SetStateAction, FC } from "react";
 // Manually define the type defintions of the data
 
 export type Lead = {
@@ -17,3 +17,30 @@ export type Links = {
     about:String, 
     contact:String,
 }
+
+export type ContactFormData = {
+    name: string, 
+    email: string, 
+    phone: string, 
+    message: string
+}
+export type ContactField = keyof ContactFormData
+export type ContactFormState = [ContactFormData, Dispatch<SetStateAction<ContactFormData>>]
+export type ContactResponse = {
+    errors?: {
+        name?: string[];
+        email?: string[];
+        phone?: string[];
+        message?: string[];
+        form?: string;
+    }, 
+    submissionPending: boolean;
+};
+
+interface FieldRowProps {
+    fieldName:ContactField, 
+    formData: ContactFormData, 
+    setFormData:Dispatch<SetStateAction<ContactFormData>>
+    state:ContactResponse,
+}
+export type FieldRowComponent = FC<FieldRowProps>

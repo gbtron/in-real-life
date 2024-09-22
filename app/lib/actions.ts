@@ -3,17 +3,7 @@ import {z} from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import nodemailer from 'nodemailer';
-
-export type ContactState = {
-    errors?: {
-        name?: string[];
-        email?: string[];
-        phone?: string[];
-        message?: string[];
-        form?: string;
-    }, 
-    submissionPending: boolean;
-};
+import { ContactResponse } from '@/app/lib/definitions';
 
 const ContactFormSchema = z.object({
     id: z.string(),
@@ -33,7 +23,7 @@ const ContactFormSchema = z.object({
 })
 
 const CreateLead = ContactFormSchema.omit({id: true, date: true});
-export async function sendMessage(previousState: ContactState, formData: FormData) {
+export async function sendMessage(previousState: ContactResponse, formData: FormData) {
     const rawName = formData.get('name') as string
     const rawEmail = formData.get('email') as string
     const rawPhone = formData.get('phone') as string

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { inter } from "@/app/ui/fonts"
+import { acumen } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@auth0/nextjs-auth0/client"
+import { Banner } from "./ui/Banner";
 
 export const metadata: Metadata = {
   title: "In Real Life",
-  description: "The home page for in real life",
+  description: "The web page for the In Real Life foundation",
 };
 
 export interface Page {
@@ -25,14 +26,15 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <UserProvider>
-        <body className={`${inter.className} antialiased bg-beige-100 dark:bg-brown-100`}>
-          <div className="page-content z-10 relative">
-            <main className='flex flex-col sm:mb-40 mb-12'>
-              <ThemeProvider attribute='class'>{children}</ThemeProvider></main>
+        <body className={`${acumen.className} antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative `}>
+          <div className="bg-palm bg-scroll bg-no-repeat bg-right-top bg-70% sm:bg-25% w-full max-h-96">
+            <ThemeProvider attribute='class'>
+              <Banner/>
+              {children}
+            </ThemeProvider>
           </div>
         </body>
       </UserProvider>
     </html>
-
   );
 }
