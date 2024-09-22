@@ -17,17 +17,13 @@ export default function UpdateUserInfo() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    
     try {
-      const response = await fetch("/api/update-user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+      const update = await fetch("/api/update-user", {
+        method: "PATCH",
       });
 
-      if (!response.ok) {
+      if (!update.ok) {
         throw new Error(
           "Sorry, we were unable to update your account information"
         );
