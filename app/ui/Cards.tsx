@@ -31,25 +31,25 @@ export function ScrollableCards({ setActiveEvent } : {setActiveEvent:ActiveEvent
       };
     return (
        <Carousel 
-          arrows={false}
-          infinite={true}
+          autoPlay={window.innerWidth < 641 ? true : false}
           centerMode={true}
-          responsive={responsive} 
-          swipeable={true}
-          draggable={false}
-          ssr={true} // means to render carousel on server-side.
           containerClass="carousel-container mt-8 h-80 py-12 sm:pt-12 mb-16"
-          removeArrowOnDeviceType={["tablet", "mobile"]}
           dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
+          draggable={false}
           focusOnSelect={true}
-          rewindWithAnimation={true}
-          sliderClass='h-full'
+          infinite={true}
+          itemClass="carousel-item-padding-40-px"
+          responsive={responsive} 
           showDots={true}
+          sliderClass='h-full'
+          ssr={true}
+          swipeable={true}
+          removeArrowOnDeviceType={["mobile"]}
+          rewindWithAnimation={true}
         >
         {sortEvents(mockEvents).map((event, i)=> (
             <div 
-              className='h-full mx-2 sm:mx-32 py-2 px-1 border-solid border-2 sm:border-4 border-tangerine-400 dark:border-tangerine-100 dark:text-tangerine-100 rounded-md' 
+              className='bg-white/50 dark:bg-black/50 h-full mx-2 sm:mx-32 py-2 px-1 border-solid border-2 sm:border-4 border-tangerine-400 dark:border-tangerine-100 dark:text-tangerine-100 rounded-md' 
               key={i}
               onClick={()=>setActiveEvent(event)}
               >
