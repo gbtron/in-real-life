@@ -7,7 +7,7 @@ import { Spinner } from "@/app/ui/Spinner"
 import { useState } from "react";
 import { ActiveEventState } from "@/app/lib/definitions";
 import { nullEvent } from "@/app/lib/events";
-import { EventCard } from "@/app/ui/EventCard"; 
+import { EventCard } from "@/app/ui/EventCard";
 
 export default function Landing() {
   const { user, error, isLoading } = useUser()
@@ -17,13 +17,10 @@ export default function Landing() {
       <main className='text-center pt-20 dark:text-tangerine-100'>
         {isLoading && <Spinner/>}
         {error && <div className="text-red-700" role="status">{error.message} </div>}
-        {user === undefined 
-          ? <GuestGreeting/> 
-          : <h1 className='text-2xl'> Hello, {user.name}</h1>
-        }
+        {/* {user === undefined ? <GuestGreeting/> : <h1 className='text-2xl'> Hello, {user.name}</h1>} */}
         {activeEvent.title !== "initialized" 
-          ? <EventCard event={activeEvent} active={true}/>
-          : <ScrollableCards setActiveEvent={setActiveEvent}/>
+          ? <EventCard event={activeEvent} active={true}/> 
+          : <ScrollableCards setActiveEvent={setActiveEvent} /> 
         }
       </main>
       <Footer/>
