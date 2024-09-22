@@ -1,6 +1,6 @@
 'use client'
 import { Footer } from "@/app/ui/Footer";
-import { GuestGreeting } from "@/app/ui/GuestGreeting"
+import { bookmania } from '@/app/ui/fonts'
 import { ScrollableCards } from '@/app/ui/Cards'
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Spinner } from "@/app/ui/Spinner"
@@ -17,7 +17,24 @@ export default function Landing() {
       <main className='text-center pt-20 dark:text-tangerine-100'>
         {isLoading && <Spinner/>}
         {error && <div className="text-red-700" role="status">{error.message} </div>}
-        {/* {user === undefined ? <GuestGreeting/> : <h1 className='text-2xl'> Hello, {user.name}</h1>} */}
+        <div className='dark:text-tangerine-100 '>
+            <h1 className={`${bookmania.className} font-bold italic text-2xl`}>
+                Welcome,
+            </h1>
+            {user === undefined 
+                ? 
+                    <>
+                        <div className='pb-2'>
+                            we look forward to serving you. 
+                        </div>
+                        <a href='/api/auth/login' className='py-1 px-2 bg-tangerine-200 dark:bg-tangerine-400 dark:text-white hover:font-bold rounded-md '>
+                            Begin
+                        </a>
+                    </>
+                : 
+                <div>Select an event below to get started. </div>
+            }
+         </div>
         {activeEvent.title !== "initialized" 
           ? <EventCard event={activeEvent} active={true}/> 
           : <ScrollableCards setActiveEvent={setActiveEvent} /> 

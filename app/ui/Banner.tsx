@@ -3,8 +3,10 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { useTheme } from "next-themes";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { usePathname } from "next/navigation";
 
 export function Banner() {
+    const currentPath = usePathname()
     const { user, error, isLoading } = useUser()
     const { theme, setTheme } = useTheme()
 
@@ -31,7 +33,7 @@ export function Banner() {
             <div className="dark:text-tangerine-100 hover:font-bold rounded-md p-1">
                 {isLoggedIn
                     ? (!isLoading && !error) && <a href='/api/auth/logout'>Log Out</a> 
-                    : <a href='/api/auth/login'>Log In</a>
+                    : currentPath !== '/' && <a href='/api/auth/login'>Log In</a>
                 }
             </div>
             
