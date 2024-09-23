@@ -2,10 +2,11 @@ import { mockEvents } from "@/app/lib/data"
 import Carousel from "react-multi-carousel"
 import 'react-multi-carousel/lib/styles.css';
 import { sortEvents } from "@/app/lib/events";
-import { ActiveEventDispatch } from "@/app/lib/definitions";
 import { EventCard } from "@/app/ui/EventCard";
+import { useRouter } from "next/navigation";
 
-export function ScrollableCards({ setActiveEvent } : {setActiveEvent:ActiveEventDispatch} ) {
+export function ScrollableCards() {
+    const router = useRouter()
     const responsive = {
         superLargeDesktop: {
           // the naming can be any, depends on you.
@@ -46,7 +47,11 @@ export function ScrollableCards({ setActiveEvent } : {setActiveEvent:ActiveEvent
           centerMode={true}
           ssr={true}
         >
-        {sortEvents(mockEvents).map( (event, i) => <EventCard user={undefined} key={i} event={event} selected={false} setActiveEvent={setActiveEvent}/> ) }
+          {sortEvents(mockEvents).map( (event, i) => (
+            <div onClick= {() => router.push(`/events/${event.id}`)}>
+              <EventCard key={i} event={event} selected={false}/> 
+            </div>
+          ))}
         </Carousel>
     )
 }

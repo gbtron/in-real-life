@@ -3,10 +3,12 @@ import { FaPerson } from 'react-icons/fa6'
 import { getParticipantCount, nullEvent } from "@/app/lib/events";
 import { IoIosArrowBack } from "react-icons/io";
 import clsx from "clsx";
-import { UserProfile } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/navigation";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
-export const EventCard = ({ event, setActiveEvent, selected, user } : { event: Event, selected:boolean, setActiveEvent:ActiveEventDispatch, user:UserProfile | undefined }) => {
-    
+export const EventCard = ({ event, selected } : { event: Event, selected:boolean }) => {
+    const router = useRouter()
+    const { user } = useUser()
     return (
         <div 
             className={clsx(
@@ -15,10 +17,9 @@ export const EventCard = ({ event, setActiveEvent, selected, user } : { event: E
                     'my-12': selected
                 }
             )}
-            onClick={ () => !selected && setActiveEvent(event) }
         >
             <div className='flex text-left justify-between items-center h-12'>
-                {selected && (<button onClick={() => setActiveEvent(nullEvent)} ><IoIosArrowBack/></button>)}
+                {selected && (<button onClick={() => router.push('/')} ><IoIosArrowBack/></button>)}
                 <div>{event.membersOnly && 'Members Only'}</div>
                 <div>{event.sign}</div>
             </div>

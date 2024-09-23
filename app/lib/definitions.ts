@@ -49,6 +49,7 @@ export type FieldRowComponent = FC<FieldRowProps>
 
 export type Sign = "mind" | "body" | "spirit" | "heart"
 export type Event = {
+    id: string,
     title: string, 
     date: Date,
     membersOnly? : boolean,

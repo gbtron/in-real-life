@@ -15,16 +15,13 @@ export default function Landing() {
   const eventSelected = activeEvent.title !== "initialized"
   return (
     <>
-      <main className='text-center pt-20 dark:text-tangerine-100'>
-        {isLoading && <Spinner/>}
-        {error && <div className="text-red-700" role="status">{error.message} </div>}
-        <Greeting user={ user } eventSelected={eventSelected}/>
-        {eventSelected
-          ? <EventCard setActiveEvent={setActiveEvent} event={activeEvent} selected={true} user={user}/> 
-          : <ScrollableCards setActiveEvent={setActiveEvent} /> 
-        }
-      </main>
-      <Footer/>
+      	<main className='text-center pt-20 dark:text-tangerine-100'>
+			{isLoading && <Spinner/>}
+			{error && <div className="text-red-700" role="status">{error.message} </div>}
+			<Greeting user={ user } eventSelected={eventSelected}/>
+			<ScrollableCards /> 
+      	</main>
+      	<Footer/>
     </>
   );    
 }
