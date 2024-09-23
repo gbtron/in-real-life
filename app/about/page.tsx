@@ -11,7 +11,6 @@ export default function about() {
       >
         <div className="h-screen bg-opacity-50 bg-hero bg-norepeat bg-cover flex items-center justify-center">
           <div className="mx-2 text-center">
-           
             <h1
               className={`${bookmania.className} text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold`}
             >
@@ -29,12 +28,12 @@ export default function about() {
             <div className="inline-flex">
               <a
                 href="/api/auth/login"
-                className="p-2 my-5 mx-2 bg-tangerine-700 hover:bg-tangerine-800 font-bold text-white rounded border-2 border-transparent hover:border-tangerine-800 shadow-md transition duration-500 md:text-xl"
+                className="p-2 my-5 mx-2 bg-tangerine-500 hover:bg-tangerine-700 font-bold text-white rounded border-2 border-transparent hover:border-tangerine-700 shadow-md transition duration-500 md:text-xl"
               >
                 Get Started
               </a>
               <a href="/contact">
-                <button className="p-2 my-5 mx-2 border-2 bg-tangerine-300 bg-opacity-30 hover:bg-opacity-100 border-tangerine-700 rounded hover:border-tangerine-800 font-bold text-white shadow-md transition duration-500 md:text-lg">
+                <button className="p-2 my-5 mx-2 border-2 bg-tangerine-300 bg-opacity-30 hover:bg-opacity-70 border-tangerine-500 rounded hover:border-tangerine-300 font-bold text-white shadow-md transition duration-500 md:text-lg">
                   Contact Us
                 </button>
               </a>
@@ -42,49 +41,6 @@ export default function about() {
           </div>
         </div>
       </div>
-      {/* <section className="bg-white relative pb-64 overflow-hidden">
-        <div className="fixed absolute -top-44 bottom-[80%] sm:bottom-3/4 lg:bottom-2/3 inset-0 transform skew-y-[-10deg] bg-gradient-to-r from-slate-100 via-indigo-200 via-70% to-fuchsia-200"></div>
-        <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-          <div className="w-3/4 sm:w-1/2 sm:pr-44 pt-16 text-slate-600">
-            <h1
-              className={`${bookmania.className} text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold`}
-            >
-              Where REAL connections happen
-            </h1>
-            <div className={`${cardo.className} font-medium pt-12 text-xl`}>
-              We provide a safe, inclusive environment for young adults to forge
-              meaningful relationships, develop critical skills, and heighten
-              their overall well being.
-            </div>
-            <a href="/api/auth/login">
-              <div className="duration-300 transition-colors ease-in-out bg-gradient-to-r from-stone-400 to-blue-100 hover:from-pink-500 hover:to-indigo-500 group text-white py-2 mt-8 px-4 rounded-lg w-40">
-                Begin today
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="duration-300 ease-in-out transition-transform group-hover:translate-x-6 h-6 w-6 inline-block ml-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7M2 12h14"
-                  />
-                </svg>
-              </div>
-            </a>
-          </div>
-          <Image
-            src="/assets/back-view-people-looking-distance.jpg"
-            alt="Back view of people looking in distance"
-            width={600}
-            height={400}
-            className="sepia-[.3] rounded-lg h-[36rem] hidden md:block mt-12"
-          />
-        </div>
-      </section> */}
 
       <section className=" overflow-hidden bg-beige-100">
         <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
@@ -100,9 +56,7 @@ export default function about() {
               >
                 Oppportunities for growth through various avenues
               </div>
-              <div
-                className={`${cardo.className} font-semibold pt-5 text-2xl`}
-              >
+              <div className={`${cardo.className} font-semibold pt-5 text-2xl`}>
                 Our program promotes holistic development through hosting
                 events, workshops, and counseling. Members can sign up and stop
                 by IRL for any of the support they need.
@@ -166,11 +120,6 @@ export default function about() {
           </div>
         </div>
       </section>
-      {/* <Link href="/about">
-                <div className="hover:bg-slate-300 hover:text-black bg-slate-700 group text-white py-2 mt-8 px-4 rounded-full w-44 mb-10">
-                    Discover offerings
-                </div>
-                </Link> */}
 
       <section className="overflow-hidden bg-brown-100 text-slate-100">
         <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
@@ -202,7 +151,7 @@ export default function about() {
                 </div>
               </a>
               <Link href="/contact">
-                <div className="font-semibold hover:text-slate-100 group text-tangerine-100 py-2 mt-8 px-4 w-32 mb-10">
+                <div className="font-semibold hover:text-tangerine-600 group text-white py-2 mt-8 px-4 w-32 mb-10">
                   Contact us
                 </div>
               </Link>
