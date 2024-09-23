@@ -11,6 +11,7 @@ export default function about() {
       >
         <div className="h-screen bg-opacity-50 bg-hero bg-norepeat bg-cover flex items-center justify-center">
           <div className="mx-2 text-center">
+           
             <h1
               className={`${bookmania.className} text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold`}
             >
@@ -85,21 +86,23 @@ export default function about() {
         </div>
       </section> */}
 
-      <section className=" overflow-hidden bg-slate-100">
-        <div className="text-slate-600 pb-40 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+      <section className=" overflow-hidden bg-beige-100">
+        <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="flex pt-20 sm:pt-40">
             <div className="lg:pt-20 w-3/4 sm:w-2/3">
               <h1
-                className={`${bookmania.className} pt-6 text-tangerine-400 font-semibold text-xl sm:text-3xl`}
+                className={`${bookmania.className} text-tangerine-500 font-semibold text-2xl sm:text-3xl`}
               >
                 Holistic offerings
               </h1>
               <div
-                className={`${bookmania.className} text-4xl sm:text-6xl pt-8 font-semibold`}
+                className={`${bookmania.className} text-4xl sm:text-6xl pt-2 font-semibold`}
               >
                 Oppportunities for growth through various avenues
               </div>
-              <div className={`${cardo.className} pt-12 text-xl`}>
+              <div
+                className={`${cardo.className} font-semibold pt-5 text-2xl`}
+              >
                 Our program promotes holistic development through hosting
                 events, workshops, and counseling. Members can sign up and stop
                 by IRL for any of the support they need.
@@ -113,53 +116,61 @@ export default function about() {
               className="rounded-lg hidden md:block w-[1/2] h-[40rem] ml-20"
             />
           </div>
-
-          <div className="pt-40">
-            <h1 className={`${bookmania.className} text-lg`}>Events</h1>
+        </div>
+      </section>
+      <section className="overflow-hidden pb-20 pl-[--columnPaddingNormal]">
+        <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+          <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
+            <h1 className={`${bookmania.className} text-xl font-semibold`}>
+              Events
+            </h1>
             <div
-              className={`${bookmania.className} text-3xl text-tangerine-400 pt-6 font-semibold`}
+              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6 font-semibold`}
             >
               Active Community
             </div>
-            <div className={`${cardo.className} pt-8 text-xl w-3/4 sm:w-1/3`}>
+            <div className={`${cardo.className} pt-8 text-2xl w-3/4`}>
               Create new art pieces, unwind in yoga poses, and catch the big
               game with like-minded peers.
             </div>
           </div>
 
-          <div className="pt-40">
-            <h1 className={`${bookmania.className} text-lg`}>Workshops</h1>
+          <div className="basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none">
+            <h1 className={`${bookmania.className} text-xl font-semibold`}>
+              Workshops
+            </h1>
             <div
-              className={`${bookmania.className} text-3xl text-tangerine-400 pt-6 font-semibold`}
+              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6 font-semibold`}
             >
               Engaging Learning
             </div>
-            <div className={`${cardo.className} pt-8 text-xl w-3/4 sm:w-1/3`}>
+            <div className={`${cardo.className} pt-8 text-2xl w-3/4`}>
               Develop independent living skills and social skills, such as
               effective communication, networking, and conflict resolution.
             </div>
           </div>
 
-          <div className="pt-40">
-            <h1 className={`${bookmania.className} text-lg`}>Counseling</h1>
+          <div className="basis-1/3">
+            <h1 className={`${bookmania.className} text-xl font-semibold`}>
+              Counseling
+            </h1>
             <div
-              className={`${bookmania.className} text-3xl text-tangerine-400 pt-6 font-semibold`}
+              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6 font-semibold`}
             >
               Supportive Therapy
             </div>
-            <div className={`${cardo.className} pt-8 text-xl w-3/4 sm:w-1/3`}>
+            <div className={`${cardo.className} pt-8 text-2xl w-3/4`}>
               Get help with managing stress, anxiety, depression and other
               mental health challenges.
             </div>
           </div>
-
-          {/* <Link href="/about">
+        </div>
+      </section>
+      {/* <Link href="/about">
                 <div className="hover:bg-slate-300 hover:text-black bg-slate-700 group text-white py-2 mt-8 px-4 rounded-full w-44 mb-10">
                     Discover offerings
                 </div>
                 </Link> */}
-        </div>
-      </section>
 
       <section className="overflow-hidden bg-brown-100 text-slate-100">
         <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
@@ -170,12 +181,12 @@ export default function about() {
               Real Life
             </h1>
             <div
-              className={`${bookmania.className} text-4xl text-tangerine-100 sm:text-4xl pt-8 font-semibold}`}
+              className={`${bookmania.className} text-4xl text-white sm:text-4xl pt-8 font-semibold}`}
             >
               The right place to interact
             </div>
             <div
-              className={`${cardo.className} pt-12 text-lg text-tangerine-100 font-semibold`}
+              className={`${cardo.className} pt-12 text-lg text-white font-semibold`}
             >
               In today&apos;s digital world, it can be challenging to meet new
               people and build meaningful relationships. This is where IRL steps
