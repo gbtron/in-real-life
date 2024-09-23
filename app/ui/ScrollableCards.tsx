@@ -31,23 +31,22 @@ export function ScrollableCards({ setActiveEvent } : {setActiveEvent:ActiveEvent
       };
     return (
        <Carousel 
-          autoPlay={window.innerWidth < 641 ? false : false}
-          centerMode={true}
-          containerClass="carousel-container mt-8 h-80 py-12 sm:pt-12 mb-16"
-          dotListClass="custom-dot-list-style"
-          draggable={false}
-          focusOnSelect={true}
-          infinite={true}
+          containerClass="carousel-container h-80 py-12 sm:pt-12 mb-16"
           itemClass="carousel-item-padding-40-px"
-          responsive={responsive} 
-          showDots={true}
+          dotListClass="custom-dot-list-style"
           sliderClass='h-full'
-          ssr={true}
-          swipeable={true}
-          removeArrowOnDeviceType={["mobile"]}
+          responsive={responsive} 
+          autoPlay={window.innerWidth < 641 ? true : false}
           rewindWithAnimation={true}
+          infinite={true}
+          removeArrowOnDeviceType={["mobile"]}
+          showDots={true}
+          draggable={false}
+          swipeable={true}
+          centerMode={true}
+          ssr={true}
         >
-        {sortEvents(mockEvents).map( (event, i) => ( <EventCard key={i} event={event} setActiveEvent={setActiveEvent}/> ) )}
+        {sortEvents(mockEvents).map( (event, i) => <EventCard user={undefined} key={i} event={event} selected={false} setActiveEvent={setActiveEvent}/> ) }
         </Carousel>
     )
 }
