@@ -1,7 +1,7 @@
 'use client'
 import { ActiveEventDispatch, Event } from "@/app/lib/definitions"
 import { FaPerson } from 'react-icons/fa6'
-import { getParticipantCount, nullEvent } from "@/app/lib/events";
+import { getParticipantCount } from "@/app/lib/events";
 import { IoIosArrowBack } from "react-icons/io";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
