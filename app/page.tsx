@@ -6,7 +6,6 @@ import { Spinner } from "@/app/ui/Spinner"
 import { useState } from "react";
 import { ActiveEventState } from "@/app/lib/definitions";
 import { nullEvent } from "@/app/lib/events";
-import { EventCard } from "@/app/ui/EventCard";
 import { Greeting } from "./ui/Greeting";
 
 export default function Landing() {

@@ -1,3 +1,4 @@
+'use client'
 import { ActiveEventDispatch, Event } from "@/app/lib/definitions"
 import { FaPerson } from 'react-icons/fa6'
 import { getParticipantCount, nullEvent } from "@/app/lib/events";

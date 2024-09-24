@@ -1,5 +1,5 @@
 import {sql} from '@vercel/postgres';
-import { Lead, Sign } from '@/app/lib/definitions';
+import { Event, Lead, Sign } from '@/app/lib/definitions';
 
 export async function fetchLeads() {
     
@@ -104,3 +104,5 @@ export const mockEvents = [
         location: "Counseling Room 2"
       }
 ]
+
+export const getEventById = (id:string) => mockEvents.find((event)=> event.id === id) as Event
