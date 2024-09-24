@@ -48,7 +48,7 @@ export function ScrollableCards() {
           ssr={true}
         >
           {sortEvents(mockEvents).map( (event, i) => (
-            <div key={i} onClick= {() => router.push(`/events/${event.id}`)}>
+            <div key={i} className="h-full" onClick= {() => router.push(`/events/${event.id}`)}>
               <EventCard event={event} selected={false}/> 
             </div>
           ))}
