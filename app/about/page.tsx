@@ -26,12 +26,12 @@ export default function about() {
               their overall well being.
             </div>
             <div className="inline-flex">
-              <a
+              {/* <a
                 href="/api/auth/login"
                 className="p-2 my-5 mx-2 bg-tangerine-500 hover:bg-tangerine-700 font-bold text-white rounded border-2 border-transparent hover:border-tangerine-700 shadow-md transition duration-500 md:text-xl"
               >
                 Get Started
-              </a>
+              </a> */}
               <a href="/contact">
                 <button className="p-2 my-5 mx-2 border-2 bg-tangerine-300 bg-opacity-30 hover:bg-opacity-70 border-tangerine-500 rounded hover:border-tangerine-300 font-bold text-white shadow-md transition duration-500 md:text-lg">
                   Contact Us
@@ -145,11 +145,11 @@ export default function about() {
               or starting the conversation.
             </div>
             <div className="flex flex-row gap-2">
-              <a href="/api/auth/login">
+              {/* <a href="/api/auth/login">
                 <div className="font-semibold hover:bg-tangerine-600 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10 text-center">
                   Begin today
                 </div>
-              </a>
+              </a> */}
               <Link href="/contact">
                 <div className="font-semibold hover:text-tangerine-600 group text-white py-2 mt-8 px-4 w-32 mb-10">
                   Contact us
