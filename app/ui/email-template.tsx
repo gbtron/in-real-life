@@ -15,7 +15,7 @@ export const EmailTemplate: React.FC<Readonly<ContactFormData>> = ({
         <Preview>{previewText}</Preview>
         <Body className={`${acumen.className} bg-beige-100`}>
             <Container className="mx-auto pt-8 px-20 w-3/4">
-                <Section>
+                <Section className="py-16 px-12">
                     <Img
                         src="/assets/IRL_Logo_Final_Main.png"
                         width="96"
@@ -24,7 +24,7 @@ export const EmailTemplate: React.FC<Readonly<ContactFormData>> = ({
                     >
                     </Img>
                 </Section>
-                <Section className="pb-10">
+                <Section className="pb-10 border-2">
                     <Row>
                         <Text> Here's what {name} wrote </Text>
                         <Text className="text-lg p-8 "> {message} </Text>
