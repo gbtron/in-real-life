@@ -27,7 +27,7 @@ export const EmailTemplate: React.FC<Readonly<ContactFormData>> = ({
                 <Section className="pb-10">
                     <Row>
                         <Text> Here's what {name} wrote </Text>
-                        <Text className="text-lg"> {message} </Text>
+                        <Text className="text-lg p-8 "> {message} </Text>
                     </Row>
                 </Section>
             </Container>
