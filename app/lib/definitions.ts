@@ -14,9 +14,10 @@ export type SettableEvent = ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInput
 
 // type defs on UI variables
 export type Links = {
-    about:String, 
-    contact:String,
+    '/':String, 
+    'contact':String,
 }
+export type LinkName = keyof Links
 
 export type ContactFormData = {
     name: string, 

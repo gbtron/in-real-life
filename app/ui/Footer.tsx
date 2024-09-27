@@ -1,33 +1,20 @@
 'use client'
 import Link from "next/link";
 import {Links} from '@/app/lib/definitions'
-import { usePathname } from "next/navigation";
-import Image from "next/image";
 
-const links:Links = {about: 'About', contact: 'Contact'}
+const links:Links = {'/': 'About Us', 'contact': 'Contact'}
 
 export function Footer() {
-  const currentPath = usePathname()
     return (
-    <footer className='flex flex-col absolute inset-x-0 bottom-8 sm:bottom-20'>
+    <footer className='flex flex-col absolute inset-x-0 bottom-12 sm:bottom-20'>
       <div className="flex flex-row sm:gap-20 gap-4 items-center justify-center">
-        {Object.keys(links).map((key, value)=> {
-          let path = key as keyof Links
+        {Object.keys(links).map( (key, value) => {
+          const path = key as keyof Links
+          let pathname = path as string
           return(
-            <Link key={key} href={`/${key}`} className="hover:font-bold">{links[path]}</Link>
+            <Link key={key} href={pathname} className="hover:font-bold">{links[path]}</Link>
           )
         })}
-      {currentPath !== "/" && (
-        <Link href="/" >
-          <Image
-            src="/assets/IRL_Logo_Final_Responsive.png"
-            alt="Landing page link"
-            width={100}
-            height={100}
-            className="sm:hidden"
-            />
-        </Link>
-      )}
       </div>
     </footer>
     )

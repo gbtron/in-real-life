@@ -42,7 +42,7 @@
         return (
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-row gap-40 align-center w-full">
-                    <div className="dark:bg-brown-100 dark:text-white mt-12 sm:p-8 flex flex-col text-left rounded-md border-black w-full sm:w-1/2">
+                    <div className="dark:bg-brown-100 dark:text-white mt-24 sm:p-8 flex flex-col text-left rounded-md border-black w-full sm:w-1/2">
                         {!apiState.messageSent && 
                             <>
                                 <h1 className="text-2xl dark:text-tangerine-100 font-semibold">How can we reach you?</h1>
