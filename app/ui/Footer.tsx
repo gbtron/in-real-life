@@ -9,7 +9,7 @@ const links:Links = {about: 'About', contact: 'Contact'}
 export function Footer() {
   const currentPath = usePathname()
     return (
-    <footer className='flex flex-col'>
+    <footer className='flex flex-col absolute inset-x-0 bottom-8 sm:bottom-20'>
       <div className="flex flex-row sm:gap-20 gap-4 items-center justify-center">
         {Object.keys(links).map((key, value)=> {
           let path = key as keyof Links
