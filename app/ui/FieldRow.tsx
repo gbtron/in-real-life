@@ -1,7 +1,11 @@
-import { ContactField, ContactFormData, FieldRowComponent } from '@/app/lib/definitions';
+'use client'
+import { ContactField, ContactFormData, ContactFormTarget, FieldRowComponent } from '@/app/lib/definitions';
+import { useDebouncedCallback } from 'use-debounce';
+import { getClientSideValidation } from '../lib/validation';
+import clsx from 'clsx';
+import { checkNoFieldsAreEmpty } from '@/app/lib/form';
 
-export const FieldRow : FieldRowComponent = ({ fieldName, setFormData, formData, state }) => {
-
+export const FieldRow : FieldRowComponent = ({ fieldName, setFieldValues, fieldValues, apiState, setFieldsValid, fieldErrors, setFieldErrors, setFieldsFilled }) => {
     const labels : ContactFormData = {
         name: 'Name', 
         email: 'Email', 
@@ -9,8 +13,23 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFormData, formData,
         message: 'Message'
     }
 
+    const slowlyValidate = useDebouncedCallback(
+        async (name:ContactField, value: string) => {
+            let error = fieldErrors[name]
+            error = getClientSideValidation(value, name, setFieldsValid)
+            setFieldErrors({
+                ...fieldErrors, 
+                [name]: error
+            })
+            
+        }, 
+        1000
+    )
+
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-        const {name, value} = event.target as {name: ContactField, value: string}
+        const {name, value} = event.target as ContactFormTarget 
+        slowlyValidate(name, value)
+
         if (name === 'phone') {
             let formattedPhone = value;
             if (value.length === 4 && !['(', '+', '-'].some(char => value.includes(char))) {
@@ -18,36 +37,46 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFormData, formData,
             } else if (value.length === 10 && !value.includes('(') && !value.includes('+')) {
                 formattedPhone = `(${value.slice(0,3)}) ${value.slice(4,7)}-${value.slice(7)}`
             }
-            if (formData.phone !== formattedPhone) {
-                setFormData( (previousData => ({
+            if (fieldValues.phone !== formattedPhone) {
+                setFieldValues( (previousData => ({
                     ...previousData, 
                     phone: formattedPhone
                 }) ))
             }
         } else {
-            if (formData[name] !== value) { 
-                setFormData({
-                    ...formData,
+            if (fieldValues[name] !== value) { 
+                setFieldValues({
+                    ...fieldValues,
                     [name]: value
                 })
-            }
-            
+            } 
         }
+        checkNoFieldsAreEmpty(fieldValues, setFieldsFilled)
     }
     const textBoxAttributes = {
         ariaDescribedBy : `${fieldName}-error`, 
-        className: "md:ml-16 md:w-80 bg-slate-100 dark:bg-black rounded-sm px-2 py-1" , 
+        className: "md:ml-16 md:w-80 bg-slate-100 dark:bg-slate-400 rounded-sm px-2 py-1" , 
         id: fieldName, 
         name: fieldName, 
-        value: formData[fieldName], 
+        value: fieldValues[fieldName], 
         onChange: handleInputChange
-
     }
 
     return (
     <>
-        <div className="mt-8 flex flex-col md:flex-row">
-            <label className="font-semibold text-sm inline-block w-24 dark:text-tangerine-100" htmlFor={fieldName}>
+        <div className={clsx(
+            "flex flex-col md:flex-row", 
+            {
+                'mb-2':apiState?.errors?.[fieldName] || fieldErrors[fieldName], 
+                'mb-8':!apiState?.errors?.[fieldName] && !fieldErrors[fieldName]
+            }
+        )}>
+            <label 
+                className={clsx(
+                    "font-semibold text-sm inline-block w-24 dark:text-tangerine-100", 
+                    { 'text-red-600 dark:text-red-500':fieldErrors[fieldName]}
+                )} 
+                htmlFor={fieldName}>
                 {labels[fieldName]}
             </label>
             {
@@ -70,10 +99,10 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFormData, formData,
                 />
             }
         </div>
-        <div id={`${fieldName}-error`} className="text-red-600" aria-live="polite" aria-atomic="true">
-            {state?.errors?.[fieldName]?.[0] &&
-                state.errors[fieldName].map( (error:string) => (
-                    <p className="text-red-600 my-2 text-sm" key={error}>
+        <div id={`${fieldName}-error`} className="dark:text-red-300 text-red-600" aria-live="polite" aria-atomic="true">
+            {apiState?.errors?.[fieldName]?.[0] &&
+                apiState.errors[fieldName].map( (error:string) => (
+                    <p className="my-2 text-sm" key={error}>
                         {error
                             .replace(
                                 'String', 
@@ -85,7 +114,10 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFormData, formData,
                         }
                     </p>
                 ))
-            }
+            } 
+            {fieldErrors[fieldName] && (
+                <p className="text-sm mb-4">{fieldErrors[fieldName]}</p>
+            )}
         </div>
     </>
 ) }

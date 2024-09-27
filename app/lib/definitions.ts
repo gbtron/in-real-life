@@ -14,9 +14,10 @@ export type SettableEvent = ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInput
 
 // type defs on UI variables
 export type Links = {
-    about:String, 
-    contact:String,
+    '/':String, 
+    'contact':String,
 }
+export type LinkName = keyof Links
 
 export type ContactFormData = {
     name: string, 
@@ -24,8 +25,9 @@ export type ContactFormData = {
     phone: string, 
     message: string
 }
+export type ContactFormDispatch = Dispatch<SetStateAction<ContactFormData>>
 export type ContactField = keyof ContactFormData
-export type ContactFormState = [ContactFormData, Dispatch<SetStateAction<ContactFormData>>]
+export type ContactFormState = [ContactFormData, ContactFormDispatch]
 export type ContactResponse = {
     errors?: {
         name?: string[];
@@ -35,12 +37,19 @@ export type ContactResponse = {
         form?: string;
     }, 
     submissionPending: boolean;
+    messageSent:boolean
 };
+export type ContactFormTarget = {name:ContactField, value:string}
+export type BooleanDisptach = Dispatch<SetStateAction<boolean>>
 
 interface FieldRowProps {
     fieldName:ContactField, 
-    formData: ContactFormData, 
-    setFormData:Dispatch<SetStateAction<ContactFormData>>
-    state:ContactResponse,
+    fieldValues: ContactFormData, 
+    setFieldValues:ContactFormDispatch
+    apiState:ContactResponse,
+    setFieldsValid: BooleanDisptach, 
+    fieldErrors:ContactFormData, 
+    setFieldErrors:ContactFormDispatch, 
+    setFieldsFilled: BooleanDisptach
 }
 export type FieldRowComponent = FC<FieldRowProps>
