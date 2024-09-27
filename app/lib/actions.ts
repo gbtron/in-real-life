@@ -39,7 +39,8 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
     })
 
     const apiResponse:ContactResponse = {
-        submissionPending: false
+        submissionPending: false, 
+        messageSent:false
     }
 
     if (!validatedFields.success) {
@@ -78,9 +79,9 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
             apiResponse.errors = { form: error.message }
             return apiResponse
         }
+        apiResponse.messageSent=true
     }
     catch (error) {
-        console.log('some error: ', error)
         return apiResponse
     }
     
