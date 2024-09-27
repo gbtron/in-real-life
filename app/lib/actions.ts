@@ -3,7 +3,7 @@ import {z} from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { ContactResponse } from '@/app/lib/definitions';
-import { EmailTemplate } from "@/app/ui/email-template";
+import { ContactUsEmail } from "@/app/ui/ContactPageEmail";
 import { Resend } from 'resend'
 
 export async function sendMessage(previousState: ContactResponse, formData: FormData) {
@@ -72,7 +72,7 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
             from: `${name} <contact-us@irlmiami.com>`, 
             to: ['josephrfuentes@gmail.com'], 
             subject: 'IRL - Contact Form', 
-            react: EmailTemplate({ name: name, email: email, phone: phone, message:message })
+            react: ContactUsEmail({ name: name, email: email, phone: phone, message:message })
         })
 
         if (error) {
