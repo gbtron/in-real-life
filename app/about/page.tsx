@@ -9,8 +9,15 @@ export default function about() {
         id="up"
         className="bg-center bg-fixed bg-no-repeat bg-center bg-cover h-screen relative"
       >
-        <div className="h-screen bg-opacity-50 bg-hero bg-norepeat bg-cover flex items-center justify-center">
-          <div className="mx-2 text-center">
+        <div className="h-screen bg-opacity-50 bg-hero bg-norepeat bg-cover">
+          <div className="flex justify-center items-center">
+            <img
+              className="object-scale-down h-80 sm:h-96"
+              src="/assets/IRL_Logo_Final_Responsive.png"
+              alt="IRL Logo"
+            />
+          </div>
+          <div className="text-center bg-beige-500 bg-opacity-80 px-2 pt-5 sm:bg-transparent">
             <h1
               className={`${bookmania.className} text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold`}
             >
@@ -27,16 +34,16 @@ export default function about() {
             </div>
             <div className="inline-flex">
               <a
-                href="/api/auth/login"
-                className="p-2 my-5 mx-2 bg-tangerine-500 hover:bg-tangerine-700 font-bold text-white rounded border-2 border-transparent hover:border-tangerine-700 shadow-md transition duration-500 md:text-xl"
+                href="/contact"
+                className="p-2 my-5 mx-2 bg-tangerine-500 hover:bg-tangerine-600 font-bold text-white rounded border-2 border-transparent hover:border-tangerine-600 shadow-md transition duration-500 md:text-xl"
               >
-                Get Started
+                Contact Us
               </a>
-              <a href="/contact">
+              {/* <a href="/contact">
                 <button className="p-2 my-5 mx-2 border-2 bg-tangerine-300 bg-opacity-30 hover:bg-opacity-70 border-tangerine-500 rounded hover:border-tangerine-300 font-bold text-white shadow-md transition duration-500 md:text-lg">
                   Contact Us
                 </button>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -145,16 +152,16 @@ export default function about() {
               or starting the conversation.
             </div>
             <div className="flex flex-row gap-2">
-              <a href="/api/auth/login">
+              <a href="/contact">
                 <div className="font-semibold hover:bg-tangerine-600 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10 text-center">
-                  Begin today
+                  Contact Us
                 </div>
               </a>
-              <Link href="/contact">
+              {/* <Link href="/api/auth/login">
                 <div className="font-semibold hover:text-tangerine-600 group text-white py-2 mt-8 px-4 w-32 mb-10">
-                  Contact us
+                  Begin Today
                 </div>
-              </Link>
+              </Link> */}
             </div>
           </div>
           <Image
