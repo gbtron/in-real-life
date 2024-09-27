@@ -67,16 +67,18 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
 
     // send message via emal
     const resend = new Resend(process.env.RESEND_API_KEY)
+    const emailTo = process.env.CONTACT_US_EMAILS as string | string[]
+
     try {
         const { data, error } = await resend.emails.send({
             from: `${name} <contact-us@irlmiami.com>`, 
-            to: ['josephrfuentes@gmail.com'], 
+            to: emailTo, 
             subject: 'IRL - Contact Form', 
             react: ContactUsEmail({ name: name, email: email, phone: phone, message:message })
         })
 
         if (error) {
-            apiResponse.errors = { form: error.message }
+            apiResponse.errors = { form: 'Your message could not be sent. Please check your email for typos.' }
             return apiResponse
         }
         apiResponse.messageSent=true

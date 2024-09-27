@@ -47,6 +47,13 @@
                             <>
                                 <h1 className="text-2xl dark:text-tangerine-100 font-semibold">How can we reach you?</h1>
                                 <div className="w-3/4 sm:w-auto dark:text-tangerine-100 mb-8"> Let us know your preferred method of communication. </div>
+                                {apiState?.errors?.form && 
+                                    <div className="mb-4">
+                                        <p aria-live="polite" role="status" className="text-red-600">
+                                            {apiState.errors.form}
+                                        </p>
+                                    </div>
+                                }
                                 { contactFields.map((field, index) => (
                                     <FieldRow 
                                         fieldName={field} 
@@ -68,14 +75,6 @@
                             <div
                                 className="dark:text-tangerine-100 text-md sm:text-xl"
                             > Thank you for inquiring about In Real Life. <br/> We will get back to you shortly at your provided email address or phone. 
-                            </div>
-                        }
-                        
-                        {apiState?.errors?.form && 
-                            <div className="mt-4">
-                                <p aria-live="polite" role="status" className="text-red-600">
-                                    {apiState.errors.form}
-                                </p>
                             </div>
                         }
                         
