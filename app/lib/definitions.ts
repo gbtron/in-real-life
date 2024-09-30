@@ -25,8 +25,11 @@ export type ContactFormData = {
     phone: string, 
     message: string
 }
-export type ContactFormDispatch = Dispatch<SetStateAction<ContactFormData>>
 export type ContactField = keyof ContactFormData
+export type ContactFormValidation = { 
+    ContactField: boolean
+}
+export type ContactFormDispatch = Dispatch<SetStateAction<ContactFormData>>
 export type ContactFormState = [ContactFormData, ContactFormDispatch]
 export type ContactResponse = {
     errors?: {

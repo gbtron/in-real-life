@@ -7,3 +7,12 @@ export const checkNoFieldsAreEmpty = (fieldValues: ContactFormData, setFieldsFil
         setFieldsFilled(false)
     }
 }
+
+export const checkFieldsAreValid = (fieldErrors: ContactFormData, setFieldsValid: BooleanDisptach)=> {
+    console.log('field errors-', fieldErrors)
+    if (Object.values(fieldErrors).every((field) => field === '')) {
+        setFieldsValid(true)
+    } else {
+        setFieldsValid(false)
+    }
+}

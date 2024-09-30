@@ -3,7 +3,7 @@ import { ContactField, ContactFormData, ContactFormTarget, FieldRowComponent } f
 import { useDebouncedCallback } from 'use-debounce';
 import { getClientSideValidation } from '../lib/validation';
 import clsx from 'clsx';
-import { checkNoFieldsAreEmpty } from '@/app/lib/form';
+import { checkNoFieldsAreEmpty, checkFieldsAreValid } from '@/app/lib/form';
 
 export const FieldRow : FieldRowComponent = ({ fieldName, setFieldValues, fieldValues, apiState, setFieldsValid, fieldErrors, setFieldErrors, setFieldsFilled }) => {
     const labels : ContactFormData = {
@@ -16,12 +16,11 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFieldValues, fieldV
     const slowlyValidate = useDebouncedCallback(
         async (name:ContactField, value: string) => {
             let error = fieldErrors[name]
-            error = getClientSideValidation(value, name, setFieldsValid)
+            error = getClientSideValidation(value, name) 
             setFieldErrors({
                 ...fieldErrors, 
                 [name]: error
             })
-            
         }, 
         1000
     )
@@ -51,7 +50,8 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFieldValues, fieldV
                 })
             } 
         }
-        checkNoFieldsAreEmpty(fieldValues, setFieldsFilled)
+        
+        
     }
     const textBoxAttributes = {
         ariaDescribedBy : `${fieldName}-error`, 
