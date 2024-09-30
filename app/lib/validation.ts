@@ -1,13 +1,13 @@
 'use client'
-import { ContactField, BooleanDisptach } from "@/app/lib/definitions"
+import { ContactFieldName } from "@/app/lib/definitions"
 
 type FieldValidation = {
-    [F in ContactField]: {
+    [F in ContactFieldName]: {
         condition: boolean, 
         message:string
     }[]
 }
-export const getClientSideValidation = (value:string, name:ContactField ) => {
+export const getClientSideValidation = (value:string, name:ContactFieldName ) => {
     const nameFieldValidation = [
         { condition: value.length > 4, message: `at least 5 characters`}, 
         { condition: /^[\p{L}\s'-]*$/u.test(value), message: `Unicode letters, apostrophes, and hyphens`}

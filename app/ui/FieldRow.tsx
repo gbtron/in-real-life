@@ -1,12 +1,12 @@
 'use client'
-import { ContactField, ContactFormData, ContactFormTarget, FieldRowComponent } from '@/app/lib/definitions';
+import { ContactFieldName, ContactField, ContactFormTarget, FieldRowComponent } from '@/app/lib/definitions';
 import { useDebouncedCallback } from 'use-debounce';
 import { getClientSideValidation } from '../lib/validation';
 import clsx from 'clsx';
-import { checkNoFieldsAreEmpty, checkFieldsAreValid } from '@/app/lib/form';
+import React from 'react';
 
-export const FieldRow : FieldRowComponent = ({ fieldName, setFieldValues, fieldValues, apiState, setFieldsValid, fieldErrors, setFieldErrors, setFieldsFilled }) => {
-    const labels : ContactFormData = {
+export const FieldRow : FieldRowComponent = ({ fieldName, setContactFields, contactFields, apiState, fieldErrors, setFieldErrors }) => {
+    const labels : ContactField = {
         name: 'Name', 
         email: 'Email', 
         phone: 'Phone Number', 
@@ -14,9 +14,8 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFieldValues, fieldV
     }
 
     const slowlyValidate = useDebouncedCallback(
-        async (name:ContactField, value: string) => {
-            let error = fieldErrors[name]
-            error = getClientSideValidation(value, name) 
+        async (name:ContactFieldName, value: string) => {
+            const error = getClientSideValidation(value, name) 
             setFieldErrors({
                 ...fieldErrors, 
                 [name]: error
@@ -36,29 +35,27 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setFieldValues, fieldV
             } else if (value.length === 10 && !value.includes('(') && !value.includes('+')) {
                 formattedPhone = `(${value.slice(0,3)}) ${value.slice(4,7)}-${value.slice(7)}`
             }
-            if (fieldValues.phone !== formattedPhone) {
-                setFieldValues( (previousData => ({
+            if (contactFields.phone !== formattedPhone) {
+                setContactFields( (previousData => ({
                     ...previousData, 
                     phone: formattedPhone
                 }) ))
             }
         } else {
-            if (fieldValues[name] !== value) { 
-                setFieldValues({
-                    ...fieldValues,
+            if (contactFields[name] !== value) { 
+                setContactFields({
+                    ...contactFields,
                     [name]: value
                 })
             } 
         }
-        
-        
     }
     const textBoxAttributes = {
         ariaDescribedBy : `${fieldName}-error`, 
         className: "md:ml-16 md:w-80 bg-slate-100 dark:bg-slate-400 rounded-sm px-2 py-1" , 
         id: fieldName, 
         name: fieldName, 
-        value: fieldValues[fieldName], 
+        value: contactFields[fieldName], 
         onChange: handleInputChange
     }
 

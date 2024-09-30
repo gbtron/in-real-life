@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { ContactFormData } from '@/app/lib/definitions'
+import { ContactField } from '@/app/lib/definitions'
 import { Html, Head, Preview, Body, Container, Section, Row, Text, Hr, Link} from '@react-email/components'
 
-export const ContactUsEmail: React.FC<Readonly<ContactFormData>> = ({
+export const ContactUsEmail: React.FC<Readonly<ContactField>> = ({
     name, email, phone, message
 }) => {
     const previewText = `${name} sent a message from the IRL website.`
