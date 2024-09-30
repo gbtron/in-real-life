@@ -5,34 +5,33 @@
     import clsx from 'clsx';
     import Link from 'next/link'
     import Image from 'next/image'
-    import { ContactField, ContactFormState, ContactFormData, ContactResponse } from '@/app/lib/definitions';
+    import { ContactFieldName, ContactFormState, ContactField, ContactResponse } from '@/app/lib/definitions';
     import { FieldRow } from '@/app/ui/FieldRow';
    
     export default function ContactForm() {
-        const contactFields: ContactField[] = ['name', 'email', 'phone', 'message']
-        const initFieldValues = contactFields.reduce(
+        const contactFieldNames: ContactFieldName[] = ['name', 'email', 'phone', 'message']
+        const initializedFields = contactFieldNames.reduce(
             (obj, field) => (
                 {...obj, [field]:''}
             ), 
-            {} as ContactFormData
+            {} as ContactField
         )
 
         const initialState: ContactResponse = { submissionPending: false, messageSent:false };
         const [apiState, formAction] = useActionState(sendMessage, initialState);
-        const [fieldValues, setFieldValues] : ContactFormState = useState(initFieldValues);
-        const [fieldErrors, setFieldErrors] : ContactFormState = useState(initFieldValues)
+        const [contactFields, setContactFields] : ContactFormState = useState(initializedFields);
+        const [fieldErrors, setFieldErrors] : ContactFormState = useState(initializedFields)
 
-        // ui state
-        const [fieldsValid, setFieldsValid] = useState(false)
-        const [fieldsFilled, setFieldsFilled] = useState(false)
+        const fieldsFilled = Object.values(contactFields).every( (field) => (field !== '') ) && true
+        const fieldsValid = Object.values(fieldErrors).every((error) => error === '') && true
         
         const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const data = new FormData()
-            data.append('name', fieldValues.name)
-            data.append('email', fieldValues.email)
-            data.append('phone', fieldValues.phone)
-            data.append('message', fieldValues.message)
+            data.append('name', contactFields.name)
+            data.append('email', contactFields.email)
+            data.append('phone', contactFields.phone)
+            data.append('message', contactFields.message)
             startTransition(() => {
                 apiState.submissionPending = true;
                 formAction(data);
@@ -56,17 +55,15 @@
                                         </p>
                                     </div>
                                 }
-                                { contactFields.map((field, index) => (
+                                { contactFieldNames.map((field, index) => (
                                     <FieldRow 
                                         fieldName={field} 
-                                        setFieldValues={setFieldValues} 
-                                        fieldValues={fieldValues} 
+                                        setContactFields={setContactFields} 
+                                        contactFields={contactFields} 
                                         apiState={apiState} 
                                         key={index}
                                         fieldErrors={fieldErrors}
                                         setFieldErrors={setFieldErrors}
-                                        setFieldsValid={setFieldsValid}
-                                        setFieldsFilled={setFieldsFilled}
                                         />
                                     
                                 )) }

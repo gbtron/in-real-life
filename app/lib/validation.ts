@@ -1,15 +1,13 @@
 'use client'
-import { Dispatch, SetStateAction } from "react"
-import { useDebouncedCallback } from "use-debounce"
-import { ContactField, ContactFormData, ContactFormDispatch, BooleanDisptach } from "@/app/lib/definitions"
+import { ContactFieldName } from "@/app/lib/definitions"
 
 type FieldValidation = {
-    [F in ContactField]: {
+    [F in ContactFieldName]: {
         condition: boolean, 
         message:string
     }[]
 }
-export const getClientSideValidation = (value:string, name:ContactField, setFieldsValid:Dispatch<SetStateAction<boolean>>) => {
+export const getClientSideValidation = (value:string, name:ContactFieldName ) => {
     const nameFieldValidation = [
         { condition: value.length > 4, message: `at least 5 characters`}, 
         { condition: /^[\p{L}\s'-]*$/u.test(value), message: `Unicode letters, apostrophes, and hyphens`}
@@ -51,21 +49,18 @@ export const getClientSideValidation = (value:string, name:ContactField, setFiel
     const messagePrefix = `Please enter your ${userfyName(name)}`
 
     let validationMessage = ''
-    let fieldsValid = true
     if (value === '') {
         validationMessage = `${messagePrefix}.`
-        fieldsValid = false
     } else {
         for (let validation of fieldValidation[name]) {
             if (validation.condition === false) {
                 validationMessage = `${validation.message !== '' 
                     ? `Use ${validation.message}` 
                     : `${messagePrefix.replace('enter', 'correct')}`}.`
-                fieldsValid = false
-            }
+            } 
+            
         }
+
     }
-    
-    setFieldsValid(fieldsValid)
     return validationMessage
 }

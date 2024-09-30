@@ -19,15 +19,18 @@ export type Links = {
 }
 export type LinkName = keyof Links
 
-export type ContactFormData = {
+export type ContactField = {
     name: string, 
     email: string, 
     phone: string, 
     message: string
 }
-export type ContactFormDispatch = Dispatch<SetStateAction<ContactFormData>>
-export type ContactField = keyof ContactFormData
-export type ContactFormState = [ContactFormData, ContactFormDispatch]
+export type ContactFieldName = keyof ContactField
+export type ContactFormValidation = { 
+    ContactFieldName: boolean
+}
+export type ContactFormDispatch = Dispatch<SetStateAction<ContactField>>
+export type ContactFormState = [ContactField, ContactFormDispatch]
 export type ContactResponse = {
     errors?: {
         name?: string[];
@@ -39,17 +42,14 @@ export type ContactResponse = {
     submissionPending: boolean;
     messageSent:boolean
 };
-export type ContactFormTarget = {name:ContactField, value:string}
-export type BooleanDisptach = Dispatch<SetStateAction<boolean>>
+export type ContactFormTarget = {name:ContactFieldName, value:string}
 
 interface FieldRowProps {
-    fieldName:ContactField, 
-    fieldValues: ContactFormData, 
-    setFieldValues:ContactFormDispatch
+    fieldName:ContactFieldName, 
+    contactFields: ContactField, 
+    setContactFields:ContactFormDispatch
     apiState:ContactResponse,
-    setFieldsValid: BooleanDisptach, 
-    fieldErrors:ContactFormData, 
+    fieldErrors:ContactField, 
     setFieldErrors:ContactFormDispatch, 
-    setFieldsFilled: BooleanDisptach
 }
 export type FieldRowComponent = FC<FieldRowProps>
