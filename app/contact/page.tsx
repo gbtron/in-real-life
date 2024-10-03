@@ -1,6 +1,7 @@
 
 import ContactForm from '@/app/ui/contact-form';
 import { Footer } from '../ui/Footer';
+import React from 'react';
 
 export default async function Contact() {
     return (
