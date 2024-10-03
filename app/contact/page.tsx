@@ -13,13 +13,13 @@ export default async function Contact() {
                     objectFit:'contain', 
                     objectPosition:'right top'
                 }}
-                sizes="(max-width: 540px) 25vw, 70vw"
+                sizes="100vw"
                 src='/assets/PalmLeaf.avif'
                 alt='palm tree'
                 priority={true}
-                className='z-0'
+                className='z-0 w-1/2'
             />
-            <section className="relative z-10 text-slate-600 dark:text-slate-200 text-center px-4 sm:pb-48">
+            <section className="relative z-10 text-slate-600 dark:text-slate-200 text-center px-4">
                 <ContactForm/>
             </section>
             <Footer/>

@@ -27,7 +27,7 @@ export default function RootLayout({
       </head>
       <UserProvider>
         <body className={`${acumen.className} h-full antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative `}>
-          <div className="bg-scroll bg-no-repeat bg-right-top bg-70% sm:bg-25% w-full max-h-96">
+          <div className="bg-scroll bg-no-repeat bg-right-top bg-70% sm:bg-25% w-full max-h-96 relative">
             <ThemeProvider forcedTheme='light' attribute='class'>
               {/* <Banner/> */}
               {children}
