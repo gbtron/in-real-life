@@ -67,7 +67,7 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
 
     // send message via emal
     const resend = new Resend(process.env.RESEND_API_KEY)
-    const emailTo = process.env.CONTACT_US_EMAILS as string | string[]
+    const emailTo = process.env.CONTACT_US_EMAILS as string 
 
     try {
         const { data, error } = await resend.emails.send({
