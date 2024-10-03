@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { bookmania, handlee, cardo } from "@/app/ui/fonts";
+import { bookmania, cardo } from "@/app/ui/fonts";
 
 export default function about() {
   return (
@@ -11,7 +10,9 @@ export default function about() {
       >
         <div className="h-screen bg-opacity-50 bg-hero bg-norepeat bg-cover">
           <div className="flex justify-center items-center">
-            <img
+            <Image
+              width={640}
+              height={800}
               className="object-scale-down h-80 sm:h-96"
               src="/assets/IRL_Logo_Final_Responsive.png"
               alt="IRL Logo"
