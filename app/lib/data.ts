@@ -1,10 +1,10 @@
 import {sql} from '@vercel/postgres';
 import { Lead } from './definitions';
 
-export async function fetchLeads() {
+export async function fetchMessages() {
     
     try {
-        const data = await sql<Lead>`SELECT * FROM leads`;
+        const data = await sql<Lead>`SELECT * FROM messages`;
         return data.rows;
         
     } catch (error) {

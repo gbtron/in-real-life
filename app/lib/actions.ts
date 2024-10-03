@@ -57,7 +57,7 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
     // store message in vercel table
     try {
         await sql`
-        INSERT INTO leads(name, email, phone, message, date)
+        INSERT INTO messages(name, email, phone, message, date)
         VALUES (${name}, ${email}, ${phone}, ${message}, ${date})
         `;  
     } catch (error) {
