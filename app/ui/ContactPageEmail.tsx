@@ -51,7 +51,7 @@ export const ContactUsEmail: React.FC<Readonly<ContactField>> = ({
                     <Container className='px-4'>
                         <Section>
                             <Row>
-                                <Text className='text-2xl font-bold mt-12'>Here's what {name} wrote</Text>
+                                <Text className='text-2xl font-bold mt-12'>Here&apos;s what {name} wrote</Text>
                                 <Text className='bg-slate-100 p-6 rounded text-xl leading-snug'> {message} </Text>
                                 <Text className='text-slate-600 text-lg italic leading-normal'>Contact information</Text>
                                 <Text className="text-slate-600 " >{email}</Text>
