@@ -14,8 +14,9 @@ export default function about() {
               width={640}
               height={800}
               className="object-scale-down h-80 sm:h-96"
-              src="/assets/IRL_Logo_Final_Responsive.png"
+              src="/assets/IRL_Logo_Final_Responsive.avif"
               alt="IRL Logo"
+              loading='eager'
             />
           </div>
           <div className="text-center bg-beige-500 bg-opacity-80 px-2 pt-5 sm:bg-transparent">
@@ -55,7 +56,7 @@ export default function about() {
           <div className="flex pt-20 sm:pt-40">
             <div className="lg:pt-20 w-3/4 sm:w-2/3">
               <h1
-                className={`${bookmania.className} text-tangerine-500 font-semibold text-2xl sm:text-3xl`}
+                className={`${bookmania.className} text-tangerine-900 font-semibold text-2xl sm:text-3xl`}
               >
                 Holistic offerings
               </h1>
