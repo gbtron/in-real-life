@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "hero":"url('https://cdn.pixabay.com/photo/2016/11/29/05/42/beach-1867590_1280.jpg')",
+        "hero":"url('/assets/beach.avif')",
         "palm":"url('/assets/PalmLeaf.avif')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
