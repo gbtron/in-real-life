@@ -124,18 +124,18 @@ export default function about() {
 
           <div className="basis-1/3">
             <h1 className={`${bookmania.className} text-xl font-semibold`}>
-              Counseling
+              Group Work
             </h1>
             <div
               className={`${bookmania.className} text-3xl text-tangerine-500 pt-6 font-semibold`}
             >
-              Supportive Therapy
+              Supportive Sessions
             </div>
             <div className={`${cardo.className} pt-8 text-2xl w-3/4`}>
-              Receive personalized support through counseling that aligns with
-              your mental health and therapeutic goals. Collaborate with our
-              team, your family, and therapists to ensure your emotional and
-              mental well-being is prioritized as you work through the program.
+              Receive personalized support that aligns with your mental health
+              and therapeutic goals. Collaborate with our team, your family, and
+              therapists to ensure your emotional and mental well-being is
+              prioritized as you work through the program.
             </div>
           </div>
         </div>
