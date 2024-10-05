@@ -9,55 +9,15 @@ export const cardo = Cardo({
 export const bookmania = localFont({
     src: [
         {
-            path: '../../public/fonts/Bookmania-Black.woff2', 
-            weight: '900', 
+            path: '../../public/fonts/Bookmania-Bold.woff2', 
+            weight: '700', 
             style: 'normal'
-        },
-        // {
-        //     path: '../../public/fonts/Bookmania-BlackItalic.woff2', 
-        //     weight: '900', 
-        //     style: 'italic'
-        // }, 
-        // {
-        //     path: '../../public/fonts/Bookmania-Bold.woff2', 
-        //     weight: '700', 
-        //     style: 'normal'
-        // }, 
-        // {
-        //     path: '../../public/fonts/Bookmania-BoldItalic.woff2', 
-        //     weight: '700', 
-        //     style: 'italic'
-        // }, 
-        // {
-        //     path: '../../public/fonts/Bookmania-Light.woff2', 
-        //     weight: '100', 
-        //     style: 'normal'
-        // }, 
-        // {
-        //     path: '../../public/fonts/Bookmania-LightItalic.woff2', 
-        //     weight: '100', 
-        //     style: 'italic'
-        // }, 
+        }, 
         {
             path: '../../public/fonts/Bookmania-Regular.woff2', 
             weight: '400', 
             style: 'normal'
-        }, 
-        // {
-        //     path: '../../public/fonts/Bookmania-RegularItalic.woff2', 
-        //     weight: '400', 
-        //     style: 'italic'
-        // }, 
-        {
-            path: '../../public/fonts/Bookmania-Semibold.woff2', 
-            weight: '500', 
-            style: 'normal'
-        }, 
-        // {
-        //     path: '../../public/fonts/Bookmania-SemiboldItalic.woff2', 
-        //     weight: '500', 
-        //     style: 'italic'
-        // }
+        }
     ]
 })
 
