@@ -52,7 +52,7 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setContactFields, cont
     }
     const textBoxAttributes = {
         ariaDescribedBy : `${fieldName}-error`, 
-        className: "md:ml-16 md:w-80 bg-slate-100 dark:bg-slate-400 rounded-sm px-2 py-1" , 
+        className: "md:ml-16 md:w-80 bg-slate-100 dark:bg-slate-400 rounded-sm px-2 py-1 " , 
         id: fieldName, 
         name: fieldName, 
         value: contactFields[fieldName], 
@@ -60,17 +60,17 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setContactFields, cont
     }
 
     return (
-    <>
+    <div className="h-22 sm:flex">
         <div className={clsx(
             "flex flex-col md:flex-row", 
             {
-                'mb-2':apiState?.errors?.[fieldName] || fieldErrors[fieldName], 
-                'mb-8':!apiState?.errors?.[fieldName] && !fieldErrors[fieldName]
+                'mb-0 sm:mb-8':apiState?.errors?.[fieldName] || fieldErrors[fieldName], 
+                'mb-6 sm:mb-8':!apiState?.errors?.[fieldName] && !fieldErrors[fieldName]
             }
         )}>
             <label 
                 className={clsx(
-                    "font-bold text-sm inline-block w-24 dark:text-tangerine-100", 
+                    "font-bold inline-block w-28 dark:text-tangerine-100", 
                     { 'text-red-600 dark:text-red-500':fieldErrors[fieldName]}
                 )} 
                 htmlFor={fieldName}>
@@ -99,7 +99,7 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setContactFields, cont
         <div id={`${fieldName}-error`} className="dark:text-red-300 text-red-600" aria-live="polite" aria-atomic="true">
             {apiState?.errors?.[fieldName]?.[0] &&
                 apiState.errors[fieldName].map( (error:string) => (
-                    <p className="my-2 text-sm" key={error}>
+                    <p className="my-2" key={error}>
                         {error
                             .replace(
                                 'String', 
@@ -113,8 +113,8 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setContactFields, cont
                 ))
             } 
             {fieldErrors[fieldName] && (
-                <p className="text-sm mb-4">{fieldErrors[fieldName]}</p>
+                <p className="sm:px-4">{fieldErrors[fieldName]}</p>
             )}
         </div>
-    </>
+    </div>
 ) }
