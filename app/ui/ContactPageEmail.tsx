@@ -44,7 +44,7 @@ export const ContactUsEmail: React.FC<Readonly<ContactField>> = ({
                     />
                     <title> IRL Website Message </title>    
                 </Head>
-                <Preview>{previewText}</Preview>
+                <Preview>{message}</Preview>
                 <Body className="bg-beige">
                     <Container className='px-4'>
                         <Section>

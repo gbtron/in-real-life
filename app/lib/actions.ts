@@ -71,9 +71,9 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
 
     try {
         const { data, error } = await resend.emails.send({
-            from: `${name} <contact-us@irlmiami.com>`, 
+            from: `In Real Life <contact-us@irlmiami.com>`, 
             to: emailTo, 
-            subject: 'IRL - Contact Form', 
+            subject: `${name} sent you a message from the IRL website`, 
             react: ContactUsEmail({ name: name, email: email, phone: phone, message:message })
         })
 

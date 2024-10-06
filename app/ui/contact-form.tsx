@@ -87,7 +87,12 @@
                                 )}>
                                     Send
                                 </button>
-                                <div className='hidden order-first sm:order-last peer-disabled:peer-hover:block sm:peer-disabled:peer-hover:inline px-4'>Fill out the form</div>
+                                <div className={clsx(
+                                    'hidden order-first sm:order-last px-4', 
+                                    {
+                                        'peer-hover:block sm:peer-hover:inline': !fieldsFilled || !fieldsValid
+                                    }
+                                    ) }>Fill out the form</div>
                             </div>
                         }
                     </div>
