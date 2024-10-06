@@ -1,7 +1,7 @@
 export function GuestGreeting() {
     return (
         <>
-            <h1 className={`font-bookmania font-bold italic text-2xl`}>
+            <h1 className={`font-title font-bold italic text-2xl`}>
                 Welcome,
             </h1>
             <div className='pb-2'>

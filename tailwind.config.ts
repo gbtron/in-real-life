@@ -58,8 +58,8 @@ const config: Config = {
         }
       }, 
       fontFamily: {
-        bookmania: ['var(--font-bookmania)'], 
-        garamond:['var(--font-sans)']
+        title: ['var(--font-bookmania)'], 
+        body:['var(--font-garamond)']
       }
     },
   },

@@ -25,7 +25,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <UserProvider>
-        <body className={`font-sans h-full antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative `}>
+        <body className={`font-body h-full antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative `}>
           <div className="bg-scroll bg-no-repeat bg-right-top bg-palm bg-70% sm:bg-25% w-full max-h-96 relative">
             <ThemeProvider forcedTheme='light' attribute='class'>
               {/* <Banner/> */}

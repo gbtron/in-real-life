@@ -21,14 +21,14 @@ export default function about() {
           </div>
           <div className="text-center bg-beige-500 bg-opacity-80 px-2 pt-5 sm:bg-transparent">
             <h1
-              className={`font-bookmania text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold`}
+              className={`font-title text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold`}
             >
               <span className="text-white">
                 Where real connections are made
               </span>
             </h1>
             <div
-              className={`font-sans pt-3 pt-12 text-xl text-white`}
+              className={`font-body pt-3 pt-12 text-2xl text-white`}
             >
               We provide a safe, inclusive environment for young adults to forge
               meaningful relationships, develop critical skills, and heighten
@@ -56,16 +56,16 @@ export default function about() {
           <div className="flex pt-20 sm:pt-40 items-center">
             <div className="w-3/4 sm:w-2/3">
               <h1
-                className={`font-bookmania text-tangerine-900 font-bold text-2xl sm:text-3xl`}
+                className={`font-title text-tangerine-900 font-bold text-2xl sm:text-3xl`}
               >
                 Holistic offerings
               </h1>
               <div
-                className={`font-bookmania text-4xl sm:text-6xl pt-2 font-bold`}
+                className={`font-title text-4xl sm:text-6xl pt-2 font-bold`}
               >
                 Oppportunities for growth through various avenues
               </div>
-              <div className={`font-sans font-bold pt-5 text-2xl`}>
+              <div className={`font-body font-bold pt-5 text-2xl`}>
                 Here at IRL, we strive to fulfill three main objectives:
                 providing young adults with a positive environment to develop
                 social and communication skills, helping them identify strengths
@@ -87,15 +87,15 @@ export default function about() {
       <section className="overflow-hidden pb-20 pl-[--columnPaddingNormal]">
         <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
-            <h1 className={`font-bookmania text-xl font-bold`}>
+            <h1 className={`font-title text-xl font-bold`}>
               Events
             </h1>
             <div
-              className={`font-bookmania text-3xl text-tangerine-500 pt-6 font-bold`}
+              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
             >
               Active Community
             </div>
-            <div className={`font-sans pt-8 text-2xl w-3/4`}>
+            <div className={`font-body pt-8 text-2xl w-3/4`}>
               Join daily activities to build social skills, improve fitness, and
               connect you with the community. Volunteer to enhance your job and
               social skills, boosting your chances for positive employment
@@ -105,15 +105,15 @@ export default function about() {
           </div>
 
           <div className="basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none">
-            <h1 className={`font-bookmania text-xl font-bold`}>
+            <h1 className={`font-title text-xl font-bold`}>
               Workshops
             </h1>
             <div
-              className={`font-bookmania text-3xl text-tangerine-500 pt-6 font-bold`}
+              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
             >
               Engaging Learning
             </div>
-            <div className={`font-sans pt-8 text-2xl w-3/4`}>
+            <div className={`font-body pt-8 text-2xl w-3/4`}>
               Discover your strengths with vocational counseling that helps you
               build a resume and explore job opportunities. Reach your
               educational goals with tutoring, mentoring, and career guidance.
@@ -123,15 +123,15 @@ export default function about() {
           </div>
 
           <div className="basis-1/3">
-            <h1 className={`font-bookmania text-xl font-bold`}>
+            <h1 className={`font-title text-xl font-bold`}>
               Group Work
             </h1>
             <div
-              className={`font-bookmania text-3xl text-tangerine-500 pt-6 font-bold`}
+              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
             >
               Supportive Sessions
             </div>
-            <div className={`font-sans pt-8 text-2xl w-3/4`}>
+            <div className={`font-body pt-8 text-2xl w-3/4`}>
               Receive personalized support that aligns with your mental health
               and therapeutic goals. Collaborate with our team, your family, and
               therapists to ensure your emotional and mental well-being is
@@ -153,16 +153,16 @@ export default function about() {
             />
             <div className="w-3/4 sm:w-2/3">
               <h1
-                className={`font-bookmania text-tangerine-900 font-bold text-2xl sm:text-3xl`}
+                className={`font-title text-tangerine-900 font-bold text-2xl sm:text-3xl`}
               >
                 Our Pillars
               </h1>
               <div
-                className={`font-bookmania text-4xl sm:text-6xl pt-2 font-bold`}
+                className={`font-title text-4xl sm:text-6xl pt-2 font-bold`}
               >
                 Get to know our space
               </div>
-              <div className={`font-sans font-bold pt-5 text-2xl`}>
+              <div className={`font-body font-bold pt-5 text-2xl`}>
                 At the heart of our organization are six key spaces designed to
                 foster growth, connection, and creativity. Each of these spaces
                 serves as an essential pillar in our mission to provide an
@@ -177,12 +177,12 @@ export default function about() {
         <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-bookmania cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Lounge and TV Area
             </summary>
             <div
-              className={`font-sans pt-8 text-2xl w-3/4 text-slate-600`}
+              className={`font-body pt-8 text-2xl w-3/4 text-slate-600`}
             >
               Relax in a cozy space with couches, game tables, and TVs. This is
               the perfect spot for meeting new friends and enjoying activities
@@ -194,12 +194,12 @@ export default function about() {
 
           <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-bookmania cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Gym and Game Room
             </summary>
             <div
-              className={`font-sans pt-8 text-2xl w-3/4 text-slate-600`}
+              className={`font-body pt-8 text-2xl w-3/4 text-slate-600`}
             >
               Stay active with a variety of games like billiards, arcade games,
               or air hockey. Or, join group fitness classes such as yoga, dance,
@@ -211,12 +211,12 @@ export default function about() {
 
           <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-bookmania cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Art Studio
             </summary>
             <div
-              className={`font-sans pt-8 text-2xl w-3/4 text-slate-600`}
+              className={`font-body pt-8 text-2xl w-3/4 text-slate-600`}
             >
               Explore your creativity in a fully equipped art studio offering
               classes in painting, ceramics, photography, graphic design, and
@@ -229,12 +229,12 @@ export default function about() {
         <div className="flex-column space-y-10 sm:flex justify-around content-center sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 mt-10 sm:border-none sm:mt-0 group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-bookmania cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Kitchen and Dining
             </summary>
             <div
-              className={`font-sans pt-8 text-2xl w-3/4 text-slate-600`}
+              className={`font-body pt-8 text-2xl w-3/4 text-slate-600`}
             >
               Learn cooking skills in our progressive six-week program,
               culminating in a five-course meal for family and friends. This
@@ -248,12 +248,12 @@ export default function about() {
 
           <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-bookmania cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Education and Career Counseling
             </summary>
             <div
-              className={`font-sans pt-8 text-2xl w-3/4 text-slate-600`}
+              className={`font-body pt-8 text-2xl w-3/4 text-slate-600`}
             >
               Participate in classes and seminars focused on job readiness,
               financial literacy, and life skills. This comfortable, calming
@@ -266,12 +266,12 @@ export default function about() {
 
           <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-bookmania cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Plant Room and Outdoor Gardening
             </summary>
             <div
-              className={`font-sans pt-8 text-2xl w-3/4 text-slate-600`}
+              className={`font-body pt-8 text-2xl w-3/4 text-slate-600`}
             >
               Learn sustainable and healthy techniques to grow herbs and
               vegetables in our dedicated indoor and outdoor gardening spaces
@@ -285,17 +285,17 @@ export default function about() {
         <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="pt-20 w-3/4 sm:w-2/3">
             <h1
-              className={`font-bookmania text-white font-bold text-8xl`}
+              className={`font-title text-white font-bold text-8xl`}
             >
               Real Life
             </h1>
             <div
-              className={`font-bookmania text-4xl text-white sm:text-4xl pt-8 font-bold}`}
+              className={`font-title text-4xl text-white sm:text-4xl pt-8 font-bold}`}
             >
               The right place to interact
             </div>
             <div
-              className={`font-sans pt-12 text-lg text-white font-bold`}
+              className={`font-body pt-12 text-xl text-white font-bold`}
             >
               In today&apos;s digital world, it can be challenging to meet new
               people and build meaningful relationships. This is where IRL steps

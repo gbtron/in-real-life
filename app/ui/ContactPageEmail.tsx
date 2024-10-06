@@ -33,7 +33,7 @@ export const ContactUsEmail: React.FC<Readonly<ContactField>> = ({
             <Html lang="en" dir="ltr">
                 <Head>
                     <Font
-                        fontFamily='garamond'
+                        fontFamily='body'
                         fallbackFontFamily='Verdana'
                         webFont={{
                             url:'./public/fonts/AcuminVariableConcept_2.otf', 
