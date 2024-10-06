@@ -62,10 +62,10 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setContactFields, cont
     return (
     <div className="h-22 sm:flex">
         <div className={clsx(
-            "flex flex-col md:flex-row", 
+            "flex flex-col md:flex-row sm:mb-8", 
             {
-                'mb-0 sm:mb-8':apiState?.errors?.[fieldName] || fieldErrors[fieldName], 
-                'mb-6 sm:mb-8':!apiState?.errors?.[fieldName] && !fieldErrors[fieldName]
+                'mb-0':apiState?.errors?.[fieldName] || fieldErrors[fieldName], 
+                'mb-6':!apiState?.errors?.[fieldName] && !fieldErrors[fieldName]
             }
         )}>
             <label 
