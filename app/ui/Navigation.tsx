@@ -26,8 +26,8 @@ export function Navigation({pages}: {pages: Page[]}) {
                         <li key={i} className={clsx(
                             `hover:text-blue-400 `,
                             {
-                                'font-semibold': page.path === pathName, 
-                                'font-medium': page.path !== pathName
+                                'font-bold': page.path === pathName, 
+                                ' ': page.path !== pathName
                             }
                         )}>
                             {page.path === "/" 
@@ -44,7 +44,7 @@ export function Navigation({pages}: {pages: Page[]}) {
                     ))}
                     </div>
                     <Link href="/dashboard/login" className="absolute right-80 top-16 z-10">
-                        <li className={`hover:text-blue-400 font-medium`}>
+                        <li className={`hover:text-blue-400  `}>
                             <FaUser className="inline-block mr-2"/>
                             Login
                         </li>

@@ -70,7 +70,7 @@ export const FieldRow : FieldRowComponent = ({ fieldName, setContactFields, cont
         )}>
             <label 
                 className={clsx(
-                    "font-semibold text-sm inline-block w-24 dark:text-tangerine-100", 
+                    "font-bold text-sm inline-block w-24 dark:text-tangerine-100", 
                     { 'text-red-600 dark:text-red-500':fieldErrors[fieldName]}
                 )} 
                 htmlFor={fieldName}>

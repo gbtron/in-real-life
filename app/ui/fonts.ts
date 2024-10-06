@@ -1,9 +1,11 @@
-import { Cardo } from "next/font/google";
-import localFont from 'next/font/local'
 
-export const cardo = Cardo({ 
-    weight: ['400', '700'],
-    subsets: ["greek"] 
+import localFont from 'next/font/local'
+import {EB_Garamond} from 'next/font/google'
+
+export const garamond = EB_Garamond({ 
+    subsets: ["latin"], 
+    variable:'--font-sans', 
+    display:'swap' 
 });
 
 export const bookmania = localFont({
@@ -18,10 +20,7 @@ export const bookmania = localFont({
             weight: '400', 
             style: 'normal'
         }
-    ]
-})
-
-export const acumen = localFont({
-    src: '../../public/fonts/AcuminVariableConcept_2.otf'
-    
+    ], 
+    display:'swap', 
+    variable:'--font-bookmania'
 })
