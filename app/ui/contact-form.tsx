@@ -41,11 +41,11 @@
         return (
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-row gap-40 align-center w-full">
-                    <div className="dark:bg-brown-100 dark:text-white mt-24 sm:p-8 flex flex-col text-left rounded-md border-black w-full sm:w-1/2">
+                    <div className="dark:bg-brown-100 dark:text-white mt-24 sm:p-8 flex flex-col text-left rounded-md border-black w-full sm:w-3/4 lg:w-3/5">
                         {!apiState.messageSent && 
                             <>
-                                <h1 className="text-2xl dark:text-tangerine-100 font-semibold">Get in touch with us</h1>
-                                <div className="sm:w-3/4 dark:text-tangerine-100 mb-8"> 
+                                <h1 className="text-3xl font-title dark:text-tangerine-100 font-normal">Get in touch with us</h1>
+                                <div className="sm:w-3/4 dark:text-tangerine-100 mb-8 text-xl"> 
                                     If you are interested in learning more about IRL and how we plan to serve the community, reach out to us using the form below. 
                                 </div>
                                 {apiState?.errors?.form && 
@@ -80,13 +80,19 @@
                         {!apiState.messageSent && 
                             <div className="justify-end flex md:justify-start mb-8">
                                 <button type="submit" disabled={apiState.submissionPending || !fieldsValid || !fieldsFilled} className={clsx(
-                                    "dark:bg-gray-600 bg-gray-300 text-white px-4 rounded-xl w-20 sm:ml-[23rem]",
+                                    "peer dark:bg-gray-600 bg-gray-300 text-white px-4 rounded-xl w-20 sm:ml-[26rem]",
                                     {
                                         'hover:font-bold bg-tangerine-900 hover:bg-tangerine-900 dark:bg-tangerine-900 dark:': !apiState.submissionPending && fieldsFilled && fieldsValid,
                                     }
                                 )}>
                                     Send
                                 </button>
+                                <div className={clsx(
+                                    'hidden order-first sm:order-last px-4', 
+                                    {
+                                        'peer-hover:block sm:peer-hover:inline': !fieldsFilled || !fieldsValid
+                                    }
+                                    ) }>Finish filling out the form</div>
                             </div>
                         }
                     </div>

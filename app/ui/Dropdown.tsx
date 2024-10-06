@@ -56,7 +56,7 @@ export function Dropdown({pages}: {pages: Page[]}) {
                     )}
                     {isOpen && (
                         <button onClick={toggleDropdown}>
-                            <div className="relative bg-slate-100 w-10 h-6 rounded-full font-medium text-1xl text-gray-700">X
+                            <div className="relative bg-slate-100 w-10 h-6 rounded-full   text-1xl text-gray-700">X
                             </div>
                         </button>
                     )}

@@ -1,11 +1,14 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: {
+    relative:true,
+    files:
+    [ "./app/contact/*.tsx",
+    "./app/ui/*.tsx", 
+    "./app/*.tsx"
+    ]
+  },
   theme: {
     extend: {
       backgroundImage: {
@@ -53,6 +56,10 @@ const config: Config = {
           800: '#AE977E',
           900: '#BCA588'
         }
+      }, 
+      fontFamily: {
+        title: ['var(--font-bookmania)'], 
+        body:['var(--font-garamond)']
       }
     },
   },

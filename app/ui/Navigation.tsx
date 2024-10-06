@@ -4,7 +4,6 @@ import Image from "next/image";
 import { FaUser } from "react-icons/fa";
 import React from "react";
 import type {Page} from "../layout";
-import { hanken_grotesk } from "@/app/ui/fonts";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 
@@ -25,10 +24,10 @@ export function Navigation({pages}: {pages: Page[]}) {
                     <div className="flex space-x-12 items-center z-10">
                     {pages.map((page, i) => (
                         <li key={i} className={clsx(
-                            `${hanken_grotesk.className} hover:text-blue-400 `,
+                            `hover:text-blue-400 `,
                             {
-                                'font-semibold': page.path === pathName, 
-                                'font-medium': page.path !== pathName
+                                'font-bold': page.path === pathName, 
+                                ' ': page.path !== pathName
                             }
                         )}>
                             {page.path === "/" 
@@ -45,7 +44,7 @@ export function Navigation({pages}: {pages: Page[]}) {
                     ))}
                     </div>
                     <Link href="/dashboard/login" className="absolute right-80 top-16 z-10">
-                        <li className={`${hanken_grotesk.className} hover:text-blue-400 font-medium`}>
+                        <li className={`hover:text-blue-400  `}>
                             <FaUser className="inline-block mr-2"/>
                             Login
                         </li>

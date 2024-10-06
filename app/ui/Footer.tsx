@@ -12,7 +12,7 @@ export function Footer() {
           const path = key as keyof Links
           let pathname = path as string
           return(
-            <Link key={key} href={pathname} className="hover:font-bold">{links[path]}</Link>
+            <Link key={key} href={pathname} className="text-lg hover:font-bold">{links[path]}</Link>
           )
         })}
       </div>

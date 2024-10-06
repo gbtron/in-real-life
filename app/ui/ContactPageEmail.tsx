@@ -12,8 +12,6 @@ import {
     Hr, 
     Link, 
     Tailwind,
-    Img, 
-    Heading, 
     Font
 } from '@react-email/components'
 
@@ -35,7 +33,7 @@ export const ContactUsEmail: React.FC<Readonly<ContactField>> = ({
             <Html lang="en" dir="ltr">
                 <Head>
                     <Font
-                        fontFamily='acumen'
+                        fontFamily='body'
                         fallbackFontFamily='Verdana'
                         webFont={{
                             url:'./public/fonts/AcuminVariableConcept_2.otf', 
@@ -46,7 +44,7 @@ export const ContactUsEmail: React.FC<Readonly<ContactField>> = ({
                     />
                     <title> IRL Website Message </title>    
                 </Head>
-                <Preview>{previewText}</Preview>
+                <Preview>{message}</Preview>
                 <Body className="bg-beige">
                     <Container className='px-4'>
                         <Section>
