@@ -44,7 +44,7 @@
                     <div className="dark:bg-brown-100 dark:text-white mt-24 sm:p-8 flex flex-col text-left rounded-md border-black w-full sm:w-1/2">
                         {!apiState.messageSent && 
                             <>
-                                <h1 className="text-2xl dark:text-tangerine-100 font-bold">Get in touch with us</h1>
+                                <h1 className="text-2xl dark:text-tangerine-100 font-semibold">Get in touch with us</h1>
                                 <div className="sm:w-3/4 dark:text-tangerine-100 mb-8"> 
                                     If you are interested in learning more about IRL and how we plan to serve the community, reach out to us using the form below. 
                                 </div>
