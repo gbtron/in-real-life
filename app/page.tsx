@@ -301,8 +301,7 @@ export default function about() {
               people and build meaningful relationships. This is where IRL steps
               in – a dedicated socialization space designed to foster a safe,
               supportive, and vibrant community for young adults who crave
-              real-life interactions. Get started today by creating an account
-              or starting the conversation.
+              real-life interactions. 
             </div>
             <div className="flex flex-row gap-2">
               <a href="/contact">
