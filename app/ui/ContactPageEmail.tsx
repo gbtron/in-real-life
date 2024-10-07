@@ -66,7 +66,7 @@ export const ContactUsEmail: React.FC<Readonly<ContactField>> = ({
                                 IRL Miami
                             </Link>
                             <br />
-                            1430 South Dixie Hwy, Coral Gables, FL 33146
+                            1390 South Dixie Hwy, Coral Gables, FL 33146
                         </Text>
                     </Container>
                 </Body>
