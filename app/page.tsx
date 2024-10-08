@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { bookmania, cardo } from "@/app/ui/fonts";
+import { bookmania, acumen } from "@/app/ui/fonts";
 
 export default function about() {
   return (
@@ -21,14 +21,14 @@ export default function about() {
           </div>
           <div className="text-center bg-beige-500 bg-opacity-80 px-2 pt-5 sm:bg-transparent">
             <h1
-              className={`${bookmania.className} text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold`}
+              className={`${bookmania.className} text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl `}
             >
               <span className="text-white">
                 Where real connections are made
               </span>
             </h1>
             <div
-              className={`${cardo.className} pt-3 font-medium pt-12 text-xl text-white`}
+              className={`${acumen.className} pt-3 pt-12 text-xl text-white`}
             >
               We provide a safe, inclusive environment for young adults to forge
               meaningful relationships, develop critical skills, and heighten
@@ -53,25 +53,157 @@ export default function about() {
 
       <section className=" overflow-hidden bg-beige-100">
         <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-          <div className="flex pt-20 sm:pt-40 items-center">
+          <div className="flex pt-20 items-center justify-between">
+            <Image
+              src="/assets/buildingPalm.jpg"
+              alt="An apartment building with a palm tree in the foreground"
+              width={640}
+              height={800}
+              className="rounded-lg hidden md:block w-[1/2] h-[40rem] mr-20"
+            />
             <div className="w-3/4 sm:w-2/3">
               <h1
-                className={`${bookmania.className} text-tangerine-900 font-semibold text-2xl sm:text-3xl`}
+                className={`${bookmania.className} text-tangerine-900 text-2xl sm:text-3xl`}
               >
-                Holistic offerings
+                Our Pillars
               </h1>
               <div
-                className={`${bookmania.className} text-4xl sm:text-6xl pt-2 font-semibold`}
+                className={`${bookmania.className} text-4xl sm:text-6xl pt-2`}
               >
-                Oppportunities for growth through various avenues
+                Get to know our space
               </div>
-              <div className={`${cardo.className} font-semibold pt-5 text-2xl`}>
-                Here at IRL, we strive to fulfill three main objectives:
-                providing young adults with a positive environment to develop
-                social and communication skills, helping them identify strengths
-                and weaknesses to support success in school and work, and
-                collaborating with clients, parents, and therapists to address
-                ongoing mental health needs.
+              <div className={`${acumen.className} pt-5 text-2xl`}>
+                At the heart of our organization are six key spaces designed to
+                foster growth, connection, and creativity. Each of these spaces
+                serves as an essential pillar in our mission to provide an
+                enriching, supportive environment for young adults.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden pl-[--columnPaddingNormal]">
+        <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+          <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
+            <summary
+              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+            >
+              Lounge and TV Area
+            </summary>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
+              Relax in a cozy space with couches, game tables, and TVs. This is
+              the perfect spot for meeting new friends and enjoying activities
+              like movie nights, potluck dinners, and planning community
+              outings. Our lounge is designed to foster a sense of belonging and
+              connection among members.
+            </div>
+          </details>
+
+          <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
+            <summary
+              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+            >
+              Gym and Game Room
+            </summary>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
+              Stay active with a variety of games like billiards, arcade games,
+              or air hockey. Or, join group fitness classes such as yoga, dance,
+              meditation, or pilates. This space also includes a basketball hoop
+              and functional training area with hand weights. Engage your
+              competitive side at the game room!
+            </div>
+          </details>
+
+          <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
+            <summary
+              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+            >
+              Art Studio
+            </summary>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
+              Explore your creativity in a fully equipped art studio offering
+              classes in painting, ceramics, photography, graphic design, and
+              more. Each client will receive their very own painting box!
+              Program field trips to museums and art events like Art Basel will
+              inspire your self-expression.
+            </div>
+          </details>
+        </div>
+        <div className="flex-column space-y-10 sm:flex justify-around content-center sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+          <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 mt-10 sm:border-none sm:mt-0 group text-tangerine-500 transition-all duration-300 ease-in-out">
+            <summary
+              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+            >
+              Kitchen and Dining
+            </summary>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
+              Learn cooking skills in our progressive six-week program,
+              culminating in a five-course meal for family and friends. This
+              program will focus on basic cooking skills, private dining and
+              entertainment, and nutrition and health. Additional workshops will
+              be provided on a weekly basis that may cover everything from
+              bread-making, to holiday meal preparation, to wine and beer
+              tasting.
+            </div>
+          </details>
+
+          <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
+            <summary
+              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+            >
+              Education and Career Counseling
+            </summary>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
+              Participate in classes and seminars focused on job readiness,
+              financial literacy, and life skills. This comfortable, calming
+              space offers computers for job searches and online learning, and
+              digital literacy training. The program will also work with parents
+              and outside therapists to provide individual and group sessions
+              for tailored support.
+            </div>
+          </details>
+
+          <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
+            <summary
+              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+            >
+              Plant Room and Outdoor Gardening
+            </summary>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
+              Learn sustainable and healthy techniques to grow herbs and
+              vegetables in our dedicated indoor and outdoor gardening spaces
+              with guidance from a plant specialist and support from volunteers.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section className=" overflow-hidden bg-beige-100">
+        <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+          <div className="flex sm:pt-20 items-center">
+            <div className="w-3/4 sm:w-2/3">
+              <div
+                className={`${bookmania.className} text-4xl sm:text-6xl pt-2`}
+              >
+                Opportunities for growth through various avenues
+              </div>
+              <div className={`${acumen.className} pt-5 text-2xl`}>
+                Our mission is to provide a supportive and nurturing environment
+                where individuals can develop the skills, confidence, and
+                resilience needed to thrive in all aspects of life.
               </div>
             </div>
             <Image
@@ -87,15 +219,19 @@ export default function about() {
       <section className="overflow-hidden pb-20 pl-[--columnPaddingNormal]">
         <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
-            <h1 className={`${bookmania.className} text-xl font-semibold`}>
+            <h1
+              className={`${bookmania.className} text-xl font-semibold text-slate-600`}
+            >
               Events
             </h1>
             <div
-              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6 font-semibold`}
+              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6`}
             >
               Active Community
             </div>
-            <div className={`${cardo.className} pt-8 text-2xl w-3/4`}>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
               Join daily activities to build social skills, improve fitness, and
               connect you with the community. Volunteer to enhance your job and
               social skills, boosting your chances for positive employment
@@ -105,15 +241,19 @@ export default function about() {
           </div>
 
           <div className="basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none">
-            <h1 className={`${bookmania.className} text-xl font-semibold`}>
+            <h1
+              className={`${bookmania.className} text-xl font-semibold text-slate-600`}
+            >
               Workshops
             </h1>
             <div
-              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6 font-semibold`}
+              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6`}
             >
               Engaging Learning
             </div>
-            <div className={`${cardo.className} pt-8 text-2xl w-3/4`}>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
               Discover your strengths with vocational counseling that helps you
               build a resume and explore job opportunities. Reach your
               educational goals with tutoring, mentoring, and career guidance.
@@ -123,15 +263,19 @@ export default function about() {
           </div>
 
           <div className="basis-1/3">
-            <h1 className={`${bookmania.className} text-xl font-semibold`}>
+            <h1
+              className={`${bookmania.className} text-xl font-semibold text-slate-600`}
+            >
               Group Work
             </h1>
             <div
-              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6 font-semibold`}
+              className={`${bookmania.className} text-3xl text-tangerine-500 pt-6`}
             >
               Supportive Sessions
             </div>
-            <div className={`${cardo.className} pt-8 text-2xl w-3/4`}>
+            <div
+              className={`${acumen.className} pt-8 text-2xl w-3/4 text-slate-600`}
+            >
               Receive personalized support that aligns with your mental health
               and therapeutic goals. Collaborate with our team, your family, and
               therapists to ensure your emotional and mental well-being is
@@ -141,162 +285,18 @@ export default function about() {
         </div>
       </section>
 
-      <section className=" overflow-hidden bg-beige-100">
-        <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-          <div className="flex items-center justify-between">
-            <Image
-              src="/assets/buildingPalm.jpg"
-              alt="An apartment building with a palm tree in the foreground"
-              width={640}
-              height={800}
-              className="rounded-lg hidden md:block w-[1/2] h-[40rem] mr-20"
-            />
-            <div className="w-3/4 sm:w-2/3">
-              <h1
-                className={`${bookmania.className} text-tangerine-900 font-semibold text-2xl sm:text-3xl`}
-              >
-                Our Pillars
-              </h1>
-              <div
-                className={`${bookmania.className} text-4xl sm:text-6xl pt-2 font-semibold`}
-              >
-                Get to know our space
-              </div>
-              <div className={`${cardo.className} font-semibold pt-5 text-2xl`}>
-                At the heart of our organization are six key spaces designed to
-                foster growth, connection, and creativity. Each of these spaces
-                serves as an essential pillar in our mission to provide an
-                enriching, supportive environment for young adults.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="overflow-hidden pb-20 pl-[--columnPaddingNormal]">
-        <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-          <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
-            <summary
-              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 font-semibold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
-            >
-              Lounge and TV Area
-            </summary>
-            <div
-              className={`${cardo.className} pt-8 text-2xl w-3/4 text-slate-600`}
-            >
-              Relax in a cozy space with couches, game tables, and TVs. This is
-              the perfect spot for meeting new friends and enjoying activities
-              like movie nights, potluck dinners, and planning community
-              outings. Our lounge is designed to foster a sense of belonging and
-              connection among members.
-            </div>
-          </details>
-
-          <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
-            <summary
-              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 font-semibold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
-            >
-              Gym and Game Room
-            </summary>
-            <div
-              className={`${cardo.className} pt-8 text-2xl w-3/4 text-slate-600`}
-            >
-              Stay active with a variety of games like billiards, arcade games,
-              or air hockey. Or, join group fitness classes such as yoga, dance,
-              meditation, or pilates. This space also includes a basketball hoop
-              and functional training area with hand weights. Engage your
-              competitive side at the game room!
-            </div>
-          </details>
-
-          <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
-            <summary
-              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 font-semibold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
-            >
-              Art Studio
-            </summary>
-            <div
-              className={`${cardo.className} pt-8 text-2xl w-3/4 text-slate-600`}
-            >
-              Explore your creativity in a fully equipped art studio offering
-              classes in painting, ceramics, photography, graphic design, and
-              more. Each client will receive their very own painting box!
-              Program field trips to museums and art events like Art Basel will
-              inspire your self-expression.
-            </div>
-          </details>
-        </div>
-        <div className="flex-column space-y-10 sm:flex justify-around content-center sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-          <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 mt-10 sm:border-none sm:mt-0 group text-tangerine-500 transition-all duration-300 ease-in-out">
-            <summary
-              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 font-semibold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
-            >
-              Kitchen and Dining
-            </summary>
-            <div
-              className={`${cardo.className} pt-8 text-2xl w-3/4 text-slate-600`}
-            >
-              Learn cooking skills in our progressive six-week program,
-              culminating in a five-course meal for family and friends. This
-              program will focus on basic cooking skills, private dining and
-              entertainment, and nutrition and health. Additional workshops will
-              be provided on a weekly basis that may cover everything from
-              bread-making, to holiday meal preparation, to wine and beer
-              tasting.
-            </div>
-          </details>
-
-          <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
-            <summary
-              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 font-semibold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
-            >
-              Education and Career Counseling
-            </summary>
-            <div
-              className={`${cardo.className} pt-8 text-2xl w-3/4 text-slate-600`}
-            >
-              Participate in classes and seminars focused on job readiness,
-              financial literacy, and life skills. This comfortable, calming
-              space offers computers for job searches and online learning, and
-              digital literacy training. The program will also work with parents
-              and outside therapists to provide individual and group sessions
-              for tailored support.
-            </div>
-          </details>
-
-          <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
-            <summary
-              className={`${bookmania.className} cursor-pointer text-3xl text-tangerine-500 pt-6 font-semibold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
-            >
-              Plant Room and Outdoor Gardening
-            </summary>
-            <div
-              className={`${cardo.className} pt-8 text-2xl w-3/4 text-slate-600`}
-            >
-              Learn sustainable and healthy techniques to grow herbs and
-              vegetables in our dedicated indoor and outdoor gardening spaces
-              with guidance from a plant specialist and support from volunteers.
-            </div>
-          </details>
-        </div>
-      </section>
-
       <section className="overflow-hidden bg-brown-100 text-slate-100">
         <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="pt-20 w-3/4 sm:w-2/3">
-            <h1
-              className={`${bookmania.className} text-white font-semibold text-8xl`}
-            >
-              Real Life
+            <h1 className={`${bookmania.className} text-white text-8xl`}>
+              In Real Life
             </h1>
             <div
-              className={`${bookmania.className} text-4xl text-white sm:text-4xl pt-8 font-semibold}`}
+              className={`${acumen.className} text-4xl text-white pt-8 sm:text-4xl}`}
             >
               The right place to interact
             </div>
-            <div
-              className={`${cardo.className} pt-12 text-lg text-white font-semibold`}
-            >
+            <div className={`${acumen.className} pt-12 text-lg text-white`}>
               In today&apos;s digital world, it can be challenging to meet new
               people and build meaningful relationships. This is where IRL steps
               in – a dedicated socialization space designed to foster a safe,
