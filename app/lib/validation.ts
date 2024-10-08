@@ -10,7 +10,7 @@ type FieldValidation = {
 export const getClientSideValidation = (value:string, name:ContactFieldName ) => {
     const nameFieldValidation = [
         { condition: value.length > 4, message: `at least 5 characters`}, 
-        { condition: /^[\p{L}\s'-]*$/u.test(value), message: `Unicode letters, apostrophes, and hyphens`}
+        { condition: /^[\p{L}\s'-]*$/u.test(value), message: `letters, apostrophes, and hyphens`}
     ]
 
     const fieldValidation:FieldValidation = {
@@ -19,12 +19,12 @@ export const getClientSideValidation = (value:string, name:ContactFieldName ) =>
             {
                 condition: /^\s*(\+?\d{1,3})?[-. (]*\(?(\d{3})\)?[-. ]*(\d{3})[-. ]*(\d{4})(?:\s*x\s*\d+)?\s*$/
                     .test(value), 
-                message: `the right number of digits and optional separators (dash, period, space)`
+                message: `the right number of digits and separators`
             }
         ], 
         email: [
             {
-                condition: /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z]{2,})+$/
+                condition: /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z]{2,})+$/
                     .test(value), 
                 message:''
             }

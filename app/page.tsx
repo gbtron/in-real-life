@@ -17,6 +17,7 @@ export default function about() {
               src="/assets/IRL_Logo_Final_Responsive.avif"
               alt="IRL Logo"
               loading="eager"
+              priority
             />
           </div>
           <div className="text-center bg-beige-500 bg-opacity-80 px-2 pt-5 sm:bg-transparent">
@@ -301,17 +302,16 @@ export default function about() {
               people and build meaningful relationships. This is where IRL steps
               in – a dedicated socialization space designed to foster a safe,
               supportive, and vibrant community for young adults who crave
-              real-life interactions. Get started today by creating an account
-              or starting the conversation.
+              real-life interactions. 
             </div>
             <div className="flex flex-row gap-2">
               <a href="/contact">
-                <div className="font-semibold hover:bg-tangerine-600 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10 text-center">
+                <div className="font-bold hover:bg-tangerine-600 hover:text-slate-100 bg-slate-100 group text-slate-600 py-2 mt-8 px-4 rounded-full w-32 mb-10 text-center">
                   Contact Us
                 </div>
               </a>
               {/* <Link href="/api/auth/login">
-                <div className="font-semibold hover:text-tangerine-600 group text-white py-2 mt-8 px-4 w-32 mb-10">
+                <div className="font-bold hover:text-tangerine-600 group text-white py-2 mt-8 px-4 w-32 mb-10">
                   Begin Today
                 </div>
               </Link> */}

@@ -16,7 +16,7 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
         id: z.string(),
         name: z.string()
             .min(5)
-            .regex(/^[\p{L}\s'-]*$/u, {message: 'Please enter your name using Unicode letters, apostrophes, and hyphens'})
+            .regex(/^[\p{L}\s'-]*$/u, {message: 'Please enter your name using letters, apostrophes, and hyphens'})
             .max(30),
         email: z.string()
             .email({message:'Please enter your email with valid recipient and domain names'})
@@ -68,12 +68,11 @@ export async function sendMessage(previousState: ContactResponse, formData: Form
     // send message via emal
     const resend = new Resend(process.env.RESEND_API_KEY)
     const emailTo = process.env.CONTACT_US_EMAILS as string 
-
     try {
         const { data, error } = await resend.emails.send({
-            from: `${name} <contact-us@irlmiami.com>`, 
-            to: emailTo, 
-            subject: 'IRL - Contact Form', 
+            from: `In Real Life <contact-us@irlmiami.com>`, 
+            to: emailTo.split(':::'), 
+            subject: `${name} sent you a message from the IRL website`, 
             react: ContactUsEmail({ name: name, email: email, phone: phone, message:message })
         })
 
