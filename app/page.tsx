@@ -51,6 +51,31 @@ export default function about() {
         </div>
       </div>
 
+      <section className="pt-20 overflow-hidden bg-beige-100">
+        <div className="pb-10 text-slate-600 pl-8 sm:px-8 sm:mx-auto sm:max-w-6xl">
+          <div className="flex items-center">
+            <div className="w-3/4 sm:w-2/3">
+              
+              <div
+                className={`font-title text-4xl sm:text-6xl pt-2`}
+              >
+                Opportunities for growth through various avenues
+              </div>
+              <div className={`font-body pt-5 text-2xl`}>
+              Our mission is to provide a supportive and nurturing environment where 
+              individuals can develop the skills, confidence, and resilience needed to thrive in all aspects of life.
+              </div>
+            </div>
+            <Image
+              src="/assets/kayakGlades.jpg"
+              alt="Person kayaking in Everglades"
+              width={640}
+              height={800}
+              className="rounded-lg hidden object-cover md:block w-[1/2] h-[40rem] ml-20"
+            />
+          </div>
+        </div>
+      </section>
       <section className="pt-12 sm:pt-20 overflow-hidden bg-beige-100">
         <div className="pb-10 text-slate-600 pl-8 sm:px-8 sm:mx-auto sm:max-w-6xl">
           <div className="flex items-center">
@@ -83,7 +108,7 @@ export default function about() {
         </div>
       </section>
 
-      <section className="overflow-hidden pb-20 px-8">
+      <section className="overflow-hidden pb-10 px-8">
         <div className="flex-column sm:flex justify-around sm:px-8 sm:mx-auto sm:max-w-6xl">
           <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pb-10 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
@@ -191,31 +216,6 @@ export default function about() {
         </div>
       </section>
 
-      <section className=" overflow-hidden bg-beige-100">
-        <div className="pb-10 text-slate-600 pl-8 sm:px-8 sm:mx-auto sm:max-w-6xl">
-          <div className="flex items-center">
-            <div className="w-3/4 sm:w-2/3">
-              
-              <div
-                className={`font-title text-4xl sm:text-6xl pt-2`}
-              >
-                Opportunities for growth through various avenues
-              </div>
-              <div className={`font-body pt-5 text-2xl`}>
-              Our mission is to provide a supportive and nurturing environment where 
-              individuals can develop the skills, confidence, and resilience needed to thrive in all aspects of life.
-              </div>
-            </div>
-            <Image
-              src="/assets/kayakGlades.jpg"
-              alt="Person kayaking in Everglades"
-              width={640}
-              height={800}
-              className="rounded-lg hidden object-cover md:block w-[1/2] h-[40rem] ml-20"
-            />
-          </div>
-        </div>
-      </section>
       <section className="overflow-hidden pb-20 px-8">
         <div className="flex-column space-y-10 sm:flex justify-around sm:px-8 sm:mx-auto sm:max-w-6xl">
           <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
