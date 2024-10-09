@@ -27,17 +27,11 @@ export default function about() {
                 Where real connections are made
               </span>
             </h1>
-            <div
-              className={`font-body pt-3 text-xl text-white`}
-            >
-              We provide a safe, inclusive environment for young adults to forge
-              meaningful relationships, develop critical skills, and heighten
-              their overall well being.
-            </div>
+            
             <div className="inline-flex">
               <a
                 href="/contact"
-                className="p-2 my-5 sm:my-6 mx-2 bg-slate-100 hover:bg-tangerine-500 hover:bg-tangerine-600 hover:text-white text-slate-600 font-bold rounded border-2 border-transparent shadow-md transition duration-500 md:text-xl"
+                className="p-2 my-5 sm:my-8 mx-2 bg-slate-100 hover:bg-tangerine-500 hover:bg-tangerine-600 hover:text-white text-slate-600 font-bold rounded border-2 border-transparent shadow-md transition duration-500 md:text-xl"
               >
                 Contact Us
               </a>
@@ -51,32 +45,13 @@ export default function about() {
         </div>
       </div>
 
-      <section className="pt-20 overflow-hidden bg-beige-100">
-        <div className="pb-10 text-slate-600 pl-8 sm:px-8 sm:mx-auto sm:max-w-6xl">
-          <div className="flex items-center">
-            <div className="w-3/4 sm:w-2/3">
-              
-              <div
-                className={`font-title text-4xl sm:text-6xl pt-2`}
-              >
-                Opportunities for growth through various avenues
-              </div>
-              <div className={`font-body pt-5 text-2xl`}>
-              Our mission is to provide a supportive and nurturing environment where 
-              individuals can develop the skills, confidence, and resilience needed to thrive in all aspects of life.
-              </div>
-            </div>
-            <Image
-              src="/assets/kayakGlades.jpg"
-              alt="Person kayaking in Everglades"
-              width={640}
-              height={800}
-              className="rounded-lg hidden object-cover md:block w-[1/2] h-[40rem] ml-20"
-            />
+      <section className="pt-20 sm:pt-32 overflow-hidden bg-beige-100">
+        <div className="w-3/4 sm:w-2/3 pl-8 sm:px-8 sm:mx-auto sm:max-w-6xl">
+          <div className={`font-body text-slate-600 pb-20 sm:pb-32 text-4xl`}>
+            Our mission is to provide a supportive and nurturing environment where 
+            individuals can develop the skills, confidence, and resilience needed to thrive in all aspects of life.
           </div>
         </div>
-      </section>
-      <section className="pt-12 sm:pt-20 overflow-hidden bg-beige-100">
         <div className="pb-10 text-slate-600 pl-8 sm:px-8 sm:mx-auto sm:max-w-6xl">
           <div className="flex items-center">
             <Image
@@ -213,6 +188,32 @@ export default function about() {
               with guidance from a plant specialist and support from volunteers.
             </div>
           </details>
+        </div>
+      </section>
+
+      <section className="pt-20 overflow-hidden bg-beige-100">
+        <div className="pb-10 text-slate-600 pl-8 sm:px-8 sm:mx-auto sm:max-w-6xl">
+          <div className="flex items-center">
+            <div className="w-3/4 sm:w-2/3">
+              <div
+                className={`font-title text-4xl sm:text-6xl pt-2`}
+              >
+                Opportunities for growth through various avenues
+              </div>
+              <div className={`font-body pt-5 text-2xl`}>
+                We provide a safe, inclusive environment for young adults to forge
+                meaningful relationships, develop critical skills, and heighten
+                their overall well being.
+              </div>
+            </div>
+            <Image
+              src="/assets/kayakGlades.jpg"
+              alt="Person kayaking in Everglades"
+              width={640}
+              height={800}
+              className="rounded-lg hidden object-cover md:block w-[1/2] h-[40rem] ml-20"
+            />
+          </div>
         </div>
       </section>
 
