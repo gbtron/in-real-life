@@ -21,7 +21,7 @@ export default function about() {
           </div>
           <div className="text-center bg-beige-500 bg-opacity-80 px-2 pt-5 sm:bg-transparent">
             <h1
-              className={`font-title text-tangerine-500 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold`}
+              className={`font-title text-tangerine-500 text-5xl sm:text-xl md:text-6xl lg:text-7xl pb-4`}
             >
               <span className="text-white">
                 Where real connections are made
@@ -68,11 +68,11 @@ export default function about() {
                 Our Pillars
               </h1>
               <div
-                className={`font-title text-4xl sm:text-6xl pt-2 font-bold`}
+                className={`font-title text-4xl sm:text-6xl pt-2`}
               >
                 Get to know our space
               </div>
-              <div className={`font-body font-bold pt-5 text-2xl`}>
+              <div className={`font-body pt-5 text-2xl`}>
                 At the heart of our organization are six key spaces designed to
                 foster growth, connection, and creativity. Each of these spaces
                 serves as an essential pillar in our mission to provide an
@@ -87,7 +87,7 @@ export default function about() {
         <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Lounge and TV Area
             </summary>
@@ -104,7 +104,7 @@ export default function about() {
 
           <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Gym and Game Room
             </summary>
@@ -121,7 +121,7 @@ export default function about() {
 
           <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Art Studio
             </summary>
@@ -139,7 +139,7 @@ export default function about() {
         <div className="flex-column space-y-10 sm:flex justify-around content-center sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <details className="dropdown basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 mt-10 sm:border-none sm:mt-0 group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Kitchen and Dining
             </summary>
@@ -158,7 +158,7 @@ export default function about() {
 
           <details className="dropdown basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Education and Career Counseling
             </summary>
@@ -176,7 +176,7 @@ export default function about() {
 
           <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 font-bold bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Plant Room and Outdoor Gardening
             </summary>
@@ -197,11 +197,11 @@ export default function about() {
             <div className="w-3/4 sm:w-2/3">
               
               <div
-                className={`font-title text-4xl sm:text-6xl pt-2 font-bold`}
+                className={`font-title text-4xl sm:text-6xl pt-2`}
               >
                 Opportunities for growth through various avenues
               </div>
-              <div className={`font-body font-bold pt-5 text-2xl`}>
+              <div className={`font-body pt-5 text-2xl`}>
               Our mission is to provide a supportive and nurturing environment where 
               individuals can develop the skills, confidence, and resilience needed to thrive in all aspects of life.
               </div>
@@ -219,11 +219,11 @@ export default function about() {
       <section className="overflow-hidden pb-20 pl-[--columnPaddingNormal]">
         <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
-            <h1 className={`font-title text-xl font-bold`}>
+            <h1 className={`font-title text-2xl font-bold text-tangerine-500`}>
               Events
             </h1>
             <div
-              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
+              className={`font-title text-4xl pt-6 `}
             >
               Active Community
             </div>
@@ -237,11 +237,11 @@ export default function about() {
           </div>
 
           <div className="basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none">
-            <h1 className={`font-title text-xl font-bold`}>
+            <h1 className={`font-title text-2xl font-bold text-tangerine-500`}>
               Workshops
             </h1>
             <div
-              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
+              className={`font-title text-4xl pt-6 `}
             >
               Engaging Learning
             </div>
@@ -255,11 +255,11 @@ export default function about() {
           </div>
 
           <div className="basis-1/3">
-            <h1 className={`font-title text-xl font-bold`}>
+            <h1 className={`font-title text-2xl font-bold text-tangerine-500`}>
               Group Work
             </h1>
             <div
-              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
+              className={`font-title text-4xl pt-6 `}
             >
               Supportive Sessions
             </div>
@@ -277,17 +277,17 @@ export default function about() {
         <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="pt-20 w-3/4 sm:w-2/3">
             <h1
-              className={`font-title text-white font-bold text-8xl`}
+              className={`font-title text-white text-8xl`}
             >
               In Real Life
             </h1>
             <div
-              className={`font-title text-4xl text-white sm:text-4xl pt-8 font-bold}`}
+              className={`text-4xl text-white sm:text-4xl pt-8 }`}
             >
               The right place to interact
             </div>
             <div
-              className={`font-body pt-12 text-xl text-white font-bold`}
+              className={`font-body pt-12 text-xl text-white`}
             >
               In today&apos;s digital world, it can be challenging to meet new
               people and build meaningful relationships. This is where IRL steps
