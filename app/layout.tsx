@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {  bookmania, garamond } from "@/app/ui/fonts"
+import {  bookmania, acumen } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@auth0/nextjs-auth0/client"
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang="en" className={` ${bookmania.variable} ${garamond.variable} h-full`}>
+    <html suppressHydrationWarning lang="en" className={` ${bookmania.variable} ${acumen.variable} h-full`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>

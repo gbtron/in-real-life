@@ -19,7 +19,7 @@ export function Navigation({pages}: {pages: Page[]}) {
                 "hidden": pathName.includes("/dashboard")
             } 
             )}>
-            <nav className="pt-8 sm:flex justify-between hidden bg-inherit top-0 w-100% z-10 px-12 sm:px-[--columnPaddingNormal] sm:mx-auto sm:overflow-hidden sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+            <nav className="pt-8 sm:flex justify-between hidden bg-inherit top-0 w-100% z-10 px-12 sm:px-8 sm:mx-auto sm:overflow-hidden sm:max-w-6xl">
                 <ul className="flex text-lg " >
                     <div className="flex space-x-12 items-center z-10">
                     {pages.map((page, i) => (
