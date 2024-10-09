@@ -218,13 +218,13 @@ export default function about() {
       </section>
 
       <section className="overflow-hidden pb-20 px-8">
-        <div className="flex-column space-y-10 sm:flex justify-around sm:px-8 sm:mx-auto sm:max-w-6xl">
+        <div className="text-slate-600 flex-column space-y-10 sm:flex justify-around sm:px-8 sm:mx-auto sm:max-w-6xl">
           <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
             <h1 className={`font-title text-2xl font-bold text-tangerine-500`}>
               Events
             </h1>
             <div
-              className={`font-title text-3xl pt-2 `}
+              className={`font-title text-3xl pt-2`}
             >
               Active Community
             </div>
@@ -242,7 +242,7 @@ export default function about() {
               Workshops
             </h1>
             <div
-              className={`font-title text-3xl pt-2 `}
+              className={`font-title text-3xl pt-2`}
             >
               Engaging Learning
             </div>
