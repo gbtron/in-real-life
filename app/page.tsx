@@ -119,9 +119,9 @@ export default function about() {
             </div>
           </details>
 
-          <details className="dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
+          <details className="pb-10 dropdown basis-1/3 group text-tangerine-500 transition-all duration-300 ease-in-out">
             <summary
-              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 pb-10 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
+              className={`font-title cursor-pointer text-3xl text-tangerine-500 pt-6 bg-left-bottom bg-gradient-to-r from-tangerine-500 to-tangerine-500 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:90%_2px] transition-all duration-500 ease-out`}
             >
               Art Studio
             </summary>
