@@ -59,7 +59,7 @@ const config: Config = {
       }, 
       fontFamily: {
         title: ['var(--font-bookmania)'], 
-        body:['var(--font-garamond)']
+        body:['var(--font-acumen)']
       }
     },
   },

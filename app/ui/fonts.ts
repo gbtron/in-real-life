@@ -1,12 +1,11 @@
 
 import localFont from 'next/font/local'
-import {EB_Garamond} from 'next/font/google'
 
-export const garamond = EB_Garamond({ 
-    subsets: ["latin"], 
-    variable:'--font-garamond', 
-    display:'swap' 
-});
+export const acumen = localFont({ 
+    src: '../../public/fonts/AcuminVariableConcept_2.otf',
+    display:'swap', 
+    variable:'--font-acumen'
+})
 
 export const bookmania = localFont({
     src: [

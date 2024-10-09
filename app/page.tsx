@@ -51,97 +51,7 @@ export default function about() {
         </div>
       </div>
 
-      <section className=" overflow-hidden bg-beige-100">
-        <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-          <div className="flex pt-20 sm:pt-40 items-center">
-            <div className="w-3/4 sm:w-2/3">
-              <h1
-                className={`font-title text-tangerine-900 font-bold text-2xl sm:text-3xl`}
-              >
-                Holistic offerings
-              </h1>
-              <div
-                className={`font-title text-4xl sm:text-6xl pt-2 font-bold`}
-              >
-                Oppportunities for growth through various avenues
-              </div>
-              <div className={`font-body font-bold pt-5 text-2xl`}>
-                Here at IRL, we strive to fulfill three main objectives:
-                providing young adults with a positive environment to develop
-                social and communication skills, helping them identify strengths
-                and weaknesses to support success in school and work, and
-                collaborating with clients, parents, and therapists to address
-                ongoing mental health needs.
-              </div>
-            </div>
-            <Image
-              src="/assets/kayakGlades.jpg"
-              alt="Person kayaking in Everglades"
-              width={640}
-              height={800}
-              className="rounded-lg hidden object-cover md:block w-[1/2] h-[40rem] ml-20"
-            />
-          </div>
-        </div>
-      </section>
-      <section className="overflow-hidden pb-20 pl-[--columnPaddingNormal]">
-        <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
-          <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
-            <h1 className={`font-title text-xl font-bold`}>
-              Events
-            </h1>
-            <div
-              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
-            >
-              Active Community
-            </div>
-            <div className={`font-body pt-8 text-2xl w-3/4`}>
-              Join daily activities to build social skills, improve fitness, and
-              connect you with the community. Volunteer to enhance your job and
-              social skills, boosting your chances for positive employment
-              outcomes. Strengthen teamwork and communication in group sessions
-              designed to help you grow alongside peers.
-            </div>
-          </div>
-
-          <div className="basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none">
-            <h1 className={`font-title text-xl font-bold`}>
-              Workshops
-            </h1>
-            <div
-              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
-            >
-              Engaging Learning
-            </div>
-            <div className={`font-body pt-8 text-2xl w-3/4`}>
-              Discover your strengths with vocational counseling that helps you
-              build a resume and explore job opportunities. Reach your
-              educational goals with tutoring, mentoring, and career guidance.
-              Master life skills like budgeting, cooking, and personal hygiene
-              through hands-on workshops that support your independence.
-            </div>
-          </div>
-
-          <div className="basis-1/3">
-            <h1 className={`font-title text-xl font-bold`}>
-              Group Work
-            </h1>
-            <div
-              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
-            >
-              Supportive Sessions
-            </div>
-            <div className={`font-body pt-8 text-2xl w-3/4`}>
-              Receive personalized support that aligns with your mental health
-              and therapeutic goals. Collaborate with our team, your family, and
-              therapists to ensure your emotional and mental well-being is
-              prioritized as you work through the program.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className=" overflow-hidden bg-beige-100">
+      <section className="pt-20 sm:pt-40 overflow-hidden bg-beige-100">
         <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="flex items-center justify-between">
             <Image
@@ -281,13 +191,95 @@ export default function about() {
         </div>
       </section>
 
+      <section className=" overflow-hidden bg-beige-100">
+        <div className="pb-10 text-slate-600 pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+          <div className="flex items-center">
+            <div className="w-3/4 sm:w-2/3">
+              
+              <div
+                className={`font-title text-4xl sm:text-6xl pt-2 font-bold`}
+              >
+                Opportunities for growth through various avenues
+              </div>
+              <div className={`font-body font-bold pt-5 text-2xl`}>
+              Our mission is to provide a supportive and nurturing environment where 
+              individuals can develop the skills, confidence, and resilience needed to thrive in all aspects of life.
+              </div>
+            </div>
+            <Image
+              src="/assets/kayakGlades.jpg"
+              alt="Person kayaking in Everglades"
+              width={640}
+              height={800}
+              className="rounded-lg hidden object-cover md:block w-[1/2] h-[40rem] ml-20"
+            />
+          </div>
+        </div>
+      </section>
+      <section className="overflow-hidden pb-20 pl-[--columnPaddingNormal]">
+        <div className="flex-column space-y-10 sm:flex justify-around sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
+          <div className="basis-1/3 border-b-2 border-t-2 border-brown-200 pt-10 pb-10 sm:border-none">
+            <h1 className={`font-title text-xl font-bold`}>
+              Events
+            </h1>
+            <div
+              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
+            >
+              Active Community
+            </div>
+            <div className={`font-body pt-8 text-2xl w-3/4`}>
+              Join daily activities to build social skills, improve fitness, and
+              connect you with the community. Volunteer to enhance your job and
+              social skills, boosting your chances for positive employment
+              outcomes. Strengthen teamwork and communication in group sessions
+              designed to help you grow alongside peers.
+            </div>
+          </div>
+
+          <div className="basis-1/3 border-b-2 pb-10 border-brown-200 sm:border-none">
+            <h1 className={`font-title text-xl font-bold`}>
+              Workshops
+            </h1>
+            <div
+              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
+            >
+              Engaging Learning
+            </div>
+            <div className={`font-body pt-8 text-2xl w-3/4`}>
+              Discover your strengths with vocational counseling that helps you
+              build a resume and explore job opportunities. Reach your
+              educational goals with tutoring, mentoring, and career guidance.
+              Master life skills like budgeting, cooking, and personal hygiene
+              through hands-on workshops that support your independence.
+            </div>
+          </div>
+
+          <div className="basis-1/3">
+            <h1 className={`font-title text-xl font-bold`}>
+              Group Work
+            </h1>
+            <div
+              className={`font-title text-3xl text-tangerine-500 pt-6 font-bold`}
+            >
+              Supportive Sessions
+            </div>
+            <div className={`font-body pt-8 text-2xl w-3/4`}>
+              Receive personalized support that aligns with your mental health
+              and therapeutic goals. Collaborate with our team, your family, and
+              therapists to ensure your emotional and mental well-being is
+              prioritized as you work through the program.
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="overflow-hidden bg-brown-100 text-slate-100">
         <div className="relative flex pl-8 sm:px-[--columnPaddingNormal] sm:mx-auto sm:max-w-[calc(var(--columnPaddingNormal)*2+var(--layoutWidthMax))]">
           <div className="pt-20 w-3/4 sm:w-2/3">
             <h1
               className={`font-title text-white font-bold text-8xl`}
             >
-              Real Life
+              In Real Life
             </h1>
             <div
               className={`font-title text-4xl text-white sm:text-4xl pt-8 font-bold}`}
