@@ -4,9 +4,8 @@ import {Links} from '@/app/lib/definitions'
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import clsx from 'clsx';
-import { bookmania, acumen } from "@/app/ui/fonts";
 
-const links:Links = {about: 'About', contact: 'Contact'}
+const links:Links = {'/': 'About Us', 'contact': 'Contact'}
 
 export function Footer() {
   const currentPath = usePathname()
@@ -57,7 +56,7 @@ export function Footer() {
 }
 
 export const Address = () => (
-      <div className={`dark:text-tangerine-100 text-tangerine-500 ${acumen.className} font-medium`}>
+      <div className={`dark:text-tangerine-100 text-tangerine-500 font-body font-medium`}>
         <div>1430 South Dixie Hwy</div>
         <div>Coral Gables, FL 33146</div>
       </div>

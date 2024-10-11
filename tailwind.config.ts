@@ -2,15 +2,19 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: {
+    relative:true,
+    files:
+    [ "./app/contact/*.tsx",
+    "./app/ui/*.tsx", 
+    "./app/*.tsx"
+    ]
+  },
   theme: {
     extend: {
       backgroundImage: {
-        "palm":"url('/assets/PalmLeaf.png')",
+        "hero":"url('/assets/beach.avif')",
+        "palm":"url('/assets/PalmLeaf.avif')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -53,6 +57,10 @@ const config: Config = {
           800: '#534742',
           900: '#332b28'  // darkest
         }
+      }, 
+      fontFamily: {
+        title: ['var(--font-bookmania)'], 
+        body:['var(--font-acumen)']
       }
     },
   },

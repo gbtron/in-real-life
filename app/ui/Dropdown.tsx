@@ -43,7 +43,7 @@ export function Dropdown({pages}: {pages: Page[]}) {
                 )}>
                 <div className="flex justify-between w-full z-10" >
                     <Link href="/">
-                        <Image src="/assets/IRL_Logo_Final_Responsive.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
+                        <Image src="/assets/IRL_Logo_Final_Responsive.avif" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
                     </Link>
                     {!isOpen && (
                         <button onClick={toggleDropdown}>
@@ -56,7 +56,7 @@ export function Dropdown({pages}: {pages: Page[]}) {
                     )}
                     {isOpen && (
                         <button onClick={toggleDropdown}>
-                            <div className="relative bg-slate-100 w-10 h-6 rounded-full font-medium text-1xl text-gray-700">X
+                            <div className="relative bg-slate-100 w-10 h-6 rounded-full   text-1xl text-gray-700">X
                             </div>
                         </button>
                     )}
@@ -74,7 +74,7 @@ export function Dropdown({pages}: {pages: Page[]}) {
                     if (page.path == "/") {
                         title = 
                             
-                                <Image src="/assets/IRL_Logo_Final_Responsive.png" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
+                                <Image src="/assets/IRL_Logo_Final_Responsive.avif" alt="In Real Life Logo" width={100} height={100} className="relative"/>    
                             
                     }
                     

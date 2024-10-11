@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { acumen } from "@/app/ui/fonts"
+import {  bookmania, acumen } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@auth0/nextjs-auth0/client"
-import { Banner } from "./ui/Banner";
+import { Banner } from "@/app/ui/Banner";
 
 export const metadata: Metadata = {
   title: "In Real Life",
@@ -21,14 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="en" className={` ${bookmania.variable} ${acumen.variable} h-full`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </head>
       <UserProvider>
-        <body className={`${acumen.className} antialiased bg-beige-100 dark:bg-brown-900 flex flex-col page-content z-10 relative `}>
-          <div className="bg-palm bg-scroll bg-no-repeat bg-right-top bg-70% sm:bg-25% w-full max-h-96">
-            <ThemeProvider attribute='class'>
+        <body className={`font-body h-full antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative `}>
+          <div className="bg-scroll bg-no-repeat bg-right-top bg-palm bg-70% sm:bg-25% w-full max-h-96 relative">
+            <ThemeProvider forcedTheme='light' attribute='class'>
               <Banner/>
               {children}
             </ThemeProvider>
