@@ -3,6 +3,7 @@ import { Footer } from "../ui/Footer";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Spinner } from "@/app/ui/Spinner";
 import React from "react"
+import { Banner } from "@/app/ui/Banner";
 
 const UserInfoRow = ({ label, value }: any) => (
   <div className="py-2 grid grid-cols-2">
@@ -40,6 +41,7 @@ export default function Account() {
 
   return (
     <>
+      <Banner/>
       {user && (
         <div className="px-4 md:flex">
           <div className="my-3 p-5 bg-gray-100 rounded-md dark:bg-gray-500 md:flex-grow mx-3">
