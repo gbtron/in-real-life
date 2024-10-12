@@ -30,7 +30,7 @@ export default function About() {
             <div className="inline-flex">
               <a
                 href="/contact"
-                className="p-2 my-5 sm:my-8 mx-2 bg-slate-100 hover:bg-tangerine-500 hover:bg-tangerine-600 hover:text-white text-slate-600 font-bold rounded border-2 border-transparent shadow-md transition duration-500 md:text-xl"
+                className="p-2 my-5 sm:my-8 mx-2 bg-slate-100 hover:bg-tangerine-500 hover:text-white text-slate-600 font-bold rounded border-2 border-transparent shadow-md transition duration-500 md:text-xl"
               >
                 Contact Us
               </a>
