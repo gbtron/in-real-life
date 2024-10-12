@@ -16,6 +16,7 @@ export type SettableEvent = ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInput
 export type Links = {
     '/':String, 
     'contact':String,
+    'about':String
 }
 export type LinkName = keyof Links
 

@@ -1,11 +1,11 @@
 'use client'
 import Link from "next/link";
-import {Links} from '@/app/lib/definitions'
+import { Links } from '@/app/lib/definitions'
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import clsx from 'clsx';
 
-const links:Links = {'/': 'About Us', 'contact': 'Contact'}
+const links:Links = {'/': 'Home', 'about': 'About Us', 'contact': 'Contact'}
 
 export function Footer() {
   const currentPath = usePathname()
@@ -56,8 +56,8 @@ export function Footer() {
 }
 
 export const Address = () => (
-      <div className={`dark:text-tangerine-100 text-tangerine-500 font-body font-medium`}>
-        <div>1430 South Dixie Hwy</div>
-        <div>Coral Gables, FL 33146</div>
-      </div>
-    )
+  <div className={`dark:text-tangerine-100 text-tangerine-500`}>
+    <div>1390 South Dixie Hwy</div>
+    <div>Coral Gables, FL 33146</div>
+  </div>
+)

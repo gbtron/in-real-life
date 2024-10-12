@@ -5,7 +5,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { Spinner } from "@/app/ui/Spinner"
 import { Greeting } from "./ui/Greeting";
 
-export default function about() {
+export default function Home() {
   const { user, isLoading, error } = useUser()
   return (
     <>

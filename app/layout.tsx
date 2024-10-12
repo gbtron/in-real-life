@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import {  bookmania, acumen } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
-import { ThemeProvider } from "next-themes";
 import { UserProvider } from "@auth0/nextjs-auth0/client"
 import { Banner } from "@/app/ui/Banner";
 
@@ -28,10 +27,8 @@ export default function RootLayout({
       <UserProvider>
         <body className={`font-body h-full antialiased bg-beige-100 dark:bg-brown-100 flex flex-col page-content z-10 relative `}>
           <div className="bg-scroll bg-no-repeat bg-right-top bg-palm bg-70% sm:bg-25% w-full max-h-96 relative">
-            <ThemeProvider forcedTheme='light' attribute='class'>
-              <Banner/>
-              {children}
-            </ThemeProvider>
+            <Banner/>
+            {children}
           </div>
         </body>
       </UserProvider>
