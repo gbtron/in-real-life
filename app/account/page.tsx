@@ -36,9 +36,6 @@ export default function Account() {
     );
   }
 
-  const app_metadata = user.app_metadata as {'account_type':String};
-  const user_metadata = user.user_metadata as {'phone': String}
-
   return (
     <>
       <Banner/>
@@ -50,13 +47,13 @@ export default function Account() {
             <div className="divide-y divide-gray-300">
               <UserInfoRow
                 label="Account Type"
-                value={app_metadata.account_type || "N/A"}
+                value={"N/A"}
               />
               <UserInfoRow label="Name" value={user.name} />
               <UserInfoRow label="Email" value={user.email} />
               <UserInfoRow
                 label="Phone Number"
-                value={user_metadata.phone || "N/A"}
+                value={"N/A"}
               />
               <UserInfoRow label="Nickname" value={user.nickname} />
               <UserInfoRow label="Password" value="*********" />

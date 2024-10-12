@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import {  bookmania, acumen } from "@/app/ui/fonts"
 import "@/app/ui/globals.css";
 import { UserProvider } from "@auth0/nextjs-auth0/client"
-import { Banner } from "@/app/ui/Banner";
 
 export const metadata: Metadata = {
   title: "In Real Life",

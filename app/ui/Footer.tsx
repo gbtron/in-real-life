@@ -12,7 +12,7 @@ export function Footer() {
   const isContactForm = currentPath === '/contact'
 
   return (
-    <footer className='flex flex-col items-center'>
+    <footer className='flex flex-col items-center pt-12'>
       <div className="dark:text-tangerine-100 flex flex-row sm:gap-20 gap-4 items-center justify-center">
         {Object.keys(links).map( (pathname, key) => {
           let path = pathname as keyof Links
